@@ -1,12 +1,11 @@
 {
   "schemaVersion": 1,
-  "projectId": null,
-  "name": null,
-  "status": "not_initialized",
+  "projectId": "world-soul-website",
+  "name": "World Soul – Music Manager (Website)",
+  "status": "active",
   "workshopType": null,
   "owner": null,
-  "description": null,
-  "createdAt": null,
-  "updatedAt": null
+  "description": "Öffentliche, statische Website der interkulturellen Musikplattform World Soul zwischen Guanajuato (MX) und Leipzig (DE): Leistungen, Touren, Historie, Team, Kontaktformular sowie Impressum und Datenschutz, viersprachig (ES/EN/DE/FR) mit Hell- und Dunkelmodus.",
+  "createdAt": "2026-10-08T14:10:50Z",
+  "updatedAt": "2026-10-08T14:10:50Z"
 }
-

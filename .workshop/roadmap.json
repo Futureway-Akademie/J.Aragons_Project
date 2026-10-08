@@ -1,7 +1,184 @@
 {
   "schemaVersion": 1,
-  "roadmapVersion": 0,
-  "status": "not_initialized",
-  "phases": []
+  "roadmapVersion": 1,
+  "status": "active",
+  "phases": [
+    {
+      "id": "phase-1",
+      "title": "Übernahme und Stabilisierung",
+      "description": "Bestehenden World-Soul-Code in das Workshop-Repository übernehmen und die Darstellung im Hell- und Dunkelmodus stabilisieren.",
+      "order": 1,
+      "weight": 5,
+      "status": "completed",
+      "tasks": [
+        {
+          "id": "task-1-1",
+          "title": "World-Soul-Website nach world-soul/ übernehmen",
+          "description": "Den bestehenden Website-Code (Quelle World Soul.dc.html, Bundle index.html/world-soul-index.html, support.js, doc-page.js, _ds/, assets/, uploads/) unverändert in den Ordner world-soul/ des Workshop-Repositorys übernehmen, ohne die Workshop-Struktur zu verändern.",
+          "order": 1,
+          "weight": 3,
+          "status": "completed",
+          "dependsOn": [],
+          "definitionOfDone": [
+            "Alle Website-Dateien liegen unter world-soul/.",
+            "Workshop-Dateien (.agents/, .github/, .workshop/, AGENTS.md, CLAUDE.md, README.md) sind unverändert.",
+            "Die Seite lädt lokal aus world-soul/ und rendert vollständig."
+          ],
+          "startedAt": "2026-10-08T08:52:59Z",
+          "completedAt": "2026-10-08T08:52:59Z",
+          "verification": {
+            "status": "passed",
+            "summary": "Übernahme mit Commit 57d4e72 (Start- und Abschlusszeit entsprechen dem Commit-Zeitpunkt; der tatsächliche Arbeitsbeginn ist nicht dokumentiert). world-soul/index.html wurde über einen lokalen HTTP-Server geladen und im Browser in beiden Farbmodi vollständig gerendert. index.html und world-soul-index.html sind byte-identisch.",
+            "commands": [
+              "python -m http.server 8765 --bind 127.0.0.1 --directory world-soul",
+              "cmp world-soul/index.html world-soul/world-soul-index.html"
+            ],
+            "checkedAt": "2026-10-08T13:58:04Z"
+          }
+        },
+        {
+          "id": "task-1-2",
+          "title": "Kontrast und Hover-Zustände im Hell-/Dunkelmodus prüfen und verbessern",
+          "description": "Audit der veröffentlichten Seite im Hell- und Dunkelmodus; Behebung von grellen Kacheln, zu schwachen Rahmen von Bedienelementen, kaum sichtbaren Trennlinien, wirkungslosen Hover-Zuständen, vom Zurück-nach-oben-Button verdecktem Footer und statischer theme-color.",
+          "order": 2,
+          "weight": 2,
+          "status": "completed",
+          "dependsOn": [
+            "task-1-1"
+          ],
+          "definitionOfDone": [
+            "Alle Texte erreichen in beiden Farbmodi mindestens WCAG-AA-Kontrast.",
+            "Rahmen von Formularfeldern und Outline-Bedienelementen erreichen mindestens 3:1.",
+            "Bildlose Tour-Kacheln wirken im Dunkelmodus nicht mehr grell.",
+            "Hover-Zustände von Navigation, Buttons, Sprachwahl und Karten greifen.",
+            "Der Footer-Text wird nicht vom Zurück-nach-oben-Button verdeckt.",
+            "theme-color folgt dem aktiven Farbmodus.",
+            "Quelle und beide Bundles enthalten dieselben Änderungen."
+          ],
+          "startedAt": "2026-10-08T13:45:36Z",
+          "completedAt": "2026-10-08T14:04:26Z",
+          "verification": {
+            "status": "passed",
+            "summary": "Änderungen per Skript mit Trefferzahl-Prüfung auf Quelle und Bundle-Template angewendet (24 Edits, Template-Roundtrip byte-genau). Automatischer Kontrast-Scan aller sichtbaren Texte: 0 Verstöße in Hell und Dunkel. Rahmen der Bedienelemente 3,64–4,06:1, Kacheltext 9,68:1 (dunkel) bzw. 10,4:1 (hell). Hover-Regeln per echtem Maus-Hover im Browser geprüft. Sichtprüfung beider Modi auf lokalem Server; vom Nutzer abgenommen. Commit 9925dba, Merge in main über PR #1 (e9fde35).",
+            "commands": [
+              "python apply_fixes.py world-soul",
+              "cmp world-soul/index.html world-soul/world-soul-index.html",
+              "python -m http.server 8765 --bind 127.0.0.1 --directory world-soul",
+              "Browser: automatischer WCAG-Kontrast-Scan aller Textelemente (hell und dunkel)",
+              "Browser: Hover-Prüfung von Navigation, Buttons, Sprachwahl"
+            ],
+            "checkedAt": "2026-10-08T13:58:04Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "phase-2",
+      "title": "Qualität und Veröffentlichung",
+      "description": "Website aus dem Workshop-Repository veröffentlichen und in Responsivität, Barrierefreiheit und Performance absichern.",
+      "order": 2,
+      "weight": 9,
+      "status": "ready",
+      "tasks": [
+        {
+          "id": "task-2-1",
+          "title": "world-soul/ über GitHub Pages aus dem Futureway-Repository veröffentlichen",
+          "description": "Veröffentlichung der Website aus Futureway-Akademie/J.Aragons_Project einrichten, ohne die Workshop-Struktur zu verändern.",
+          "order": 1,
+          "weight": 3,
+          "status": "ready",
+          "dependsOn": [
+            "task-1-2"
+          ],
+          "definitionOfDone": [
+            "Die Website ist unter einer öffentlichen GitHub-Pages-URL erreichbar.",
+            "Alle Assets, Sprachen und beide Farbmodi funktionieren auf der veröffentlichten Seite.",
+            "Die veröffentlichte URL ist im Repository dokumentiert."
+          ],
+          "startedAt": null,
+          "completedAt": null,
+          "verification": {
+            "status": "not_run",
+            "summary": null,
+            "commands": [],
+            "checkedAt": null
+          }
+        },
+        {
+          "id": "task-2-2",
+          "title": "Responsive-Prüfung bei Smartphone-Breite in beiden Farbmodi",
+          "description": "Darstellung und Bedienung bei 375 px Breite in Hell- und Dunkelmodus prüfen und gefundene Probleme beheben.",
+          "order": 2,
+          "weight": 2,
+          "status": "ready",
+          "dependsOn": [
+            "task-1-2"
+          ],
+          "definitionOfDone": [
+            "Kein horizontales Scrollen bei 375 px Breite.",
+            "Mobiles Menü, Sprachwahl und Farbmodus-Schalter sind bedienbar.",
+            "Alle Abschnitte sind in beiden Farbmodi lesbar.",
+            "Quelle und Bundles sind synchron."
+          ],
+          "startedAt": null,
+          "completedAt": null,
+          "verification": {
+            "status": "not_run",
+            "summary": null,
+            "commands": [],
+            "checkedAt": null
+          }
+        },
+        {
+          "id": "task-2-3",
+          "title": "Barrierefreiheit: Tastatur, Fokus und Screenreader-Bezeichnungen",
+          "description": "Tastaturbedienung, sichtbare Fokuszustände und Beschriftungen für Screenreader prüfen und verbessern.",
+          "order": 3,
+          "weight": 2,
+          "status": "ready",
+          "dependsOn": [
+            "task-1-2"
+          ],
+          "definitionOfDone": [
+            "Alle Bedienelemente sind per Tastatur in sinnvoller Reihenfolge erreichbar.",
+            "Fokuszustände sind in beiden Farbmodi deutlich sichtbar.",
+            "Bedienelemente und Bilder besitzen passende zugängliche Namen bzw. Alternativtexte.",
+            "Quelle und Bundles sind synchron."
+          ],
+          "startedAt": null,
+          "completedAt": null,
+          "verification": {
+            "status": "not_run",
+            "summary": null,
+            "commands": [],
+            "checkedAt": null
+          }
+        },
+        {
+          "id": "task-2-4",
+          "title": "Performance: Bundle- und Bildgröße reduzieren",
+          "description": "Die Größe des ca. 2,2 MB großen Bundles und der eingebetteten Bilder reduzieren, ohne sichtbare Qualitätsverluste.",
+          "order": 4,
+          "weight": 2,
+          "status": "ready",
+          "dependsOn": [
+            "task-1-2"
+          ],
+          "definitionOfDone": [
+            "Die Bundle-Größe ist messbar kleiner als vor dem Task (Vorher-/Nachher-Wert dokumentiert).",
+            "Bilder zeigen keine sichtbaren Qualitätsverluste.",
+            "Die Seite rendert danach vollständig in allen Sprachen und beiden Farbmodi."
+          ],
+          "startedAt": null,
+          "completedAt": null,
+          "verification": {
+            "status": "not_run",
+            "summary": null,
+            "commands": [],
+            "checkedAt": null
+          }
+        }
+      ]
+    }
+  ]
 }
-
