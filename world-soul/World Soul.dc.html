@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="description" content="World Soul – Music Manager. Plataforma intercultural de música entre Guanajuato, México y Leipzig, Alemania. Gestión artística, giras, producción de eventos e intercambio cultural de bandas.">
+<meta property="og:title" content="World Soul – Music Manager | Plataforma intercultural de música">
+<meta property="og:description" content="Plataforma intercultural entre Guanajuato y Leipzig: intercambio de bandas, giras, producción y espacios abiertos para el talento independiente.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/logo-ws-alpha.png">
+<meta name="theme-color" content="#1b3a5c">
+<link rel="stylesheet" href="_ds/modernist-bf2ea29a-c038-47ca-be2b-ab766905dfa3/styles.css">
+<script src="_ds/modernist-bf2ea29a-c038-47ca-be2b-ab766905dfa3/_ds_bundle.js"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"World Soul","alternateName":"World Soul – Music Manager","foundingDate":"2018","description":"Plataforma intercultural de música entre Guanajuato (México) y Leipzig (Alemania).","address":{"@type":"PostalAddress","addressLocality":"Leipzig","addressCountry":"DE"},"email":"worldsoul.ws@gmail.com","telephone":"+4915256981202","founder":{"@type":"Person","name":"Jesús Cabal Aragón"},"sameAs":["https://www.instagram.com/worldsoul_ws/","https://www.facebook.com/WorldSoulWS/","https://twitter.com/WorldSoul_WS","https://open.spotify.com/artist/3f5SN9Aa0fTo3qgUt2679X"]}</script>
+<style>
+:root{
+  --ws-blue:#1b3a5c; --ws-blue-deep:#12283f; --ws-blue-light:#9dbfe4;
+  --ws-ochre:#a8551d; --paper:#f3f2f2; --ink:#201e1d; --night:#101820;
+  --bg:#f3f2f2; --surface:#e9e7e4; --text:#201e1d; --muted:#5a5654;
+  --line:rgba(32,30,29,.42); --hair:rgba(32,30,29,.18);
+  --brand:#1b3a5c; --accent:#a8551d; --accent-text:#8a5218;
+  --btn-bg:#1b3a5c; --btn-fg:#f3f2f2; --photo:grayscale(1) contrast(1.06);
+  --logo-filter:none;
+  --color-bg:var(--bg); --color-surface:var(--surface); --color-text:var(--text);
+  --color-accent:var(--brand); --color-divider:var(--line);
+}
+[data-theme="dark"]{
+  --bg:#101820; --surface:#18222d; --text:#eceae7; --muted:#a9b2bc;
+  --line:rgba(236,234,231,.34); --hair:rgba(236,234,231,.16);
+  --brand:#9dbfe4; --accent:#e39152; --accent-text:#e39152;
+  --btn-bg:#9dbfe4; --btn-fg:#101820; --photo:grayscale(1) contrast(1.02) brightness(.94);
+  --logo-filter:brightness(0) invert(1);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:"Archivo",system-ui,sans-serif;margin:0;transition:background-color .25s ease,color .25s ease}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+::selection{background:color-mix(in srgb,var(--brand) 28%,transparent)}
+a{color:var(--brand);text-underline-offset:3px}
+a:hover{color:var(--accent-text)}
+.ws-logo{filter:var(--logo-filter)}
+.ws-photo{filter:var(--photo)}
+.ws-input::placeholder{color:var(--muted);opacity:1}
+.ws-link-row:hover{background:color-mix(in srgb,var(--brand) 8%,transparent)}
+.ws-nav-link:hover{color:var(--accent-text)}
+.ws-card:hover{border-color:var(--brand)}
+@keyframes ws-dash{to{stroke-dashoffset:-24}}
+@media (min-width:960px){
+  [data-desktop-nav]{display:flex !important}
+  [data-burger]{display:none !important}
+  [data-header-tools]{margin-left:0 !important}
+}
+[id]{scroll-margin-top:96px}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+}
+</style>
+</helmet>
+
+<div style="background:var(--bg);color:var(--text);min-height:100vh">
+
+<a href="#contenido" style="position:absolute;left:-9999px;top:0;z-index:200;background:var(--btn-bg);color:var(--btn-fg);padding:12px 18px;font-weight:800;text-decoration:none" onFocus="{{ onSkipFocus }}" onBlur="{{ onSkipBlur }}">{{ t.skip }}</a>
+
+<header style="position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:2px solid var(--line)">
+  <div style="max-width:1280px;margin:0 auto;padding:12px clamp(16px,4vw,40px);display:flex;align-items:center;gap:clamp(12px,3vw,32px)">
+    <a href="#inicio" aria-label="World Soul" style="display:block;flex:0 0 auto;line-height:0">
+      <img class="ws-logo" src="assets/logo-ws.png" width="582" height="231" alt="World Soul – Music Manager" style="height:clamp(34px,4.4vw,44px);width:auto">
+    </a>
+    <nav aria-label="{{ t.a11y.mainNav }}" style="margin-left:auto;display:none;gap:clamp(14px,2vw,28px);align-items:center" data-desktop-nav="true">
+      <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="5">
+        <a class="ws-nav-link" href="{{ item.href }}" aria-current="{{ item.current }}" style="{{ item.style }}">{{ item.label }}</a>
+      </sc-for>
+    </nav>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:8px" data-header-tools="true">
+      <div role="group" aria-label="{{ t.a11y.language }}" style="display:flex;border:2px solid var(--line)">
+        <sc-for list="{{ langs }}" as="l" hint-placeholder-count="4">
+          <button type="button" lang="{{ l.code }}" aria-pressed="{{ l.pressed }}" onClick="{{ l.onClick }}" title="{{ l.name }}" style="{{ l.style }}">{{ l.label }}</button>
+        </sc-for>
+      </div>
+      <button type="button" onClick="{{ toggleTheme }}" aria-pressed="{{ isDark }}" style="display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 12px;border:2px solid var(--line);background:transparent;color:var(--text);font-family:inherit;font-weight:800;font-size:12px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">
+        <span aria-hidden="true" style="display:block;width:14px;height:14px;border-radius:50%;border:2px solid currentColor;background:linear-gradient(90deg,currentColor 0 50%,transparent 50% 100%)"></span>
+        <span>{{ t.theme.label }}</span>
+      </button>
+      <button type="button" data-burger="true" onClick="{{ toggleMenu }}" aria-expanded="{{ menuExpanded }}" aria-controls="ws-menu-movil" aria-label="{{ t.a11y.menu }}" style="{{ burgerStyle }}">
+        <span aria-hidden="true" style="display:block;width:20px;height:2px;background:currentColor;box-shadow:0 -6px 0 currentColor,0 6px 0 currentColor"></span>
+      </button>
+    </div>
+  </div>
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <nav id="ws-menu-movil" aria-label="{{ t.a11y.mainNav }}" style="border-top:2px solid var(--line);background:var(--bg);padding:8px clamp(16px,4vw,40px) 20px;display:flex;flex-direction:column">
+      <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="5">
+        <a class="ws-link-row" href="{{ item.href }}" aria-current="{{ item.current }}" onClick="{{ closeMenu }}" style="display:block;padding:14px 4px;border-bottom:1px solid var(--hair);text-decoration:none;color:var(--text);font-family:'Archivo',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.01em;min-height:48px">{{ item.label }}</a>
+      </sc-for>
+    </nav>
+  </sc-if>
+</header>
+
+<main id="contenido">
+
+  <section id="inicio" data-screen-label="Hero" style="padding:clamp(44px,7vw,84px) clamp(16px,4vw,40px) clamp(32px,5vw,56px)">
+    <div style="max-width:1280px;margin:0 auto">
+      <p style="font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-text);margin:0 0 clamp(16px,3vw,28px)">{{ t.hero.kicker }}</p>
+      <h1 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(38px,8.2vw,104px);line-height:.98;letter-spacing:-.035em;margin:0;max-width:16ch;text-wrap:balance">{{ t.hero.title }}</h1>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(20px,4vw,56px);align-items:end;margin-top:clamp(24px,4vw,44px)">
+        <p style="font-size:clamp(16px,1.7vw,20px);line-height:1.5;max-width:46ch;margin:0;color:var(--text)">{{ t.hero.lead }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px">
+          <a href="#nosotros" style="display:inline-flex;align-items:center;min-height:48px;padding:12px 22px;background:var(--btn-bg);color:var(--btn-fg);text-decoration:none;font-weight:800;font-size:15px;letter-spacing:.01em">{{ t.hero.cta1 }}</a>
+          <a href="#contacto" style="display:inline-flex;align-items:center;min-height:48px;padding:12px 22px;border:2px solid var(--line);color:var(--text);text-decoration:none;font-weight:800;font-size:15px">{{ t.hero.cta2 }}</a>
+        </div>
+      </div>
+      <figure role="img" aria-label="{{ t.route.alt }}" style="margin:clamp(32px,5vw,64px) 0 0;border-top:2px solid var(--line);padding-top:18px">
+        <svg viewBox="0 0 1200 150" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:auto;color:var(--brand)" aria-hidden="true" focusable="false">
+          <path d="M70 118 C 330 8, 870 8, 1130 118" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="10 8" style="animation:ws-dash 2.4s linear infinite"></path>
+          <circle cx="70" cy="118" r="7" fill="currentColor"></circle>
+          <circle cx="1130" cy="118" r="7" fill="currentColor"></circle>
+          <circle cx="600" cy="41" r="4" fill="none" stroke="currentColor" stroke-width="2"></circle>
+          <text x="70" y="146" font-family="Archivo, sans-serif" font-size="19" font-weight="800" fill="currentColor">GUANAJUATO, MX</text>
+          <text x="1130" y="146" text-anchor="end" font-family="Archivo, sans-serif" font-size="19" font-weight="800" fill="currentColor">LEIPZIG, DE</text>
+          <text x="600" y="28" text-anchor="middle" font-family="Archivo, sans-serif" font-size="15" font-weight="800" fill="currentColor">9 712 KM</text>
+        </svg>
+      </figure>
+      <dl style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:2px;margin:2px 0 0;background:var(--line);border:2px solid var(--line);border-top:0">
+        <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+          <div style="background:var(--bg);padding:18px 16px">
+            <dt style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 6px">{{ s.label }}</dt>
+            <dd style="margin:0;font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(20px,2.4vw,28px);line-height:1.05;letter-spacing:-.02em">{{ s.value }}</dd>
+          </div>
+        </sc-for>
+      </dl>
+    </div>
+  </section>
+
+  <section id="que-hacemos" data-screen-label="Qué hacemos" style="border-top:2px solid var(--line);padding:clamp(48px,7vw,96px) clamp(16px,4vw,40px)">
+    <div style="max-width:1280px;margin:0 auto">
+      <p style="font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 10px">{{ t.work.kicker }}</p>
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(28px,4.4vw,54px);line-height:1.02;letter-spacing:-.03em;margin:0 0 clamp(28px,4vw,48px);max-width:20ch">{{ t.work.title }}</h2>
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{ services }}" as="s" hint-placeholder-count="5">
+          <article style="display:grid;grid-template-columns:minmax(0,1fr);gap:10px;padding:clamp(20px,3vw,30px) 0;border-top:1px solid var(--hair)">
+            <div style="display:flex;gap:16px;align-items:baseline">
+              <span aria-hidden="true" style="font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;color:var(--accent-text);letter-spacing:.08em">{{ s.num }}</span>
+              <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(20px,2.4vw,30px);line-height:1.1;letter-spacing:-.02em;margin:0;max-width:22ch">{{ s.title }}</h3>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:clamp(12px,3vw,40px);padding-left:29px">
+              <p style="margin:0;font-size:16px;line-height:1.55;max-width:52ch">{{ s.desc }}</p>
+              <p style="margin:0;font-size:15px;line-height:1.5;color:var(--muted);max-width:44ch;border-left:2px solid var(--accent);padding-left:14px"><strong style="color:var(--accent-text);font-weight:800">{{ t.work.solves }}</strong> {{ s.problem }}</p>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="giras" data-screen-label="Giras" style="border-top:2px solid var(--line);padding:clamp(48px,7vw,96px) clamp(16px,4vw,40px)">
+    <div style="max-width:1280px;margin:0 auto">
+      <p style="font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 10px">{{ t.tours.kicker }}</p>
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(28px,4.4vw,54px);line-height:1.02;letter-spacing:-.03em;margin:0 0 clamp(24px,4vw,44px);max-width:20ch">{{ t.tours.title }}</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:2px;background:var(--line);border:2px solid var(--line)">
+
+        <article class="ws-card" style="background:var(--bg);display:flex;flex-direction:column;border:0">
+          <img class="ws-photo" src="assets/tour-covra.jpg" width="900" height="1200" alt="{{ c0.alt }}" loading="lazy" style="width:100%;height:230px;object-fit:cover;object-position:center 28%;display:block">
+          <div style="padding:clamp(18px,2.4vw,26px);display:flex;flex-direction:column;gap:12px;flex:1">
+            <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-bottom:2px solid var(--line);padding-bottom:10px">
+              <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(19px,2.1vw,26px);line-height:1.05;letter-spacing:-.02em;margin:0">Covra</h3>
+              <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:14px;color:var(--accent-text);white-space:nowrap">{{ c0.year }}</span>
+            </div>
+            <p style="margin:0;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">{{ c0.place }}</p>
+            <p style="margin:0;font-size:15px;line-height:1.55">{{ c0.text }}</p>
+            <p style="margin:auto 0 0;font-size:13px;line-height:1.45;color:var(--muted);border-top:1px solid var(--hair);padding-top:10px">{{ c0.note }}</p>
+          </div>
+        </article>
+
+        <article class="ws-card" style="background:var(--bg);display:flex;flex-direction:column;border:0">
+          <img class="ws-photo" src="assets/tour-mumu.jpg" width="900" height="596" alt="{{ c1.alt }}" loading="lazy" style="width:100%;height:230px;object-fit:cover;object-position:center;display:block">
+          <div style="padding:clamp(18px,2.4vw,26px);display:flex;flex-direction:column;gap:12px;flex:1">
+            <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-bottom:2px solid var(--line);padding-bottom:10px">
+              <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(19px,2.1vw,26px);line-height:1.05;letter-spacing:-.02em;margin:0">MuMu</h3>
+              <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:14px;color:var(--accent-text);white-space:nowrap">{{ c1.year }}</span>
+            </div>
+            <p style="margin:0;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">{{ c1.place }}</p>
+            <p style="margin:0;font-size:15px;line-height:1.55">{{ c1.text }}</p>
+            <p style="margin:auto 0 0;font-size:13px;line-height:1.45;color:var(--muted);border-top:1px solid var(--hair);padding-top:10px">{{ c1.note }}</p>
+          </div>
+        </article>
+
+        <article class="ws-card" style="background:var(--bg);display:flex;flex-direction:column;border:0">
+          <img class="ws-photo" src="assets/tour-dolus.jpg" width="900" height="1200" alt="{{ c2.alt }}" loading="lazy" style="width:100%;height:230px;object-fit:cover;object-position:center 24%;display:block">
+          <div style="padding:clamp(18px,2.4vw,26px);display:flex;flex-direction:column;gap:12px;flex:1">
+            <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-bottom:2px solid var(--line);padding-bottom:10px">
+              <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(18px,2vw,24px);line-height:1.05;letter-spacing:-.02em;margin:0">Dolus Mutombo &amp; The Free Spirits</h3>
+              <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:14px;color:var(--accent-text);white-space:nowrap">{{ c2.year }}</span>
+            </div>
+            <p style="margin:0;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">{{ c2.place }}</p>
+            <p style="margin:0;font-size:15px;line-height:1.55">{{ c2.text }}</p>
+            <p style="margin:auto 0 0;font-size:13px;line-height:1.45;color:var(--muted);border-top:1px solid var(--hair);padding-top:10px">{{ c2.note }}</p>
+          </div>
+        </article>
+
+        <article class="ws-card" style="background:var(--bg);display:flex;flex-direction:column;border:0">
+          <img class="ws-photo" src="assets/tour-sonica.jpg" width="900" height="675" alt="{{ c3.alt }}" loading="lazy" style="width:100%;height:230px;object-fit:cover;object-position:center;display:block">
+          <div style="padding:clamp(18px,2.4vw,26px);display:flex;flex-direction:column;gap:12px;flex:1">
+            <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-bottom:2px solid var(--line);padding-bottom:10px">
+              <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(19px,2.1vw,26px);line-height:1.05;letter-spacing:-.02em;margin:0">Sónica MX</h3>
+              <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:14px;color:var(--accent-text);white-space:nowrap">{{ c3.year }}</span>
+            </div>
+            <p style="margin:0;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">{{ c3.place }}</p>
+            <p style="margin:0;font-size:15px;line-height:1.55">{{ c3.text }}</p>
+          </div>
+        </article>
+
+        <article class="ws-card" style="background:var(--bg);display:flex;flex-direction:column;border:0">
+          <img class="ws-photo" src="assets/artist-banda-de-belgas.jpg" width="900" height="677" alt="{{ c4.alt }}" loading="lazy" style="width:100%;height:230px;object-fit:cover;object-position:center;display:block">
+          <div style="padding:clamp(18px,2.4vw,26px);display:flex;flex-direction:column;gap:12px;flex:1">
+            <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-bottom:2px solid var(--line);padding-bottom:10px">
+              <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(18px,2vw,24px);line-height:1.05;letter-spacing:-.02em;margin:0">La Catrina Rock Band</h3>
+              <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:14px;color:var(--accent-text);white-space:nowrap">{{ c4.year }}</span>
+            </div>
+            <p style="margin:0;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">{{ c4.place }}</p>
+            <p style="margin:0;font-size:15px;line-height:1.55">{{ c4.text }}</p>
+          </div>
+        </article>
+
+        <article class="ws-card" style="background:var(--bg);display:flex;flex-direction:column;border:0">
+          <img class="ws-photo" src="assets/tour-skarabazz.jpg" width="900" height="597" alt="{{ c5.alt }}" loading="lazy" style="width:100%;height:230px;object-fit:cover;object-position:center;display:block">
+          <div style="padding:clamp(18px,2.4vw,26px);display:flex;flex-direction:column;gap:12px;flex:1">
+            <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-bottom:2px solid var(--line);padding-bottom:10px">
+              <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(19px,2.1vw,26px);line-height:1.05;letter-spacing:-.02em;margin:0">SkarabaZZ</h3>
+              <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:14px;color:var(--accent-text);white-space:nowrap">{{ c5.year }}</span>
+            </div>
+            <p style="margin:0;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">{{ c5.place }}</p>
+            <p style="margin:0;font-size:15px;line-height:1.55">{{ c5.text }}</p>
+          </div>
+        </article>
+
+        <article class="ws-card" style="background:var(--bg);display:flex;flex-direction:column;border:0">
+          <img class="ws-photo" src="assets/tour-oldies.jpg" width="695" height="900" alt="{{ flyerAlt }}" loading="lazy" style="width:100%;height:230px;object-fit:cover;object-position:center top;display:block">
+          <div style="padding:clamp(18px,2.4vw,26px);display:flex;flex-direction:column;gap:12px;flex:1">
+            <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-bottom:2px solid var(--line);padding-bottom:10px">
+              <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(19px,2.1vw,26px);line-height:1.05;letter-spacing:-.02em;margin:0">Oldies but Goldies</h3>
+              <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;color:var(--accent-text)">{{ c6.year }}</span>
+            </div>
+            <p style="margin:0;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">{{ c6.place }}</p>
+            <p style="margin:0;font-size:15px;line-height:1.55">{{ c6.text }}</p>
+          </div>
+        </article>
+
+        <article class="ws-card" style="background:var(--bg);display:flex;flex-direction:column;border:0">
+          <div aria-hidden="true" style="height:230px;background:var(--btn-bg);color:var(--btn-fg);display:flex;flex-direction:column;justify-content:flex-end;padding:22px">
+            <span style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase">World Soul Fest</span>
+            <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:52px;line-height:.92;letter-spacing:-.04em">2025</span>
+          </div>
+          <div style="padding:clamp(18px,2.4vw,26px);display:flex;flex-direction:column;gap:12px;flex:1">
+            <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-bottom:2px solid var(--line);padding-bottom:10px">
+              <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(19px,2.1vw,26px);line-height:1.05;letter-spacing:-.02em;margin:0">World Soul Fest</h3>
+              <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:14px;color:var(--accent-text);white-space:nowrap">{{ c7.year }}</span>
+            </div>
+            <p style="margin:0;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">{{ c7.place }}</p>
+            <p style="margin:0;font-size:15px;line-height:1.55">{{ c7.text }}</p>
+          </div>
+        </article>
+
+        <article class="ws-card" style="background:var(--bg);display:flex;flex-direction:column;border:0">
+          <div aria-hidden="true" style="height:230px;background:var(--btn-bg);color:var(--btn-fg);display:flex;flex-direction:column;justify-content:flex-end;padding:22px">
+            <span style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase">South Nation Music</span>
+            <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:44px;line-height:.92;letter-spacing:-.04em">Linn Levine</span>
+          </div>
+          <div style="padding:clamp(18px,2.4vw,26px);display:flex;flex-direction:column;gap:12px;flex:1">
+            <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-bottom:2px solid var(--line);padding-bottom:10px">
+              <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(19px,2.1vw,26px);line-height:1.05;letter-spacing:-.02em;margin:0">Linn Levine</h3>
+              <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:14px;color:var(--accent-text);white-space:nowrap">{{ c8.year }}</span>
+            </div>
+            <p style="margin:0;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">{{ c8.place }}</p>
+            <p style="margin:0;font-size:15px;line-height:1.55">{{ c8.text }}</p>
+          </div>
+        </article>
+
+        <article class="ws-card" style="background:var(--bg);display:flex;flex-direction:column;border:0">
+          <div aria-hidden="true" style="height:230px;background:var(--btn-bg);color:var(--btn-fg);display:flex;flex-direction:column;justify-content:flex-end;padding:22px">
+            <span style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase">La Fête de la Musique</span>
+            <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:52px;line-height:.92;letter-spacing:-.04em">2026</span>
+          </div>
+          <div style="padding:clamp(18px,2.4vw,26px);display:flex;flex-direction:column;gap:12px;flex:1">
+            <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;border-bottom:2px solid var(--line);padding-bottom:10px">
+              <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(18px,2vw,24px);line-height:1.05;letter-spacing:-.02em;margin:0">World Soul Fest</h3>
+              <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:13px;color:var(--accent-text)">{{ c9.year }}</span>
+            </div>
+            <p style="margin:0;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">{{ c9.place }}</p>
+            <p style="margin:0;font-size:15px;line-height:1.55">{{ c9.text }}</p>
+          </div>
+        </article>
+      </div>
+
+      <h3 id="historial" style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(22px,2.6vw,32px);letter-spacing:-.02em;margin:clamp(40px,6vw,72px) 0 6px">{{ t.timeline.title }}</h3>
+      <p style="margin:0 0 24px;font-size:15px;color:var(--muted);max-width:62ch">{{ t.timeline.lead }}</p>
+      <ol style="list-style:none;margin:0;padding:0;border-top:2px solid var(--line)">
+        <sc-for list="{{ timeline }}" as="e" hint-placeholder-count="8">
+          <li style="display:grid;grid-template-columns:76px minmax(0,1fr);gap:clamp(10px,2vw,24px);align-items:baseline;padding:13px 0;border-bottom:1px solid var(--hair)">
+            <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;color:var(--accent-text);letter-spacing:.02em">{{ e.year }}</span>
+            <span style="display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline">
+              <span style="font-weight:800;font-size:16px;line-height:1.3">{{ e.name }}</span>
+              <span style="font-size:14px;color:var(--muted);line-height:1.4">{{ e.place }}</span>
+            </span>
+          </li>
+        </sc-for>
+      </ol>
+      <p style="margin:16px 0 0;font-size:13px;line-height:1.5;color:var(--muted);max-width:70ch">{{ t.timeline.footnote }}</p>
+    </div>
+  </section>
+
+  <section id="nosotros" data-screen-label="Nosotros" style="border-top:2px solid var(--line);padding:clamp(48px,7vw,96px) clamp(16px,4vw,40px)">
+    <div style="max-width:1280px;margin:0 auto">
+      <p style="font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 10px">{{ t.story.kicker }}</p>
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(28px,4.4vw,54px);line-height:1.02;letter-spacing:-.03em;margin:0 0 clamp(24px,4vw,40px);max-width:22ch">{{ t.story.title }}</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(20px,4vw,56px);border-top:1px solid var(--hair);padding-top:24px">
+        <p style="margin:0;font-size:clamp(16px,1.6vw,18px);line-height:1.6">{{ t.story.p1 }}</p>
+        <p style="margin:0;font-size:clamp(16px,1.6vw,18px);line-height:1.6">{{ t.story.p2 }}</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(24px,4vw,56px);align-items:start;margin-top:clamp(40px,6vw,80px);border-top:2px solid var(--line);padding-top:clamp(24px,4vw,40px)">
+        <figure style="margin:0">
+          <img class="ws-photo" src="assets/team-jesus-cabal.jpg" width="640" height="853" alt="{{ t.founder.photoAlt }}" loading="lazy" style="width:100%;height:auto;display:block">
+        </figure>
+        <div>
+          <p style="font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-text);margin:0 0 8px">{{ t.founder.kicker }}</p>
+          <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(26px,3.4vw,42px);line-height:1.05;letter-spacing:-.03em;margin:0 0 4px">Jesús Cabal Aragón</h3>
+          <p style="margin:0 0 20px;font-size:15px;color:var(--muted);font-weight:800;letter-spacing:.02em">{{ t.founder.role }}</p>
+          <p style="margin:0 0 14px;font-size:16px;line-height:1.6;max-width:56ch">{{ t.founder.p1 }}</p>
+          <p style="margin:0 0 14px;font-size:16px;line-height:1.6;max-width:56ch">{{ t.founder.p2 }}</p>
+          <p style="margin:0 0 22px;font-size:16px;line-height:1.6;max-width:56ch">{{ t.founder.p3 }}</p>
+          <a href="#contacto" style="display:inline-flex;align-items:center;min-height:48px;padding:12px 22px;background:var(--btn-bg);color:var(--btn-fg);text-decoration:none;font-weight:800;font-size:15px">{{ t.founder.cta }}</a>
+        </div>
+      </div>
+
+      <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(22px,2.6vw,32px);letter-spacing:-.02em;margin:clamp(40px,6vw,80px) 0 6px">{{ t.team.title }}</h3>
+      <p style="margin:0 0 clamp(20px,3vw,32px);font-size:16px;line-height:1.6;color:var(--text);max-width:62ch">{{ t.team.lead }}</p>
+      <ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(16px,2.4vw,32px)">
+        <li style="margin:0">
+          <img class="ws-photo" src="assets/team-jesus-cabal.jpg" width="640" height="853" alt="{{ m0.alt }}" loading="lazy" style="width:100%;height:300px;object-fit:cover;object-position:center 22%;display:block;border-bottom:2px solid var(--line)">
+          <p style="margin:12px 0 2px;font-family:'Archivo',sans-serif;font-weight:800;font-size:19px;line-height:1.15;letter-spacing:-.01em">Jesús Cabal Aragón</p>
+          <p style="margin:0;font-size:13px;line-height:1.4;color:var(--muted);letter-spacing:.02em">{{ m0.role }}</p>
+        </li>
+        <li style="margin:0">
+          <img class="ws-photo" src="assets/team-melisa-altschuler.jpg" width="640" height="853" alt="{{ m1.alt }}" loading="lazy" style="width:100%;height:300px;object-fit:cover;object-position:center 22%;display:block;border-bottom:2px solid var(--line)">
+          <p style="margin:12px 0 2px;font-family:'Archivo',sans-serif;font-weight:800;font-size:19px;line-height:1.15;letter-spacing:-.01em">Melisa Altschüler</p>
+          <p style="margin:0;font-size:13px;line-height:1.4;color:var(--muted);letter-spacing:.02em">{{ m1.role }}</p>
+        </li>
+        <li style="margin:0">
+          <img class="ws-photo" src="assets/team-maira-espinosa.jpg" width="640" height="960" alt="{{ m2.alt }}" loading="lazy" style="width:100%;height:300px;object-fit:cover;object-position:center 22%;display:block;border-bottom:2px solid var(--line)">
+          <p style="margin:12px 0 2px;font-family:'Archivo',sans-serif;font-weight:800;font-size:19px;line-height:1.15;letter-spacing:-.01em">Maira Espinosa</p>
+          <p style="margin:0;font-size:13px;line-height:1.4;color:var(--muted);letter-spacing:.02em">{{ m2.role }}</p>
+        </li>
+        <li style="margin:0">
+          <img class="ws-photo" src="assets/team-dolus-mutombo.jpg" width="640" height="960" alt="{{ m3.alt }}" loading="lazy" style="width:100%;height:300px;object-fit:cover;object-position:center 22%;display:block;border-bottom:2px solid var(--line)">
+          <p style="margin:12px 0 2px;font-family:'Archivo',sans-serif;font-weight:800;font-size:19px;line-height:1.15;letter-spacing:-.01em">Dolus Mutombo</p>
+          <p style="margin:0;font-size:13px;line-height:1.4;color:var(--muted);letter-spacing:.02em">{{ m3.role }}</p>
+        </li>
+        <li style="margin:0">
+          <img class="ws-photo" src="assets/team-leo-arias.jpg" width="640" height="982" alt="{{ m4.alt }}" loading="lazy" style="width:100%;height:300px;object-fit:cover;object-position:center 22%;display:block;border-bottom:2px solid var(--line)">
+          <p style="margin:12px 0 2px;font-family:'Archivo',sans-serif;font-weight:800;font-size:19px;line-height:1.15;letter-spacing:-.01em">Leo Arias</p>
+          <p style="margin:0;font-size:13px;line-height:1.4;color:var(--muted);letter-spacing:.02em">{{ m4.role }}</p>
+        </li>
+        <li style="margin:0">
+          <img class="ws-photo" src="assets/team-jesus-tintori.jpg" width="640" height="960" alt="{{ m5.alt }}" loading="lazy" style="width:100%;height:300px;object-fit:cover;object-position:center 22%;display:block;border-bottom:2px solid var(--line)">
+          <p style="margin:12px 0 2px;font-family:'Archivo',sans-serif;font-weight:800;font-size:19px;line-height:1.15;letter-spacing:-.01em">Jesús Tintori</p>
+          <p style="margin:0;font-size:13px;line-height:1.4;color:var(--muted);letter-spacing:.02em">{{ m5.role }}</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contacto" data-screen-label="Contacto" style="border-top:2px solid var(--line);padding:clamp(48px,7vw,96px) clamp(16px,4vw,40px)">
+    <div style="max-width:1280px;margin:0 auto">
+      <p style="font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 10px">{{ t.contact.kicker }}</p>
+      <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(28px,4.4vw,54px);line-height:1.02;letter-spacing:-.03em;margin:0 0 clamp(24px,4vw,44px);max-width:20ch">{{ t.contact.title }}</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(24px,4vw,64px);align-items:start">
+        <div>
+          <ul style="list-style:none;margin:0 0 28px;padding:0;border-top:2px solid var(--line)">
+            <li style="border-bottom:1px solid var(--hair)">
+              <a class="ws-link-row" href="mailto:worldsoul.ws@gmail.com" style="display:flex;flex-direction:column;gap:2px;padding:14px 6px;text-decoration:none;color:var(--text);min-height:48px">
+                <span style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">{{ t.contact.email }}</span>
+                <span style="font-size:clamp(17px,2vw,22px);font-weight:800;letter-spacing:-.01em;word-break:break-word">worldsoul.ws@gmail.com</span>
+              </a>
+            </li>
+            <li style="border-bottom:1px solid var(--hair)">
+              <a class="ws-link-row" href="tel:+4915256981202" style="display:flex;flex-direction:column;gap:2px;padding:14px 6px;text-decoration:none;color:var(--text);min-height:48px">
+                <span style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">{{ t.contact.phone }}</span>
+                <span style="font-size:clamp(17px,2vw,22px);font-weight:800;letter-spacing:-.01em">+49 (0) 1525 698 1202</span>
+              </a>
+            </li>
+            <li style="border-bottom:1px solid var(--hair);padding:14px 6px">
+              <span style="display:block;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)">{{ t.contact.base }}</span>
+              <span style="display:block;font-size:clamp(17px,2vw,22px);font-weight:800;letter-spacing:-.01em">Leipzig, {{ t.contact.germany }}</span>
+            </li>
+          </ul>
+          <p style="font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 10px">{{ t.contact.social }}</p>
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px">
+            <sc-for list="{{ socials }}" as="s" hint-placeholder-count="5">
+              <li style="margin:0">
+                <a class="ws-link-row" href="{{ s.href }}" target="{{ s.target }}" rel="{{ s.rel }}" aria-label="{{ s.aria }}" aria-disabled="{{ s.disabled }}" tabindex="{{ s.tabindex }}" onClick="{{ s.onClick }}" style="{{ s.style }}">
+                  <span aria-hidden="true" style="display:block;width:18px;height:18px" dangerouslySetInnerHTML="{{ s.icon }}"></span>
+                  <span>{{ s.label }}</span>
+                </a>
+              </li>
+            </sc-for>
+          </ul>
+          <p style="margin:10px 0 0;font-size:13px;line-height:1.5;color:var(--muted);max-width:48ch">{{ socialNote }}</p>
+        </div>
+
+        <form onSubmit="{{ onSubmit }}" novalidate="{{ true }}" style="border:2px solid var(--line);padding:clamp(18px,2.6vw,28px);display:flex;flex-direction:column;gap:16px">
+          <div>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.01em;margin:0 0 4px">{{ t.form.title }}</h3>
+            <p style="margin:0;font-size:14px;line-height:1.5;color:var(--muted)">{{ formIntro }}</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <label for="ws-nombre" style="font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase">{{ t.form.name }}</label>
+            <input class="ws-input" id="ws-nombre" name="nombre" type="text" ref="{{ nameRef }}" autocomplete="name" required="{{ true }}" style="font-family:inherit;font-size:16px;padding:12px;min-height:48px;background:var(--bg);color:var(--text);border:2px solid var(--line);border-radius:0">
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <label for="ws-correo" style="font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase">{{ t.form.email }}</label>
+            <input class="ws-input" id="ws-correo" name="correo" type="email" ref="{{ mailRef }}" autocomplete="email" required="{{ true }}" style="font-family:inherit;font-size:16px;padding:12px;min-height:48px;background:var(--bg);color:var(--text);border:2px solid var(--line);border-radius:0">
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px">
+            <label for="ws-mensaje" style="font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase">{{ t.form.message }}</label>
+            <textarea class="ws-input" id="ws-mensaje" name="mensaje" rows="5" ref="{{ msgRef }}" required="{{ true }}" style="font-family:inherit;font-size:16px;padding:12px;background:var(--bg);color:var(--text);border:2px solid var(--line);border-radius:0;resize:vertical"></textarea>
+          </div>
+          <button type="submit" style="display:inline-flex;align-items:center;justify-content:flex-start;min-height:48px;padding:12px 22px;background:var(--btn-bg);color:var(--btn-fg);border:0;font-family:inherit;font-weight:800;font-size:15px;cursor:pointer">{{ submitLabel }}</button>
+          <p role="status" aria-live="polite" style="{{ statusStyle }}">{{ formStatus }}</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="legal" lang="de" data-screen-label="Impressum" style="border-top:2px solid var(--line);padding:clamp(40px,6vw,80px) clamp(16px,4vw,40px)">
+    <div style="max-width:1280px;margin:0 auto">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:clamp(24px,5vw,72px);align-items:start">
+
+        <div id="impressum">
+          <p style="font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 10px">Rechtliches</p>
+          <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(26px,3.4vw,40px);line-height:1.04;letter-spacing:-.03em;margin:0 0 20px">Impressum</h2>
+          <div style="border-top:2px solid var(--line);padding-top:16px;font-size:15px;line-height:1.6">
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;margin:0 0 6px">Angaben gemäß § 5 DDG</h3>
+            <p style="margin:0 0 16px">Jesús Guillermo Cabal Aragón<br>World Soul – Music Manager<br>Hohe Straße 26B<br>04107 Leipzig<br>Deutschland</p>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;margin:0 0 6px">Kontakt</h3>
+            <p style="margin:0 0 16px">Telefon: <a href="tel:+4915256981202">+49 (0) 1525 698 1202</a><br>E-Mail: <a href="mailto:worldsoul.ws@gmail.com">worldsoul.ws@gmail.com</a></p>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;margin:0 0 6px">Steuernummer</h3>
+            <p style="margin:0 0 16px">231/332/08038</p>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;margin:0 0 6px">Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h3>
+            <p style="margin:0 0 16px">Jesús Guillermo Cabal Aragón, Anschrift wie oben.</p>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;margin:0 0 6px">Verbraucherstreitbeilegung</h3>
+            <p style="margin:0 0 16px">Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;margin:0 0 6px">Bildnachweis</h3>
+            <p style="margin:0">Alle auf dieser Seite veröffentlichten Fotografien wurden vom Team von World Soul während der von World Soul organisierten Tourneen aufgenommen und mit Genehmigung veröffentlicht.</p>
+          </div>
+        </div>
+
+        <div id="datenschutz">
+          <p style="font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 10px">Datenschutz</p>
+          <h2 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(26px,3.4vw,40px);line-height:1.04;letter-spacing:-.03em;margin:0 0 20px">Datenschutzerklärung</h2>
+          <div style="border-top:2px solid var(--line);padding-top:16px;font-size:15px;line-height:1.6">
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;margin:0 0 6px">1. Verantwortlicher</h3>
+            <p style="margin:0 0 16px">Jesús Guillermo Cabal Aragón, Hohe Straße 26B, 04107 Leipzig, Deutschland. E-Mail: worldsoul.ws@gmail.com, Telefon: +49 (0) 1525 698 1202.</p>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;margin:0 0 6px">2. Hosting und Server-Logfiles</h3>
+            <p style="margin:0 0 16px">Diese Website wird bei GitHub Pages gehostet (GitHub, Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA). Beim Aufruf der Seite verarbeitet der Anbieter automatisch technische Zugriffsdaten, insbesondere IP-Adresse, Datum und Uhrzeit, abgerufene Datei, Browsertyp und Betriebssystem. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer sicheren und stabilen Bereitstellung). Dabei können Daten in die USA übermittelt werden.</p>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;margin:0 0 6px">3. Kontaktaufnahme</h3>
+            <p style="margin:0 0 16px">Bei Kontakt per E-Mail oder Telefon werden die übermittelten Angaben zur Bearbeitung der Anfrage gespeichert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b bzw. lit. f DSGVO. Die Daten werden gelöscht, sobald sie nicht mehr erforderlich sind.</p>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;margin:0 0 6px">4. Kontaktformular</h3>
+            <p style="margin:0 0 16px">Das Kontaktformular wird über den Dienst Formspree (Formspree, Inc., USA) verarbeitet. Übermittelt werden Name, E-Mail-Adresse und Nachricht. Rechtsgrundlage ist Art. 6 Abs. 1 lit. a und lit. b DSGVO. Die Daten werden an Server von Formspree in den USA übermittelt und dort so lange gespeichert, wie es für die Bearbeitung der Anfrage erforderlich ist. Weitere Informationen: formspree.io/legal/privacy-policy.</p>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;margin:0 0 6px">5. Lokale Speicherung im Browser</h3>
+            <p style="margin:0 0 16px">Diese Website setzt keine Cookies und verwendet weder Analyse- noch Tracking-Dienste. Im Local Storage des Browsers werden ausschließlich die gewählte Sprache und der gewählte Farbmodus gespeichert. Diese Angaben verlassen das Gerät nicht und können jederzeit über die Browsereinstellungen gelöscht werden.</p>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;margin:0 0 6px">6. Externe Links</h3>
+            <p style="margin:0 0 16px">Die Seite verlinkt auf Instagram, Facebook, X, YouTube und Spotify. Es werden keine Inhalte dieser Dienste eingebettet; eine Datenübertragung erfolgt erst, wenn ein Link aktiv angeklickt wird. Es gelten dann die Datenschutzbestimmungen des jeweiligen Anbieters.</p>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;margin:0 0 6px">7. Ihre Rechte</h3>
+            <p style="margin:0 0 16px">Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch sowie das Recht, eine erteilte Einwilligung zu widerrufen. Zuständige Aufsichtsbehörde ist die Sächsische Datenschutz- und Transparenzbeauftragte, Devrientstraße 5, 01067 Dresden.</p>
+            <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;margin:0 0 6px">8. SSL-Verschlüsselung</h3>
+            <p style="margin:0">Diese Seite nutzt eine SSL/TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie an „https://" in der Adresszeile des Browsers.</p>
+            <p style="margin:16px 0 0;font-size:13px;color:var(--muted)">Stand: August 2026.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer style="border-top:2px solid var(--line);background:var(--surface);padding:clamp(32px,5vw,56px) clamp(16px,4vw,40px)">
+  <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(20px,4vw,48px);align-items:start">
+    <div>
+      <img class="ws-logo" src="assets/logo-ws.png" width="582" height="231" alt="World Soul – Music Manager" style="height:40px;width:auto;margin-bottom:12px">
+      <p style="margin:0;font-size:14px;line-height:1.5;color:var(--muted);max-width:34ch">{{ t.footer.tagline }}</p>
+    </div>
+    <nav aria-label="{{ t.a11y.footerNav }}" style="display:flex;flex-direction:column;gap:8px">
+      <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="5">
+        <a class="ws-nav-link" href="{{ item.href }}" style="color:var(--text);text-decoration:none;font-size:15px;font-weight:800;padding:4px 0">{{ item.label }}</a>
+      </sc-for>
+    </nav>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <a href="mailto:worldsoul.ws@gmail.com" style="color:var(--text);font-size:15px;font-weight:800;padding:4px 0;text-decoration:none;word-break:break-word">worldsoul.ws@gmail.com</a>
+      <a href="tel:+4915256981202" style="color:var(--text);font-size:15px;font-weight:800;padding:4px 0;text-decoration:none">+49 (0) 1525 698 1202</a>
+      <span style="font-size:14px;color:var(--muted)">Leipzig, {{ t.contact.germany }}</span>
+      <a class="ws-nav-link" href="#impressum" lang="de" style="color:var(--text);font-size:15px;font-weight:800;padding:4px 0;text-decoration:none;margin-top:6px">Impressum</a>
+      <a class="ws-nav-link" href="#datenschutz" lang="de" style="color:var(--text);font-size:15px;font-weight:800;padding:4px 0;text-decoration:none">Datenschutz</a>
+    </div>
+  </div>
+  <div style="max-width:1280px;margin:clamp(24px,4vw,40px) auto 0;border-top:2px solid var(--line);padding-top:14px;display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between">
+    <p style="margin:0;font-size:13px;color:var(--muted)">© 2026 World Soul – Music Manager</p>
+    <p style="margin:0;font-size:13px;color:var(--muted)">{{ t.footer.rights }}</p>
+  </div>
+</footer>
+
+<sc-if value="{{ showTop }}" hint-placeholder-val="{{ false }}">
+  <button type="button" onClick="{{ scrollTop }}" aria-label="{{ t.a11y.toTop }}" style="position:fixed;right:clamp(14px,3vw,28px);bottom:clamp(14px,3vw,28px);z-index:70;width:52px;height:52px;display:flex;align-items:center;justify-content:center;background:var(--btn-bg);color:var(--btn-fg);border:2px solid var(--btn-bg);cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.24)">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true" focusable="false"><path d="M12 19V5"></path><path d="M5 12l7-7 7 7"></path></svg>
+  </button>
+</sc-if>
+
+<p aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap">{{ liveMessage }}</p>
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1b3a5c"></rect><path d="M30 62 C 42 34, 58 34, 70 62" fill="none" stroke="#f3f2f2" stroke-width="3" stroke-dasharray="6 5"></path><circle cx="30" cy="62" r="5" fill="#e39152"></circle><circle cx="70" cy="62" r="5" fill="#e39152"></circle><text x="50" y="80" text-anchor="middle" font-family="Archivo, sans-serif" font-size="13" font-weight="800" fill="#f3f2f2">WS</text></svg></template>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  /* ══════════════════════════════════════════════════════════════════
+     CONFIGURACIÓN EDITABLE — cambia aquí idioma, redes y formulario.
+     Un enlace social vacío ("") se muestra como "no configurado" y no
+     enlaza a ningún destino; en cuanto pegues una URL se activa solo.
+     ══════════════════════════════════════════════════════════════════ */
+  static SITE_CONFIG = {
+    defaultLanguage: "es",
+    social: {
+      instagram: "https://www.instagram.com/worldsoul_ws/",
+      facebook: "https://www.facebook.com/WorldSoulWS/",
+      x: "https://twitter.com/WorldSoul_WS",
+      youtube: "https://www.youtube.com/watch?v=r8FxNld88pc",
+      spotify: "https://open.spotify.com/artist/3f5SN9Aa0fTo3qgUt2679X"
+    },
+    email: "worldsoul.ws@gmail.com",
+    phoneDisplay: "+49 (0) 1525 698 1202",
+    phoneHref: "+4915256981202",
+    // Pega aquí el endpoint de Formspree (https://formspree.io/f/xxxxxxxx)
+    // conectado a worldsoul.ws@gmail.com. Vacío = el formulario abre el
+    // programa de correo del visitante con el mensaje ya redactado.
+    formspreeEndpoint: "https://formspree.io/f/mnpqpqny"
+  };
+
+  state = {
+    lang: "es", theme: "light", menuOpen: false, showTop: false,
+    active: "inicio", status: "", statusKind: "", sending: false, live: "", skip: false
+  };
+
+  /* ── datos verificados (CV + presentación de portafolio) ── */
+  static TEAM = [
+    { key: "cabal", name: "Jesús Cabal Aragón", photo: "assets/team-jesus-cabal.jpg" },
+    { key: "melisa", name: "Melisa Altschüler", photo: "assets/team-melisa-altschuler.jpg" },
+    { key: "maira", name: "Maira Espinosa", photo: "assets/team-maira-espinosa.jpg" },
+    { key: "dolus", name: "Dolus Mutombo", photo: "assets/team-dolus-mutombo.jpg" },
+    { key: "leo", name: "Leo Arias", photo: "assets/team-leo-arias.jpg" },
+    { key: "tintori", name: "Jesús Tintori", photo: "assets/team-jesus-tintori.jpg" }
+  ];
+
+  static TIMELINE = [
+    { year: "2017", name: "Dolus Mutombo & The Free Spirits", place: "Taucha Fest" },
+    { year: "2018", name: "Dolus Mutombo & The Free Spirits", place: "Acapulco Restaurant Bar · Leipzig" },
+    { year: "2018", name: "La Catrina Rock Band", place: "Alemania Tour · Leipzig, Praga, Berlín" },
+    { year: "2022", name: "Covra", place: "Alemania Tour · Leipzig" },
+    { year: "2022", name: "Francisco Disco · Sunday Beatz", place: "Ahoi-Strandbühne · Alemania Tour" },
+    { year: "2022", name: "Oldies but Goldies", place: "Jesús Tintori ft. Jesús Cabal · Leipzig" },
+    { year: "2022", name: "Su Majestad Imperial Silverio", place: "El Pub de la Diagonal · Salamanca, Guanajuato" },
+    { year: "2023", name: "Tezka in Leipzig", place: "Leipzig" },
+    { year: "2023", name: "SkarabaZZ im Kaya – Da sind wir wieder!", place: "Leipzig" },
+    { year: "2023", name: "SkarabaZZ in der Uptown Coffee Bar", place: "Leipzig" },
+    { year: "2024", name: "Covra", place: "2nd Germany Tour · Leipzig" },
+    { year: "2024", name: "Sonica MX in Germany", place: "Leipzig" },
+    { year: "2025", name: "World Soul Fest", place: "@first" },
+    { year: "2026", name: "Linn Levine", place: "@linn" },
+    { year: "2026", name: "World Soul Fest – La Fête de la Musique", place: "@fest26" },
+    { year: "@now", name: "DMS – Dolus Music Show", place: "@dms" }
+  ];
+
+  /* Dos fechas del CV que ahora tienen fotografía propia. */
+  static EXTRA = {
+    es: {
+      lacatrina: { name: "La Catrina Rock Band", year: "2018", place: "Leipzig, Praga y Berlín · Alemania Tour", text: "Gira de 2018 con fechas en Leipzig, Praga y Berlín. La banda se llama hoy Banda de Belgas.", note: "" },
+      skarabazz: { name: "SkarabaZZ", year: "2023", place: "Kaya y Uptown Coffee Bar · Leipzig", text: "Dos fechas en Leipzig durante 2023: «Da sind wir wieder!» en el Kaya y un concierto en la Uptown Coffee Bar.", note: "" },
+      oldies: { name: "Oldies but Goldies", year: "27 de octubre de 2022", place: "Uptown Coffee · Riemannstraße 44, Leipzig", text: "Jesús Tintori ft. Jesús Cabal en formato acústico: una noche de versiones de rock organizada por World Soul.", note: "" }
+    },
+    en: {
+      lacatrina: { name: "La Catrina Rock Band", year: "2018", place: "Leipzig, Prague and Berlin · Germany Tour", text: "A 2018 tour with dates in Leipzig, Prague and Berlin. The band is now called Banda de Belgas.", note: "" },
+      skarabazz: { name: "SkarabaZZ", year: "2023", place: "Kaya and Uptown Coffee Bar · Leipzig", text: "Two Leipzig dates in 2023: «Da sind wir wieder!» at the Kaya and a concert at the Uptown Coffee Bar.", note: "" },
+      oldies: { name: "Oldies but Goldies", year: "27 October 2022", place: "Uptown Coffee · Riemannstraße 44, Leipzig", text: "Jesús Tintori ft. Jesús Cabal unplugged: a rock cover night organised by World Soul.", note: "" }
+    },
+    de: {
+      lacatrina: { name: "La Catrina Rock Band", year: "2018", place: "Leipzig, Prag und Berlin · Deutschlandtour", text: "Tour von 2018 mit Terminen in Leipzig, Prag und Berlin. Die Band heißt heute Banda de Belgas.", note: "" },
+      skarabazz: { name: "SkarabaZZ", year: "2023", place: "Kaya und Uptown Coffee Bar · Leipzig", text: "Zwei Leipziger Termine im Jahr 2023: «Da sind wir wieder!» im Kaya und ein Konzert in der Uptown Coffee Bar.", note: "" },
+      oldies: { name: "Oldies but Goldies", year: "27. Oktober 2022", place: "Uptown Coffee · Riemannstraße 44, Leipzig", text: "Jesús Tintori ft. Jesús Cabal unplugged: eine Rock-Cover-Nacht, organisiert von World Soul.", note: "" }
+    },
+    fr: {
+      lacatrina: { name: "La Catrina Rock Band", year: "2018", place: "Leipzig, Prague et Berlin · Tournée allemande", text: "Tournée de 2018 avec des dates à Leipzig, Prague et Berlin. Le groupe s'appelle aujourd'hui Banda de Belgas.", note: "" },
+      skarabazz: { name: "SkarabaZZ", year: "2023", place: "Kaya et Uptown Coffee Bar · Leipzig", text: "Deux dates à Leipzig en 2023 : « Da sind wir wieder ! » au Kaya et un concert à l'Uptown Coffee Bar.", note: "" },
+      oldies: { name: "Oldies but Goldies", year: "27 octobre 2022", place: "Uptown Coffee · Riemannstraße 44, Leipzig", text: "Jesús Tintori ft. Jesús Cabal en acoustique : une soirée de reprises rock organisée par World Soul.", note: "" }
+    }
+  };
+
+  static ALTS = {
+    es: { photoOf: "Fotografía de", flyer: "Cartel del concierto Unplugged de Jesús Tintori ft. Jesús Cabal: 27 de octubre de 2022 a las 20:00 en Uptown Coffee, Riemannstraße 44, 04107 Leipzig. Oldies but Goldies, noche de versiones de rock." },
+    en: { photoOf: "Photograph of", flyer: "Poster for the Unplugged concert by Jesús Tintori ft. Jesús Cabal: 27 October 2022 at 8 pm at Uptown Coffee, Riemannstraße 44, 04107 Leipzig. Oldies but Goldies, rock cover night." },
+    de: { photoOf: "Foto von", flyer: "Plakat des Unplugged-Konzerts von Jesús Tintori ft. Jesús Cabal: 27. Oktober 2022 um 20 Uhr im Uptown Coffee, Riemannstraße 44, 04107 Leipzig. Oldies but Goldies, Rock-Cover-Nacht." },
+    fr: { photoOf: "Photographie de", flyer: "Affiche du concert Unplugged de Jesús Tintori ft. Jesús Cabal : 27 octobre 2022 à 20 h à l'Uptown Coffee, Riemannstraße 44, 04107 Leipzig. Oldies but Goldies, soirée de reprises rock." }
+  };
+
+  static ICONS = {
+    instagram: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle></svg>',
+    facebook: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V10H6v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h2z"></path></svg>',
+    x: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 3l16 18M20 3L4 21"></path></svg>',
+    youtube: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="3"></rect><path d="M10 9l5 3-5 3z"></path></svg>',
+    spotify: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><path d="M7.5 9.4c3-.8 6.2-.5 8.8 1M8 12.5c2.4-.6 4.9-.4 7 .9M8.6 15.5c1.9-.5 3.8-.3 5.5.7"></path></svg>'
+  };
+
+  static T = {
+    es: {
+      htmlLang: "es", skip: "Saltar al contenido",
+      a11y: { mainNav: "Navegación principal", footerNav: "Navegación del pie", language: "Idioma", menu: "Abrir menú", menuClose: "Cerrar menú", toTop: "Volver al inicio", portrait: "Retrato de" },
+      nav: { home: "Inicio", work: "Qué hacemos", tours: "Giras", about: "Nosotros", contact: "Contacto" },
+      theme: { label: "Modo oscuro", labelLight: "Modo claro" },
+      langNames: { es: "Español", en: "Inglés", de: "Alemán", fr: "Francés" },
+      langChanged: "Idioma cambiado a español.",
+      hero: {
+        kicker: "Plataforma intercultural de música · Guanajuato ⇄ Leipzig",
+        title: "Talento independiente que cruza el Atlántico",
+        lead: "World Soul nace del cruce de dos mundos: la calidez cultural de Guanajuato y la vanguardia escénica de Leipzig. Damos visibilidad al talento independiente a través de experiencias auténticas y colaboraciones estratégicas.",
+        cta1: "Conocer World Soul", cta2: "Colaborar con nosotros"
+      },
+      route: { alt: "Ruta entre Guanajuato, México y Leipzig, Alemania: 9 712 kilómetros." },
+      stats: [
+        { label: "Fundación", value: "2018" },
+        { label: "Base", value: "Leipzig, Alemania" },
+        { label: "Eventos y giras documentados", value: "15" },
+        { label: "World Soul Fest", value: "2 ediciones" }
+      ],
+      work: {
+        kicker: "Qué hacemos", title: "Cinco formas de mover un proyecto musical", solves: "Qué resuelve:",
+        items: [
+          { title: "Intercambio cultural de bandas", desc: "El objetivo original de World Soul: un programa de intercambio entre México y Alemania para que las bandas toquen fuera de su circuito y vuelvan con público nuevo.", problem: "una banda independiente rara vez tiene contactos fuera de su país." },
+          { title: "Gestión y desarrollo artístico", desc: "Acompañamos el proyecto artístico y su relación con salas, sellos y festivales, dentro y fuera de Alemania.", problem: "gestionar la carrera consume el tiempo que hace falta para crear." },
+          { title: "Organización y coordinación de giras", desc: "Rutas, fechas, salas y acuerdos. En la gira de Linn Levine asumimos la gira completa, desde tocar el bajo en el escenario hasta la logística detrás de él.", problem: "una gira internacional se cae por los detalles que nadie mira." },
+          { title: "Producción y logística de eventos", desc: "Sonido, producción audiovisual, logística y coordinación en sitio, con equipo propio en Leipzig y en Guanajuato.", problem: "el sonido y la operación deciden cómo se recuerda un concierto." },
+          { title: "Espacios abiertos para talento independiente", desc: "Creamos espacios donde el talento puede probarse, como el DMS – Dolus Music Show, un open mic mensual en Leipzig abierto a cualquier persona o banda.", problem: "sin escenario no hay dónde poner a prueba lo que se está creando." }
+        ]
+      },
+      tours: {
+        kicker: "Proyectos y artistas", title: "Giras destacadas",
+        items: [
+          { name: "Covra", year: "2022 · 2024", place: "Irapuato y Salamanca → Leipzig", text: "Lo que comenzó en los escenarios de Irapuato y Salamanca pronto se convirtió en un viaje sin fronteras. Covra conectó con audiencias que no hablaban su idioma, pero entendían perfectamente su mensaje.", note: "Dos giras por Alemania: Alemania Tour 2022 y 2nd Germany Tour 2024." },
+          { name: "MuMu", year: "Rock'n Delitzsch Fest", place: "Salamanca → Delitzsch, Alemania", text: "Rock psicodélico originario de Salamanca. Su propuesta pasó de los venues locales al Rock'n Delitzsch Fest, poniendo al Bajío en el mapa internacional.", note: "Colaboración: World Soul aportó a MuMu al line-up del festival; la organización no fue de World Soul." },
+          { name: "Dolus Mutombo & The Free Spirits", year: "2017 · 2018", place: "Taucha y Leipzig", text: "Trajeron la esencia del Congo a los escenarios de Leipzig. Con su ritmo contagioso y su carga emocional, el grupo hizo vibrar al público durante el festival de la ciudad.", note: "El Taucha Fest 2017 es anterior a la fundación oficial de World Soul en 2018." },
+          { name: "Sónica MX", year: "2024", place: "Kulturlounge, Leipzig", text: "Sónica llegó desde el Bajío para presentarse en el centro cultural Kulturlounge, compartiendo escenario con agrupaciones locales en un encuentro que fusionó dos mundos musicales.", note: "" },
+          { name: "World Soul Fest", year: "2025", place: "Primera edición", text: "La primera edición de un festival propio, donde convergieron artistas de cuatro continentes: del Bajío mexicano a las raíces africanas del Congo, pasando por Alemania, Argentina y Chile.", note: "" },
+          { name: "Linn Levine", year: "Mayo 2026", place: "Leipzig · South Nation Music", text: "Primera colaboración con el sello sueco South Nation Music. No fuimos simples acompañantes: asumimos la gira completa, desde tocar el bajo en el escenario hasta cada engranaje logístico detrás de él.", note: "" },
+          { name: "World Soul Fest – La Fête de la Musique", year: "20 de junio de 2026", place: "Segunda edición", text: "Con talento de México, Alemania, Argentina, Puerto Rico y Chile, y la participación de artistas de Burlesque & Drag, la segunda edición amplió el festival más allá de la música.", note: "" }
+        ]
+      },
+      timeline: {
+        title: "Historial completo", lead: "Eventos y giras con participación de World Soul, según el CV de la organización y la presentación de portafolio.",
+        first: "Primera edición", linn: "Gira con South Nation Music · Leipzig", fest26: "Segunda edición · Leipzig", dms: "Open mic mensual · Leipzig", now: "En curso",
+        footnote: "El Taucha Fest 2017 corresponde a una colaboración anterior a la fundación oficial de World Soul, en 2018. El Rock'n Delitzsch Fest fue una colaboración: World Soul aportó a MuMu al line-up, sin ser el organizador."
+      },
+      story: {
+        kicker: "Historia y propósito", title: "Un puente entre la escena mexicana y la alemana",
+        p1: "World Soul es una organización interesada en el talento musical y artístico de las personas alrededor del mundo. Nace de la fusión e influencia de la cultura mexicana y alemana a través de su fundador, Jesús Cabal Aragón, y tiene su base en Leipzig, Alemania.",
+        p2: "Su objetivo principal es el intercambio cultural de bandas, para fomentar el crecimiento artístico tanto de las bandas participantes como de quienes intervienen en el proceso, generando espacios abiertos donde puedan expresarse libremente, mostrar su talento a otras culturas y acercarse a nuevos públicos."
+      },
+      founder: {
+        kicker: "Fundador", role: "Director General · PhD Candidate", photoAlt: "Retrato de Jesús Cabal Aragón, fundador de World Soul, bajo luces de escenario.",
+        p1: "Originario de Guanajuato y egresado de la UGTO, Jesús Cabal llevó su vocación hasta Leipzig, Alemania, donde estudió su doctorado en la Uni-Leipzig mientras profesionalizaba su arte en guitarra, bajo y canto.",
+        p2: "Hoy es docente en la Modern Music School de Leipzig y Halle. En 2018 fundó World Soul, una plataforma intercultural que impulsa a artistas independientes a cruzar el Atlántico para que su mensaje encuentre eco en el viejo continente.",
+        p3: "Como Director General coordina la relación entre artistas, salas y festivales en ambos lados del mapa.",
+        cta: "Escribir a Jesús"
+      },
+      team: {
+        title: "Equipo de trabajo",
+        lead: "Detrás de cada proyecto de World Soul hay personas que han estado en el lugar del otro: artistas y emprendedores con experiencia real en la escena de Guanajuato y de Alemania.",
+        roles: { cabal: "Chief Executive Officer", melisa: "Director of Audiovisual Production", maira: "Host & Digital Media Manager", dolus: "Sound Engineer", leo: "Logistics & Operations", tintori: "Field Production Coordinator · Guanajuato" }
+      },
+      contact: {
+        kicker: "Contacto", title: "Cuéntanos qué quieres mover",
+        email: "Correo", phone: "Teléfono", base: "Base", germany: "Alemania", social: "Redes sociales",
+        notConfigured: "no configurado"
+      },
+      form: {
+        title: "Escríbenos",
+        introMail: "Este formulario abre tu programa de correo con el mensaje ya redactado hacia worldsoul.ws@gmail.com. Nada se envía desde esta página.",
+        introEndpoint: "Tu mensaje se envía a worldsoul.ws@gmail.com.",
+        name: "Nombre", email: "Correo electrónico", message: "Mensaje",
+        submitMail: "Redactar correo", submitEndpoint: "Enviar mensaje", sending: "Enviando…",
+        errName: "Escribe tu nombre para saber con quién hablamos.",
+        errEmail: "Revisa el correo: falta una dirección válida, por ejemplo nombre@correo.com.",
+        errMessage: "Cuéntanos brevemente tu propuesta en el mensaje.",
+        okMail: "Se ha abierto tu programa de correo con el mensaje. Revísalo y pulsa enviar allí.",
+        okSent: "Mensaje enviado. Te responderemos al correo indicado.",
+        errSend: "No se pudo enviar. Escríbenos directamente a worldsoul.ws@gmail.com."
+      },
+      socialNote: "Los enlaces marcados como no configurados están preparados en la configuración del archivo y se activan al añadir su URL.",
+      footer: { tagline: "Plataforma intercultural de música entre Guanajuato, México y Leipzig, Alemania.", rights: "Todos los derechos reservados." }
+    },
+
+    en: {
+      htmlLang: "en", skip: "Skip to content",
+      a11y: { mainNav: "Main navigation", footerNav: "Footer navigation", language: "Language", menu: "Open menu", menuClose: "Close menu", toTop: "Back to top", portrait: "Portrait of" },
+      nav: { home: "Home", work: "What we do", tours: "Tours", about: "About us", contact: "Contact" },
+      theme: { label: "Dark mode", labelLight: "Light mode" },
+      langNames: { es: "Spanish", en: "English", de: "German", fr: "French" },
+      langChanged: "Language changed to English.",
+      hero: {
+        kicker: "Intercultural music platform · Guanajuato ⇄ Leipzig",
+        title: "Independent talent crossing the Atlantic",
+        lead: "World Soul was born where two worlds meet: the cultural warmth of Guanajuato and the stage culture of Leipzig. We give independent talent visibility through authentic experiences and strategic collaborations.",
+        cta1: "About World Soul", cta2: "Work with us"
+      },
+      route: { alt: "Route between Guanajuato, Mexico and Leipzig, Germany: 9,712 kilometres." },
+      stats: [
+        { label: "Founded", value: "2018" },
+        { label: "Based in", value: "Leipzig, Germany" },
+        { label: "Documented events and tours", value: "15" },
+        { label: "World Soul Fest", value: "2 editions" }
+      ],
+      work: {
+        kicker: "What we do", title: "Five ways we move a music project", solves: "What it solves:",
+        items: [
+          { title: "Cultural band exchange", desc: "World Soul's original goal: an exchange programme between Mexico and Germany so bands play outside their own circuit and come back with a new audience.", problem: "an independent band rarely has contacts beyond its own country." },
+          { title: "Artist management and development", desc: "We support the artistic project and its relationships with venues, labels and festivals, inside and outside Germany.", problem: "running a career eats the time an artist needs to create." },
+          { title: "Tour planning and coordination", desc: "Routes, dates, venues and agreements. On the Linn Levine tour we took on the whole thing, from playing bass on stage to every logistical part behind it.", problem: "an international tour falls apart over the details nobody watches." },
+          { title: "Event production and logistics", desc: "Sound, audiovisual production, logistics and on-site coordination, with our own team in Leipzig and in Guanajuato.", problem: "sound and operations decide how a concert is remembered." },
+          { title: "Open stages for independent talent", desc: "We create spaces where talent can be tested, such as DMS – Dolus Music Show, a monthly open mic in Leipzig open to anyone.", problem: "without a stage there is nowhere to test what you are making." }
+        ]
+      },
+      tours: {
+        kicker: "Projects and artists", title: "Featured tours",
+        items: [
+          { name: "Covra", year: "2022 · 2024", place: "Irapuato and Salamanca → Leipzig", text: "What began on the stages of Irapuato and Salamanca soon became a journey without borders. Covra connected with audiences who did not speak their language but understood their message perfectly.", note: "Two German tours: Alemania Tour 2022 and 2nd Germany Tour 2024." },
+          { name: "MuMu", year: "Rock'n Delitzsch Fest", place: "Salamanca → Delitzsch, Germany", text: "Psychedelic rock from Salamanca. Their music travelled from local venues to the Rock'n Delitzsch Fest, putting the Bajío region on the international map.", note: "A collaboration: World Soul brought MuMu into the festival line-up; the festival was not organised by World Soul." },
+          { name: "Dolus Mutombo & The Free Spirits", year: "2017 · 2018", place: "Taucha and Leipzig", text: "They brought the essence of Congo to the stages of Leipzig. With contagious rhythm and emotional weight, the group moved the crowd during the city festival.", note: "Taucha Fest 2017 predates World Soul's official founding in 2018." },
+          { name: "Sónica MX", year: "2024", place: "Kulturlounge, Leipzig", text: "Sónica came from the Bajío to play at the Kulturlounge cultural centre, sharing the stage with local bands in an encounter that merged two musical worlds.", note: "" },
+          { name: "World Soul Fest", year: "2025", place: "First edition", text: "The first edition of our own festival, where artists from four continents met: from the Mexican Bajío to the African roots of Congo, by way of Germany, Argentina and Chile.", note: "" },
+          { name: "Linn Levine", year: "May 2026", place: "Leipzig · South Nation Music", text: "Our first collaboration with the Swedish label South Nation Music. We were not just along for the ride: we took on the whole tour, from playing bass on stage to every logistical detail behind it.", note: "" },
+          { name: "World Soul Fest – La Fête de la Musique", year: "20 June 2026", place: "Second edition", text: "With talent from Mexico, Germany, Argentina, Puerto Rico and Chile, plus Burlesque & Drag artists, the second edition took the festival beyond music alone.", note: "" }
+        ]
+      },
+      timeline: {
+        title: "Full track record", lead: "Events and tours World Soul took part in, according to the organisation's CV and portfolio presentation.",
+        first: "First edition", linn: "Tour with South Nation Music · Leipzig", fest26: "Second edition · Leipzig", dms: "Monthly open mic · Leipzig", now: "Ongoing",
+        footnote: "Taucha Fest 2017 was a collaboration that predates World Soul's official founding in 2018. Rock'n Delitzsch Fest was a collaboration: World Soul contributed MuMu to the line-up but did not organise the festival."
+      },
+      story: {
+        kicker: "Story and purpose", title: "A bridge between the Mexican and German scenes",
+        p1: "World Soul is an organisation interested in the musical and artistic talent of people around the world. It grew out of the blend of Mexican and German culture through its founder, Jesús Cabal Aragón, and is based in Leipzig, Germany.",
+        p2: "Its main goal is the cultural exchange of bands, encouraging artistic growth for the bands involved and for everyone taking part in the process, creating open spaces where they can express themselves freely, show their talent to other cultures and reach new audiences."
+      },
+      founder: {
+        kicker: "Founder", role: "General Director · PhD Candidate", photoAlt: "Portrait of Jesús Cabal Aragón, founder of World Soul, under stage lights.",
+        p1: "Born in Guanajuato and a graduate of UGTO, Jesús Cabal took his vocation to Leipzig, Germany, where he studied for his doctorate at Uni-Leipzig while professionalising his work on guitar, bass and vocals.",
+        p2: "Today he teaches at the Modern Music School in Leipzig and Halle. In 2018 he founded World Soul, an intercultural platform that helps independent artists cross the Atlantic so their message finds an echo in Europe.",
+        p3: "As General Director he coordinates the relationship between artists, venues and festivals on both sides of the map.",
+        cta: "Write to Jesús"
+      },
+      team: {
+        title: "The team",
+        lead: "Behind every World Soul project are people who have been on the other side: artists and entrepreneurs with real experience in the scenes of Guanajuato and Germany.",
+        roles: { cabal: "Chief Executive Officer", melisa: "Director of Audiovisual Production", maira: "Host & Digital Media Manager", dolus: "Sound Engineer", leo: "Logistics & Operations", tintori: "Field Production Coordinator · Guanajuato" }
+      },
+      contact: {
+        kicker: "Contact", title: "Tell us what you want to move",
+        email: "Email", phone: "Phone", base: "Based in", germany: "Germany", social: "Social media",
+        notConfigured: "not configured"
+      },
+      form: {
+        title: "Write to us",
+        introMail: "This form opens your email client with the message ready to send to worldsoul.ws@gmail.com. Nothing is sent from this page.",
+        introEndpoint: "Your message is sent to worldsoul.ws@gmail.com.",
+        name: "Name", email: "Email", message: "Message",
+        submitMail: "Compose email", submitEndpoint: "Send message", sending: "Sending…",
+        errName: "Please add your name so we know who we are talking to.",
+        errEmail: "Please check the email: a valid address is missing, for example name@mail.com.",
+        errMessage: "Tell us briefly about your proposal in the message field.",
+        okMail: "Your email client has opened with the message. Check it and press send there.",
+        okSent: "Message sent. We will reply to the address you gave us.",
+        errSend: "Sending failed. Please write directly to worldsoul.ws@gmail.com."
+      },
+      socialNote: "Links marked as not configured are already prepared in the file configuration and switch on as soon as a URL is added.",
+      footer: { tagline: "Intercultural music platform between Guanajuato, Mexico and Leipzig, Germany.", rights: "All rights reserved." }
+    },
+
+    de: {
+      htmlLang: "de", skip: "Zum Inhalt springen",
+      a11y: { mainNav: "Hauptnavigation", footerNav: "Fußzeilen-Navigation", language: "Sprache", menu: "Menü öffnen", menuClose: "Menü schließen", toTop: "Zurück nach oben", portrait: "Porträt von" },
+      nav: { home: "Start", work: "Leistungen", tours: "Touren", about: "Über uns", contact: "Kontakt" },
+      theme: { label: "Dunkelmodus", labelLight: "Hellmodus" },
+      langNames: { es: "Spanisch", en: "Englisch", de: "Deutsch", fr: "Französisch" },
+      langChanged: "Sprache auf Deutsch umgestellt.",
+      hero: {
+        kicker: "Interkulturelle Musikplattform · Guanajuato ⇄ Leipzig",
+        title: "Unabhängige Künstler über den Atlantik",
+        lead: "World Soul entstand dort, wo zwei Welten aufeinandertreffen: die kulturelle Wärme Guanajuatos und die Bühnenszene Leipzigs. Wir geben unabhängigen Künstlerinnen und Künstlern Sichtbarkeit – durch echte Begegnungen und gezielte Kooperationen.",
+        cta1: "World Soul kennenlernen", cta2: "Zusammenarbeiten"
+      },
+      route: { alt: "Route zwischen Guanajuato, Mexiko und Leipzig, Deutschland: 9.712 Kilometer." },
+      stats: [
+        { label: "Gegründet", value: "2018" },
+        { label: "Sitz", value: "Leipzig, Deutschland" },
+        { label: "Dokumentierte Konzerte und Touren", value: "15" },
+        { label: "World Soul Fest", value: "2 Ausgaben" }
+      ],
+      work: {
+        kicker: "Leistungen", title: "Fünf Wege, ein Musikprojekt zu bewegen", solves: "Das löst es:",
+        items: [
+          { title: "Kultureller Bandaustausch", desc: "Das ursprüngliche Ziel von World Soul: ein Austauschprogramm zwischen Mexiko und Deutschland, damit Bands außerhalb ihres eigenen Umfelds spielen und mit neuem Publikum zurückkommen.", problem: "eine unabhängige Band hat selten Kontakte außerhalb ihres Landes." },
+          { title: "Künstlermanagement und Entwicklung", desc: "Wir begleiten das künstlerische Projekt und seine Beziehungen zu Clubs, Labels und Festivals – in Deutschland und darüber hinaus.", problem: "das Managen der eigenen Karriere kostet genau die Zeit, die zum Schaffen fehlt." },
+          { title: "Organisation und Koordination von Touren", desc: "Routen, Termine, Spielstätten und Absprachen. Bei der Tour von Linn Levine haben wir die gesamte Tour übernommen – vom Bass auf der Bühne bis zur Logistik dahinter.", problem: "eine internationale Tour scheitert an den Details, auf die niemand schaut." },
+          { title: "Eventproduktion und Logistik", desc: "Ton, audiovisuelle Produktion, Logistik und Koordination vor Ort, mit eigenem Team in Leipzig und in Guanajuato.", problem: "Ton und Ablauf entscheiden darüber, wie ein Konzert in Erinnerung bleibt." },
+          { title: "Offene Bühnen für unabhängige Talente", desc: "Wir schaffen Räume zum Ausprobieren, etwa die DMS – Dolus Music Show, eine monatliche Open Mic in Leipzig, offen für alle.", problem: "ohne Bühne gibt es keinen Ort, um das Entstehende zu erproben." }
+        ]
+      },
+      tours: {
+        kicker: "Projekte und Künstler", title: "Ausgewählte Touren",
+        items: [
+          { name: "Covra", year: "2022 · 2024", place: "Irapuato und Salamanca → Leipzig", text: "Was auf den Bühnen von Irapuato und Salamanca begann, wurde bald eine Reise ohne Grenzen. Covra erreichte ein Publikum, das ihre Sprache nicht sprach, ihre Botschaft aber genau verstand.", note: "Zwei Deutschlandtouren: Alemania Tour 2022 und 2nd Germany Tour 2024." },
+          { name: "MuMu", year: "Rock'n Delitzsch Fest", place: "Salamanca → Delitzsch, Deutschland", text: "Psychedelischer Rock aus Salamanca. Von lokalen Bühnen bis zum Rock'n Delitzsch Fest – ihre Musik brachte die Region Bajío auf die internationale Karte.", note: "Kooperation: World Soul brachte MuMu ins Line-up; das Festival wurde nicht von World Soul organisiert." },
+          { name: "Dolus Mutombo & The Free Spirits", year: "2017 · 2018", place: "Taucha und Leipzig", text: "Sie brachten die Essenz des Kongo auf die Bühnen Leipzigs. Mit ansteckendem Rhythmus und emotionaler Kraft brachte die Gruppe das Publikum beim Stadtfest in Bewegung.", note: "Das Taucha Fest 2017 liegt vor der offiziellen Gründung von World Soul im Jahr 2018." },
+          { name: "Sónica MX", year: "2024", place: "Kulturlounge, Leipzig", text: "Sónica kam aus dem Bajío in die Kulturlounge und teilte sich die Bühne mit lokalen Bands – eine Begegnung, die zwei musikalische Welten verband.", note: "" },
+          { name: "World Soul Fest", year: "2025", place: "Erste Ausgabe", text: "Die erste Ausgabe eines eigenen Festivals, bei dem Künstler aus vier Kontinenten zusammenkamen: vom mexikanischen Bajío über die afrikanischen Wurzeln des Kongo bis nach Deutschland, Argentinien und Chile.", note: "" },
+          { name: "Linn Levine", year: "Mai 2026", place: "Leipzig · South Nation Music", text: "Erste Zusammenarbeit mit dem schwedischen Label South Nation Music. Wir waren nicht nur Begleitung: Wir übernahmen die gesamte Tour, vom Bass auf der Bühne bis zu jedem logistischen Detail.", note: "" },
+          { name: "World Soul Fest – La Fête de la Musique", year: "20. Juni 2026", place: "Zweite Ausgabe", text: "Mit Talenten aus Mexiko, Deutschland, Argentinien, Puerto Rico und Chile sowie Burlesque- und Drag-Künstlern ging die zweite Ausgabe über die Musik hinaus.", note: "" }
+        ]
+      },
+      timeline: {
+        title: "Vollständige Chronik", lead: "Konzerte und Touren mit Beteiligung von World Soul – laut Lebenslauf der Organisation und Portfolio-Präsentation.",
+        first: "Erste Ausgabe", linn: "Tour mit South Nation Music · Leipzig", fest26: "Zweite Ausgabe · Leipzig", dms: "Monatliche Open Mic · Leipzig", now: "Laufend",
+        footnote: "Das Taucha Fest 2017 war eine Kooperation vor der offiziellen Gründung von World Soul im Jahr 2018. Das Rock'n Delitzsch Fest war eine Kooperation: World Soul brachte MuMu ins Line-up, war aber nicht Veranstalter."
+      },
+      story: {
+        kicker: "Geschichte und Anliegen", title: "Eine Brücke zwischen der mexikanischen und der deutschen Szene",
+        p1: "World Soul ist eine Organisation, die sich für das musikalische und künstlerische Talent von Menschen weltweit interessiert. Sie entstand aus der Verbindung mexikanischer und deutscher Kultur durch ihren Gründer Jesús Cabal Aragón und hat ihren Sitz in Leipzig.",
+        p2: "Ihr Hauptziel ist der kulturelle Austausch von Bands: künstlerisches Wachstum für die beteiligten Bands und alle Mitwirkenden, offene Räume, in denen sie sich frei ausdrücken, ihr Talent anderen Kulturen zeigen und neues Publikum erreichen können."
+      },
+      founder: {
+        kicker: "Gründer", role: "Geschäftsführer · PhD Candidate", photoAlt: "Porträt von Jesús Cabal Aragón, Gründer von World Soul, im Bühnenlicht.",
+        p1: "Geboren in Guanajuato und Absolvent der UGTO, brachte Jesús Cabal seine Berufung nach Leipzig, wo er an der Uni Leipzig promovierte und zugleich sein Spiel an Gitarre, Bass und Gesang professionalisierte.",
+        p2: "Heute unterrichtet er an der Modern Music School in Leipzig und Halle. 2018 gründete er World Soul, eine interkulturelle Plattform, die unabhängige Künstler dabei unterstützt, den Atlantik zu überqueren, damit ihre Botschaft in Europa Widerhall findet.",
+        p3: "Als Geschäftsführer koordiniert er die Beziehungen zwischen Künstlern, Spielstätten und Festivals auf beiden Seiten der Karte.",
+        cta: "Jesús schreiben"
+      },
+      team: {
+        title: "Das Team",
+        lead: "Hinter jedem Projekt von World Soul stehen Menschen, die selbst auf der anderen Seite standen: Künstler und Unternehmer mit echter Erfahrung in den Szenen von Guanajuato und Deutschland.",
+        roles: { cabal: "Chief Executive Officer", melisa: "Director of Audiovisual Production", maira: "Host & Digital Media Manager", dolus: "Sound Engineer", leo: "Logistics & Operations", tintori: "Field Production Coordinator · Guanajuato" }
+      },
+      contact: {
+        kicker: "Kontakt", title: "Erzählen Sie uns, was Sie bewegen möchten",
+        email: "E-Mail", phone: "Telefon", base: "Sitz", germany: "Deutschland", social: "Soziale Netzwerke",
+        notConfigured: "nicht eingerichtet"
+      },
+      form: {
+        title: "Schreiben Sie uns",
+        introMail: "Dieses Formular öffnet Ihr E-Mail-Programm mit der fertigen Nachricht an worldsoul.ws@gmail.com. Von dieser Seite wird nichts versendet.",
+        introEndpoint: "Ihre Nachricht geht an worldsoul.ws@gmail.com.",
+        name: "Name", email: "E-Mail", message: "Nachricht",
+        submitMail: "E-Mail verfassen", submitEndpoint: "Nachricht senden", sending: "Wird gesendet…",
+        errName: "Bitte tragen Sie Ihren Namen ein, damit wir wissen, mit wem wir sprechen.",
+        errEmail: "Bitte prüfen Sie die E-Mail-Adresse, zum Beispiel name@mail.de.",
+        errMessage: "Beschreiben Sie Ihr Anliegen bitte kurz im Nachrichtenfeld.",
+        okMail: "Ihr E-Mail-Programm wurde mit der Nachricht geöffnet. Bitte dort prüfen und absenden.",
+        okSent: "Nachricht gesendet. Wir antworten an die angegebene Adresse.",
+        errSend: "Senden fehlgeschlagen. Bitte schreiben Sie direkt an worldsoul.ws@gmail.com."
+      },
+      socialNote: "Als nicht eingerichtet markierte Links sind in der Konfiguration bereits vorbereitet und werden aktiv, sobald eine URL eingetragen ist.",
+      footer: { tagline: "Interkulturelle Musikplattform zwischen Guanajuato, Mexiko und Leipzig, Deutschland.", rights: "Alle Rechte vorbehalten." }
+    },
+
+    fr: {
+      htmlLang: "fr", skip: "Aller au contenu",
+      a11y: { mainNav: "Navigation principale", footerNav: "Navigation du pied de page", language: "Langue", menu: "Ouvrir le menu", menuClose: "Fermer le menu", toTop: "Retour en haut", portrait: "Portrait de" },
+      nav: { home: "Accueil", work: "Nos activités", tours: "Tournées", about: "À propos", contact: "Contact" },
+      theme: { label: "Mode sombre", labelLight: "Mode clair" },
+      langNames: { es: "Espagnol", en: "Anglais", de: "Allemand", fr: "Français" },
+      langChanged: "Langue changée en français.",
+      hero: {
+        kicker: "Plateforme musicale interculturelle · Guanajuato ⇄ Leipzig",
+        title: "Des artistes indépendants qui traversent l'Atlantique",
+        lead: "World Soul est née de la rencontre de deux mondes : la chaleur culturelle de Guanajuato et la scène de Leipzig. Nous donnons de la visibilité aux artistes indépendants par des expériences authentiques et des collaborations ciblées.",
+        cta1: "Découvrir World Soul", cta2: "Collaborer avec nous"
+      },
+      route: { alt: "Trajet entre Guanajuato, Mexique et Leipzig, Allemagne : 9 712 kilomètres." },
+      stats: [
+        { label: "Fondation", value: "2018" },
+        { label: "Siège", value: "Leipzig, Allemagne" },
+        { label: "Concerts et tournées documentés", value: "15" },
+        { label: "World Soul Fest", value: "2 éditions" }
+      ],
+      work: {
+        kicker: "Nos activités", title: "Cinq façons de faire avancer un projet musical", solves: "Ce que cela résout :",
+        items: [
+          { title: "Échange culturel de groupes", desc: "L'objectif d'origine de World Soul : un programme d'échange entre le Mexique et l'Allemagne pour que les groupes jouent hors de leur circuit et reviennent avec un nouveau public.", problem: "un groupe indépendant a rarement des contacts hors de son pays." },
+          { title: "Management et développement artistique", desc: "Nous accompagnons le projet artistique et ses relations avec les salles, les labels et les festivals, en Allemagne et ailleurs.", problem: "gérer sa carrière prend le temps nécessaire à la création." },
+          { title: "Organisation et coordination de tournées", desc: "Itinéraires, dates, salles et accords. Pour la tournée de Linn Levine, nous avons pris en charge l'ensemble, de la basse sur scène à toute la logistique.", problem: "une tournée internationale échoue sur les détails que personne ne surveille." },
+          { title: "Production et logistique d'événements", desc: "Son, production audiovisuelle, logistique et coordination sur place, avec notre équipe à Leipzig et à Guanajuato.", problem: "le son et l'organisation décident du souvenir que laisse un concert." },
+          { title: "Scènes ouvertes aux talents indépendants", desc: "Nous créons des espaces d'essai, comme le DMS – Dolus Music Show, une scène ouverte mensuelle à Leipzig, ouverte à tous.", problem: "sans scène, impossible d'éprouver ce que l'on crée." }
+        ]
+      },
+      tours: {
+        kicker: "Projets et artistes", title: "Tournées marquantes",
+        items: [
+          { name: "Covra", year: "2022 · 2024", place: "Irapuato et Salamanca → Leipzig", text: "Ce qui a commencé sur les scènes d'Irapuato et de Salamanca est vite devenu un voyage sans frontières. Covra a touché un public qui ne parlait pas sa langue mais comprenait parfaitement son message.", note: "Deux tournées en Allemagne : Alemania Tour 2022 et 2nd Germany Tour 2024." },
+          { name: "MuMu", year: "Rock'n Delitzsch Fest", place: "Salamanca → Delitzsch, Allemagne", text: "Rock psychédélique de Salamanca. Leur musique est passée des salles locales au Rock'n Delitzsch Fest, plaçant la région du Bajío sur la carte internationale.", note: "Collaboration : World Soul a intégré MuMu au line-up du festival, sans en être l'organisateur." },
+          { name: "Dolus Mutombo & The Free Spirits", year: "2017 · 2018", place: "Taucha et Leipzig", text: "Ils ont porté l'essence du Congo sur les scènes de Leipzig. Rythme contagieux et charge émotionnelle : le groupe a fait vibrer le public pendant la fête de la ville.", note: "Le Taucha Fest 2017 précède la fondation officielle de World Soul en 2018." },
+          { name: "Sónica MX", year: "2024", place: "Kulturlounge, Leipzig", text: "Sónica est venue du Bajío jusqu'au centre culturel Kulturlounge, partageant la scène avec des groupes locaux lors d'une rencontre entre deux mondes musicaux.", note: "" },
+          { name: "World Soul Fest", year: "2025", place: "Première édition", text: "La première édition d'un festival propre, réunissant des artistes de quatre continents : du Bajío mexicain aux racines africaines du Congo, en passant par l'Allemagne, l'Argentine et le Chili.", note: "" },
+          { name: "Linn Levine", year: "Mai 2026", place: "Leipzig · South Nation Music", text: "Première collaboration avec le label suédois South Nation Music. Nous n'étions pas de simples accompagnateurs : nous avons assumé toute la tournée, de la basse sur scène à chaque rouage logistique.", note: "" },
+          { name: "World Soul Fest – La Fête de la Musique", year: "20 juin 2026", place: "Deuxième édition", text: "Avec des talents du Mexique, d'Allemagne, d'Argentine, de Porto Rico et du Chili, et la participation d'artistes de burlesque et de drag, la deuxième édition a dépassé le seul cadre musical.", note: "" }
+        ]
+      },
+      timeline: {
+        title: "Parcours complet", lead: "Concerts et tournées auxquels World Soul a participé, d'après le CV de l'organisation et la présentation du portfolio.",
+        first: "Première édition", linn: "Tournée avec South Nation Music · Leipzig", fest26: "Deuxième édition · Leipzig", dms: "Scène ouverte mensuelle · Leipzig", now: "En cours",
+        footnote: "Le Taucha Fest 2017 est une collaboration antérieure à la fondation officielle de World Soul, en 2018. Le Rock'n Delitzsch Fest était une collaboration : World Soul a intégré MuMu au line-up sans organiser le festival."
+      },
+      story: {
+        kicker: "Histoire et raison d'être", title: "Un pont entre les scènes mexicaine et allemande",
+        p1: "World Soul est une organisation qui s'intéresse au talent musical et artistique des personnes dans le monde entier. Elle est née de la rencontre des cultures mexicaine et allemande à travers son fondateur, Jesús Cabal Aragón, et son siège est à Leipzig, en Allemagne.",
+        p2: "Son objectif principal est l'échange culturel entre groupes, afin de favoriser la croissance artistique des groupes participants comme de celles et ceux qui interviennent dans le processus, en créant des espaces ouverts où ils peuvent s'exprimer librement, montrer leur talent à d'autres cultures et rencontrer de nouveaux publics."
+      },
+      founder: {
+        kicker: "Fondateur", role: "Directeur général · PhD Candidate", photoAlt: "Portrait de Jesús Cabal Aragón, fondateur de World Soul, sous les lumières de scène.",
+        p1: "Originaire de Guanajuato et diplômé de l'UGTO, Jesús Cabal a porté sa vocation jusqu'à Leipzig, où il a préparé son doctorat à l'Uni-Leipzig tout en professionnalisant sa pratique de la guitare, de la basse et du chant.",
+        p2: "Il enseigne aujourd'hui à la Modern Music School de Leipzig et de Halle. En 2018, il a fondé World Soul, une plateforme interculturelle qui aide les artistes indépendants à traverser l'Atlantique pour que leur message trouve un écho en Europe.",
+        p3: "En tant que directeur général, il coordonne la relation entre artistes, salles et festivals des deux côtés de la carte.",
+        cta: "Écrire à Jesús"
+      },
+      team: {
+        title: "L'équipe",
+        lead: "Derrière chaque projet de World Soul, il y a des personnes qui ont été de l'autre côté : artistes et entrepreneurs avec une expérience réelle des scènes de Guanajuato et d'Allemagne.",
+        roles: { cabal: "Chief Executive Officer", melisa: "Director of Audiovisual Production", maira: "Host & Digital Media Manager", dolus: "Sound Engineer", leo: "Logistics & Operations", tintori: "Field Production Coordinator · Guanajuato" }
+      },
+      contact: {
+        kicker: "Contact", title: "Dites-nous ce que vous voulez faire bouger",
+        email: "Courriel", phone: "Téléphone", base: "Siège", germany: "Allemagne", social: "Réseaux sociaux",
+        notConfigured: "non configuré"
+      },
+      form: {
+        title: "Écrivez-nous",
+        introMail: "Ce formulaire ouvre votre logiciel de messagerie avec le message déjà rédigé vers worldsoul.ws@gmail.com. Rien n'est envoyé depuis cette page.",
+        introEndpoint: "Votre message est envoyé à worldsoul.ws@gmail.com.",
+        name: "Nom", email: "Courriel", message: "Message",
+        submitMail: "Rédiger le courriel", submitEndpoint: "Envoyer le message", sending: "Envoi…",
+        errName: "Indiquez votre nom pour que nous sachions à qui nous parlons.",
+        errEmail: "Vérifiez le courriel : il manque une adresse valide, par exemple nom@courriel.com.",
+        errMessage: "Décrivez brièvement votre proposition dans le message.",
+        okMail: "Votre logiciel de messagerie s'est ouvert avec le message. Vérifiez-le et envoyez-le depuis là.",
+        okSent: "Message envoyé. Nous répondrons à l'adresse indiquée.",
+        errSend: "L'envoi a échoué. Écrivez-nous directement à worldsoul.ws@gmail.com."
+      },
+      socialNote: "Les liens marqués non configurés sont déjà prévus dans la configuration du fichier et s'activent dès qu'une URL est ajoutée.",
+      footer: { tagline: "Plateforme musicale interculturelle entre Guanajuato, Mexique et Leipzig, Allemagne.", rights: "Tous droits réservés." }
+    }
+  };
+
+  constructor(props) {
+    super(props);
+    this.nameRef = React.createRef();
+    this.mailRef = React.createRef();
+    this.msgRef = React.createRef();
+    this.onKeyDown = this.onKeyDown.bind(this);
+    this.onScroll = this.onScroll.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    const cfg = Component.SITE_CONFIG;
+    let lang = cfg.defaultLanguage, theme = null;
+    try {
+      const sl = localStorage.getItem("ws-lang");
+      if (sl && Component.T[sl]) lang = sl;
+      const st = localStorage.getItem("ws-theme");
+      if (st === "dark" || st === "light") theme = st;
+    } catch (e) {}
+    if (!theme) theme = (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+    this.setState({ lang, theme });
+    this.applyLang(lang);
+    this.applyTheme(theme);
+    window.addEventListener("scroll", this.onScroll, { passive: true });
+    document.addEventListener("keydown", this.onKeyDown);
+    this.observeSections();
+    this.onScroll();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.onScroll);
+    document.removeEventListener("keydown", this.onKeyDown);
+    if (this.io) this.io.disconnect();
+  }
+
+  observeSections() {
+    if (!("IntersectionObserver" in window)) return;
+    const ids = ["inicio", "que-hacemos", "giras", "nosotros", "contacto"];
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => { if (en.isIntersecting) this.setState({ active: en.target.id }); });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    ids.forEach((id) => { const el = document.getElementById(id); if (el) this.io.observe(el); });
+  }
+
+  applyTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    try { localStorage.setItem("ws-theme", theme); } catch (e) {}
+  }
+
+  applyLang(lang) {
+    document.documentElement.setAttribute("lang", Component.T[lang].htmlLang);
+    try { localStorage.setItem("ws-lang", lang); } catch (e) {}
+  }
+
+  onScroll() {
+    const y = window.scrollY || document.documentElement.scrollTop || 0;
+    const show = y > 600;
+    if (show !== this.state.showTop) this.setState({ showTop: show });
+  }
+
+  onKeyDown(e) {
+    if (e.key === "Escape" && this.state.menuOpen) this.setState({ menuOpen: false });
+  }
+
+  setLang(lang) {
+    this.setState({ lang, live: Component.T[lang].langChanged, status: "", statusKind: "" });
+    this.applyLang(lang);
+  }
+
+  toggleTheme = () => {
+    const theme = this.state.theme === "dark" ? "light" : "dark";
+    this.setState({ theme });
+    this.applyTheme(theme);
+  };
+
+  toggleMenu = () => this.setState((s) => ({ menuOpen: !s.menuOpen }));
+  closeMenu = () => this.setState({ menuOpen: false });
+
+  scrollTop = () => {
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    const first = document.getElementById("inicio");
+    if (first) { first.setAttribute("tabindex", "-1"); first.focus({ preventScroll: true }); }
+  };
+
+  async onSubmit(e) {
+    e.preventDefault();
+    const t = Component.T[this.state.lang];
+    const cfg = Component.SITE_CONFIG;
+    const name = (this.nameRef.current && this.nameRef.current.value || "").trim();
+    const mail = (this.mailRef.current && this.mailRef.current.value || "").trim();
+    const msg = (this.msgRef.current && this.msgRef.current.value || "").trim();
+    if (!name) { this.setState({ status: t.form.errName, statusKind: "error" }); if (this.nameRef.current) this.nameRef.current.focus(); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail)) { this.setState({ status: t.form.errEmail, statusKind: "error" }); if (this.mailRef.current) this.mailRef.current.focus(); return; }
+    if (!msg) { this.setState({ status: t.form.errMessage, statusKind: "error" }); if (this.msgRef.current) this.msgRef.current.focus(); return; }
+
+    if (cfg.formspreeEndpoint) {
+      this.setState({ sending: true, status: t.form.sending, statusKind: "info" });
+      try {
+        const res = await fetch(cfg.formspreeEndpoint, {
+          method: "POST",
+          headers: { "Accept": "application/json", "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email: mail, message: msg, _subject: "World Soul – " + name, _language: this.state.lang })
+        });
+        if (!res.ok) throw new Error("bad status");
+        this.setState({ sending: false, status: t.form.okSent, statusKind: "ok" });
+        if (this.nameRef.current) this.nameRef.current.value = "";
+        if (this.mailRef.current) this.mailRef.current.value = "";
+        if (this.msgRef.current) this.msgRef.current.value = "";
+      } catch (err) {
+        this.setState({ sending: false, status: t.form.errSend, statusKind: "error" });
+      }
+      return;
+    }
+    const subject = "World Soul – " + name;
+    const body = name + " <" + mail + ">\n\n" + msg;
+    window.location.href = "mailto:" + cfg.email + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    this.setState({ status: t.form.okMail, statusKind: "ok" });
+  }
+
+  renderVals() {
+    const S = this.state;
+    const cfg = Component.SITE_CONFIG;
+    const t = Component.T[S.lang] || Component.T.es;
+    const dark = S.theme === "dark";
+
+    const navDefs = [
+      ["inicio", t.nav.home], ["que-hacemos", t.nav.work], ["giras", t.nav.tours],
+      ["nosotros", t.nav.about], ["contacto", t.nav.contact]
+    ];
+    const navItems = navDefs.map(([id, label]) => {
+      const on = S.active === id;
+      return {
+        href: "#" + id, label, current: on ? "true" : undefined,
+        style: "color:" + (on ? "var(--accent-text)" : "var(--text)") + ";text-decoration:none;font-weight:800;font-size:15px;letter-spacing:-.005em;padding:6px 0;border-bottom:2px solid " + (on ? "var(--accent)" : "transparent")
+      };
+    });
+
+    const langs = ["es", "en", "de", "fr"].map((code) => {
+      const on = S.lang === code;
+      return {
+        code, label: code.toUpperCase(), name: t.langNames[code], pressed: on ? "true" : "false",
+        onClick: () => this.setLang(code),
+        style: "min-width:38px;height:36px;padding:0 8px;border:0;border-right:" + (code === "fr" ? "0" : "2px solid var(--line)") +
+          ";background:" + (on ? "var(--btn-bg)" : "transparent") + ";color:" + (on ? "var(--btn-fg)" : "var(--text)") +
+          ";font-family:inherit;font-weight:800;font-size:12px;letter-spacing:.06em;cursor:pointer"
+      };
+    });
+
+    const socialDefs = [
+      ["instagram", "Instagram"], ["facebook", "Facebook"], ["x", "X"], ["youtube", "YouTube"], ["spotify", "Spotify"]
+    ];
+    const socials = socialDefs.map(([key, label]) => {
+      const url = cfg.social[key];
+      const base = "display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 14px;border:2px solid var(--line);text-decoration:none;font-weight:800;font-size:14px;";
+      if (url) {
+        return {
+          key, label, href: url, target: "_blank", rel: "noopener noreferrer",
+          aria: label + " – World Soul", disabled: undefined, tabindex: undefined, onClick: undefined,
+          icon: { __html: Component.ICONS[key] }, style: base + "color:var(--text)"
+        };
+      }
+      return {
+        key, label: label + " · " + t.contact.notConfigured, href: undefined, target: undefined, rel: undefined,
+        aria: label + " – " + t.contact.notConfigured, disabled: "true", tabindex: "-1",
+        onClick: (ev) => ev.preventDefault(),
+        icon: { __html: Component.ICONS[key] },
+        style: base + "color:var(--muted);border-style:dashed;cursor:not-allowed"
+      };
+    });
+
+    const tl = Component.TIMELINE.map((e) => ({
+      year: e.year === "@now" ? t.timeline.now : e.year,
+      name: e.name,
+      place: e.place === "@first" ? t.timeline.first : e.place === "@linn" ? t.timeline.linn
+        : e.place === "@fest26" ? t.timeline.fest26 : e.place === "@dms" ? t.timeline.dms : e.place
+    }));
+
+    const team = Component.TEAM.map((m) => ({
+      name: m.name, photo: m.photo, role: t.team.roles[m.key],
+      alt: t.a11y.portrait + " " + m.name + " – " + t.team.roles[m.key] + "."
+    }));
+
+    const ex = Component.EXTRA[S.lang] || Component.EXTRA.es;
+    const al = Component.ALTS[S.lang] || Component.ALTS.es;
+    const ti = t.tours.items;
+    const cards = [ti[0], ti[1], ti[2], ti[3], ex.lacatrina, ex.skarabazz, ex.oldies, ti[4], ti[5], ti[6]]
+      .map((c) => ({ ...c, note: c.note || false, alt: al.photoOf + " " + c.name + " — " + c.place + "." }));
+
+    const statusColor = S.statusKind === "error" ? "var(--accent-text)" : S.statusKind === "ok" ? "var(--brand)" : "var(--muted)";
+
+    return {
+      t, isDark: dark ? "true" : "false", menuOpen: S.menuOpen, menuExpanded: S.menuOpen ? "true" : "false",
+      showTop: S.showTop, liveMessage: S.live,
+      navItems, langs, socials, timeline: tl, team,
+      m0: team[0], m1: team[1], m2: team[2], m3: team[3], m4: team[4], m5: team[5],
+      stats: t.stats, services: t.work.items.map((s, i) => ({ ...s, num: String(i + 1).padStart(2, "0") })),
+      ...cards.reduce((acc, c, i) => { acc["c" + i] = c; return acc; }, {}),
+      flyerAlt: al.flyer,
+      socialNote: socials.some((s) => s.disabled) ? t.socialNote : "",
+      formIntro: cfg.formspreeEndpoint ? t.form.introEndpoint : t.form.introMail,
+      submitLabel: S.sending ? t.form.sending : (cfg.formspreeEndpoint ? t.form.submitEndpoint : t.form.submitMail),
+      formStatus: S.status,
+      statusStyle: "margin:0;font-size:14px;line-height:1.5;min-height:1.2em;font-weight:" + (S.statusKind === "error" ? "800" : "400") + ";color:" + statusColor,
+      toggleTheme: this.toggleTheme, toggleMenu: this.toggleMenu, closeMenu: this.closeMenu,
+      scrollTop: this.scrollTop, onSubmit: this.onSubmit,
+      nameRef: this.nameRef, mailRef: this.mailRef, msgRef: this.msgRef,
+      onSkipFocus: (e) => { e.target.style.left = "12px"; e.target.style.top = "12px"; },
+      onSkipBlur: (e) => { e.target.style.left = "-9999px"; },
+      burgerStyle: "display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:2px solid var(--line);background:transparent;color:var(--text);cursor:pointer"
+    };
+  }
+}
+</script>
+</body>
+</html>
