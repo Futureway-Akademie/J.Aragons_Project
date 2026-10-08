@@ -1,0 +1,11 @@
+{"timestamp":"2026-10-08T14:10:50Z","type":"project_initialized","summary":"Projekt 'World Soul – Music Manager (Website)' initialisiert; bestehender Code unter world-soul/ wird übernommen."}
+{"timestamp":"2026-10-08T14:10:50Z","type":"roadmap_created","summary":"Roadmap v1 mit 2 Phasen und 6 Tasks angelegt (Gesamtgewicht 14)."}
+{"timestamp":"2026-10-08T14:10:50Z","type":"verification_passed","taskId":"task-1-1","summary":"Übernahme nach world-soul/ (Commit 57d4e72) nachträglich erfasst; lokales Rendering in beiden Farbmodi geprüft."}
+{"timestamp":"2026-10-08T14:10:50Z","type":"task_completed","taskId":"task-1-1","summary":"World-Soul-Website nach world-soul/ übernommen."}
+{"timestamp":"2026-10-08T14:10:50Z","type":"verification_passed","taskId":"task-1-2","summary":"Kontrast-Scan ohne Verstöße in Hell und Dunkel, Bedienelement-Rahmen ≥ 3:1, Hover-Zustände geprüft, vom Nutzer abgenommen."}
+{"timestamp":"2026-10-08T14:10:50Z","type":"task_completed","taskId":"task-1-2","summary":"Kontrast- und Hover-Verbesserungen umgesetzt (Commit 9925dba, PR #1 in main gemergt)."}
+{"timestamp":"2026-10-08T14:10:50Z","type":"decision_recorded","summary":"World Soul.dc.html ist die Quelle; Änderungen werden gleichzeitig in das eingebettete Template beider Bundles übernommen (siehe docs/decisions.md)."}
+{"timestamp":"2026-10-08T14:10:50Z","type":"task_ready","taskId":"task-2-1","summary":"Abhängigkeit task-1-2 abgeschlossen; Task startbar."}
+{"timestamp":"2026-10-08T14:10:50Z","type":"task_ready","taskId":"task-2-2","summary":"Abhängigkeit task-1-2 abgeschlossen; Task startbar."}
+{"timestamp":"2026-10-08T14:10:50Z","type":"task_ready","taskId":"task-2-3","summary":"Abhängigkeit task-1-2 abgeschlossen; Task startbar."}
+{"timestamp":"2026-10-08T14:10:50Z","type":"task_ready","taskId":"task-2-4","summary":"Abhängigkeit task-1-2 abgeschlossen; Task startbar."}
