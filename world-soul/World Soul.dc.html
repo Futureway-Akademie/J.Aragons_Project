@@ -22,19 +22,19 @@
   --ws-blue:#1b3a5c; --ws-blue-deep:#12283f; --ws-blue-light:#9dbfe4;
   --ws-ochre:#a8551d; --paper:#f3f2f2; --ink:#201e1d; --night:#101820;
   --bg:#f3f2f2; --surface:#e9e7e4; --text:#201e1d; --muted:#5a5654;
-  --line:rgba(32,30,29,.42); --hair:rgba(32,30,29,.18);
+  --line:rgba(32,30,29,.42); --hair:rgba(32,30,29,.22); --control-line:rgba(32,30,29,.56);
   --brand:#1b3a5c; --accent:#a8551d; --accent-text:#8a5218;
   --btn-bg:#1b3a5c; --btn-fg:#f3f2f2; --photo:grayscale(1) contrast(1.06);
-  --logo-filter:none;
+  --logo-filter:none; --tile-bg:#1b3a5c; --tile-fg:#f3f2f2;
   --color-bg:var(--bg); --color-surface:var(--surface); --color-text:var(--text);
   --color-accent:var(--brand); --color-divider:var(--line);
 }
 [data-theme="dark"]{
   --bg:#101820; --surface:#18222d; --text:#eceae7; --muted:#a9b2bc;
-  --line:rgba(236,234,231,.34); --hair:rgba(236,234,231,.16);
+  --line:rgba(236,234,231,.34); --hair:rgba(236,234,231,.22); --control-line:rgba(236,234,231,.46);
   --brand:#9dbfe4; --accent:#e39152; --accent-text:#e39152;
   --btn-bg:#9dbfe4; --btn-fg:#101820; --photo:grayscale(1) contrast(1.02) brightness(.94);
-  --logo-filter:brightness(0) invert(1);
+  --logo-filter:brightness(0) invert(1); --tile-bg:#1b3a5c; --tile-fg:#eceae7;
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:"Archivo",system-ui,sans-serif;margin:0;transition:background-color .25s ease,color .25s ease}
@@ -46,8 +46,13 @@ a:hover{color:var(--accent-text)}
 .ws-photo{filter:var(--photo)}
 .ws-input::placeholder{color:var(--muted);opacity:1}
 .ws-link-row:hover{background:color-mix(in srgb,var(--brand) 8%,transparent)}
-.ws-nav-link:hover{color:var(--accent-text)}
-.ws-card:hover{border-color:var(--brand)}
+.ws-nav-link,.ws-btn,.ws-ctl,.ws-lang,.ws-card{transition:color .15s ease,background-color .15s ease,border-color .15s ease,outline-color .15s ease}
+.ws-nav-link:hover{color:var(--accent-text) !important}
+.ws-btn:hover{background:color-mix(in srgb,var(--btn-bg) 80%,var(--text)) !important;border-color:color-mix(in srgb,var(--btn-bg) 80%,var(--text)) !important}
+.ws-ctl:not([aria-disabled="true"]):hover{border-color:var(--brand) !important;background:color-mix(in srgb,var(--brand) 8%,transparent) !important}
+.ws-lang[aria-pressed="false"]:hover{background:color-mix(in srgb,var(--brand) 12%,transparent) !important}
+.ws-card{outline:2px solid transparent;outline-offset:-2px}
+.ws-card:hover{outline-color:var(--brand)}
 @keyframes ws-dash{to{stroke-dashoffset:-24}}
 @media (min-width:960px){
   [data-desktop-nav]{display:flex !important}
@@ -77,16 +82,16 @@ a:hover{color:var(--accent-text)}
       </sc-for>
     </nav>
     <div style="margin-left:auto;display:flex;align-items:center;gap:8px" data-header-tools="true">
-      <div role="group" aria-label="{{ t.a11y.language }}" style="display:flex;border:2px solid var(--line)">
+      <div role="group" aria-label="{{ t.a11y.language }}" style="display:flex;border:2px solid var(--control-line)">
         <sc-for list="{{ langs }}" as="l" hint-placeholder-count="4">
-          <button type="button" lang="{{ l.code }}" aria-pressed="{{ l.pressed }}" onClick="{{ l.onClick }}" title="{{ l.name }}" style="{{ l.style }}">{{ l.label }}</button>
+          <button type="button" class="ws-lang" lang="{{ l.code }}" aria-pressed="{{ l.pressed }}" onClick="{{ l.onClick }}" title="{{ l.name }}" style="{{ l.style }}">{{ l.label }}</button>
         </sc-for>
       </div>
-      <button type="button" onClick="{{ toggleTheme }}" aria-pressed="{{ isDark }}" style="display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 12px;border:2px solid var(--line);background:transparent;color:var(--text);font-family:inherit;font-weight:800;font-size:12px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">
+      <button type="button" onClick="{{ toggleTheme }}" aria-pressed="{{ isDark }}" class="ws-ctl" style="display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 12px;border:2px solid var(--control-line);background:transparent;color:var(--text);font-family:inherit;font-weight:800;font-size:12px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">
         <span aria-hidden="true" style="display:block;width:14px;height:14px;border-radius:50%;border:2px solid currentColor;background:linear-gradient(90deg,currentColor 0 50%,transparent 50% 100%)"></span>
         <span>{{ t.theme.label }}</span>
       </button>
-      <button type="button" data-burger="true" onClick="{{ toggleMenu }}" aria-expanded="{{ menuExpanded }}" aria-controls="ws-menu-movil" aria-label="{{ t.a11y.menu }}" style="{{ burgerStyle }}">
+      <button type="button" class="ws-ctl" data-burger="true" onClick="{{ toggleMenu }}" aria-expanded="{{ menuExpanded }}" aria-controls="ws-menu-movil" aria-label="{{ t.a11y.menu }}" style="{{ burgerStyle }}">
         <span aria-hidden="true" style="display:block;width:20px;height:2px;background:currentColor;box-shadow:0 -6px 0 currentColor,0 6px 0 currentColor"></span>
       </button>
     </div>
@@ -109,8 +114,8 @@ a:hover{color:var(--accent-text)}
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(20px,4vw,56px);align-items:end;margin-top:clamp(24px,4vw,44px)">
         <p style="font-size:clamp(16px,1.7vw,20px);line-height:1.5;max-width:46ch;margin:0;color:var(--text)">{{ t.hero.lead }}</p>
         <div style="display:flex;flex-wrap:wrap;gap:12px">
-          <a href="#nosotros" style="display:inline-flex;align-items:center;min-height:48px;padding:12px 22px;background:var(--btn-bg);color:var(--btn-fg);text-decoration:none;font-weight:800;font-size:15px;letter-spacing:.01em">{{ t.hero.cta1 }}</a>
-          <a href="#contacto" style="display:inline-flex;align-items:center;min-height:48px;padding:12px 22px;border:2px solid var(--line);color:var(--text);text-decoration:none;font-weight:800;font-size:15px">{{ t.hero.cta2 }}</a>
+          <a class="ws-btn" href="#nosotros" style="display:inline-flex;align-items:center;min-height:48px;padding:12px 22px;background:var(--btn-bg);color:var(--btn-fg);text-decoration:none;font-weight:800;font-size:15px;letter-spacing:.01em">{{ t.hero.cta1 }}</a>
+          <a class="ws-ctl" href="#contacto" style="display:inline-flex;align-items:center;min-height:48px;padding:12px 22px;border:2px solid var(--control-line);color:var(--text);text-decoration:none;font-weight:800;font-size:15px">{{ t.hero.cta2 }}</a>
         </div>
       </div>
       <figure role="img" aria-label="{{ t.route.alt }}" style="margin:clamp(32px,5vw,64px) 0 0;border-top:2px solid var(--line);padding-top:18px">
@@ -250,7 +255,7 @@ a:hover{color:var(--accent-text)}
         </article>
 
         <article class="ws-card" style="background:var(--bg);display:flex;flex-direction:column;border:0">
-          <div aria-hidden="true" style="height:230px;background:var(--btn-bg);color:var(--btn-fg);display:flex;flex-direction:column;justify-content:flex-end;padding:22px">
+          <div aria-hidden="true" style="height:230px;background:var(--tile-bg);color:var(--tile-fg);display:flex;flex-direction:column;justify-content:flex-end;padding:22px">
             <span style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase">World Soul Fest</span>
             <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:52px;line-height:.92;letter-spacing:-.04em">2025</span>
           </div>
@@ -265,7 +270,7 @@ a:hover{color:var(--accent-text)}
         </article>
 
         <article class="ws-card" style="background:var(--bg);display:flex;flex-direction:column;border:0">
-          <div aria-hidden="true" style="height:230px;background:var(--btn-bg);color:var(--btn-fg);display:flex;flex-direction:column;justify-content:flex-end;padding:22px">
+          <div aria-hidden="true" style="height:230px;background:var(--tile-bg);color:var(--tile-fg);display:flex;flex-direction:column;justify-content:flex-end;padding:22px">
             <span style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase">South Nation Music</span>
             <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:44px;line-height:.92;letter-spacing:-.04em">Linn Levine</span>
           </div>
@@ -280,7 +285,7 @@ a:hover{color:var(--accent-text)}
         </article>
 
         <article class="ws-card" style="background:var(--bg);display:flex;flex-direction:column;border:0">
-          <div aria-hidden="true" style="height:230px;background:var(--btn-bg);color:var(--btn-fg);display:flex;flex-direction:column;justify-content:flex-end;padding:22px">
+          <div aria-hidden="true" style="height:230px;background:var(--tile-bg);color:var(--tile-fg);display:flex;flex-direction:column;justify-content:flex-end;padding:22px">
             <span style="font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase">La Fête de la Musique</span>
             <span style="font-family:'Archivo',sans-serif;font-weight:800;font-size:52px;line-height:.92;letter-spacing:-.04em">2026</span>
           </div>
@@ -332,7 +337,7 @@ a:hover{color:var(--accent-text)}
           <p style="margin:0 0 14px;font-size:16px;line-height:1.6;max-width:56ch">{{ t.founder.p1 }}</p>
           <p style="margin:0 0 14px;font-size:16px;line-height:1.6;max-width:56ch">{{ t.founder.p2 }}</p>
           <p style="margin:0 0 22px;font-size:16px;line-height:1.6;max-width:56ch">{{ t.founder.p3 }}</p>
-          <a href="#contacto" style="display:inline-flex;align-items:center;min-height:48px;padding:12px 22px;background:var(--btn-bg);color:var(--btn-fg);text-decoration:none;font-weight:800;font-size:15px">{{ t.founder.cta }}</a>
+          <a class="ws-btn" href="#contacto" style="display:inline-flex;align-items:center;min-height:48px;padding:12px 22px;background:var(--btn-bg);color:var(--btn-fg);text-decoration:none;font-weight:800;font-size:15px">{{ t.founder.cta }}</a>
         </div>
       </div>
 
@@ -401,7 +406,7 @@ a:hover{color:var(--accent-text)}
           <ul style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px">
             <sc-for list="{{ socials }}" as="s" hint-placeholder-count="5">
               <li style="margin:0">
-                <a class="ws-link-row" href="{{ s.href }}" target="{{ s.target }}" rel="{{ s.rel }}" aria-label="{{ s.aria }}" aria-disabled="{{ s.disabled }}" tabindex="{{ s.tabindex }}" onClick="{{ s.onClick }}" style="{{ s.style }}">
+                <a class="ws-link-row ws-ctl" href="{{ s.href }}" target="{{ s.target }}" rel="{{ s.rel }}" aria-label="{{ s.aria }}" aria-disabled="{{ s.disabled }}" tabindex="{{ s.tabindex }}" onClick="{{ s.onClick }}" style="{{ s.style }}">
                   <span aria-hidden="true" style="display:block;width:18px;height:18px" dangerouslySetInnerHTML="{{ s.icon }}"></span>
                   <span>{{ s.label }}</span>
                 </a>
@@ -418,17 +423,17 @@ a:hover{color:var(--accent-text)}
           </div>
           <div style="display:flex;flex-direction:column;gap:5px">
             <label for="ws-nombre" style="font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase">{{ t.form.name }}</label>
-            <input class="ws-input" id="ws-nombre" name="nombre" type="text" ref="{{ nameRef }}" autocomplete="name" required="{{ true }}" style="font-family:inherit;font-size:16px;padding:12px;min-height:48px;background:var(--bg);color:var(--text);border:2px solid var(--line);border-radius:0">
+            <input class="ws-input" id="ws-nombre" name="nombre" type="text" ref="{{ nameRef }}" autocomplete="name" required="{{ true }}" style="font-family:inherit;font-size:16px;padding:12px;min-height:48px;background:var(--bg);color:var(--text);border:2px solid var(--control-line);border-radius:0">
           </div>
           <div style="display:flex;flex-direction:column;gap:5px">
             <label for="ws-correo" style="font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase">{{ t.form.email }}</label>
-            <input class="ws-input" id="ws-correo" name="correo" type="email" ref="{{ mailRef }}" autocomplete="email" required="{{ true }}" style="font-family:inherit;font-size:16px;padding:12px;min-height:48px;background:var(--bg);color:var(--text);border:2px solid var(--line);border-radius:0">
+            <input class="ws-input" id="ws-correo" name="correo" type="email" ref="{{ mailRef }}" autocomplete="email" required="{{ true }}" style="font-family:inherit;font-size:16px;padding:12px;min-height:48px;background:var(--bg);color:var(--text);border:2px solid var(--control-line);border-radius:0">
           </div>
           <div style="display:flex;flex-direction:column;gap:5px">
             <label for="ws-mensaje" style="font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase">{{ t.form.message }}</label>
-            <textarea class="ws-input" id="ws-mensaje" name="mensaje" rows="5" ref="{{ msgRef }}" required="{{ true }}" style="font-family:inherit;font-size:16px;padding:12px;background:var(--bg);color:var(--text);border:2px solid var(--line);border-radius:0;resize:vertical"></textarea>
+            <textarea class="ws-input" id="ws-mensaje" name="mensaje" rows="5" ref="{{ msgRef }}" required="{{ true }}" style="font-family:inherit;font-size:16px;padding:12px;background:var(--bg);color:var(--text);border:2px solid var(--control-line);border-radius:0;resize:vertical"></textarea>
           </div>
-          <button type="submit" style="display:inline-flex;align-items:center;justify-content:flex-start;min-height:48px;padding:12px 22px;background:var(--btn-bg);color:var(--btn-fg);border:0;font-family:inherit;font-weight:800;font-size:15px;cursor:pointer">{{ submitLabel }}</button>
+          <button type="submit" class="ws-btn" style="display:inline-flex;align-items:center;justify-content:flex-start;min-height:48px;padding:12px 22px;background:var(--btn-bg);color:var(--btn-fg);border:0;font-family:inherit;font-weight:800;font-size:15px;cursor:pointer">{{ submitLabel }}</button>
           <p role="status" aria-live="polite" style="{{ statusStyle }}">{{ formStatus }}</p>
         </form>
       </div>
@@ -486,7 +491,7 @@ a:hover{color:var(--accent-text)}
   </section>
 </main>
 
-<footer style="border-top:2px solid var(--line);background:var(--surface);padding:clamp(32px,5vw,56px) clamp(16px,4vw,40px)">
+<footer style="border-top:2px solid var(--line);background:var(--surface);padding:clamp(32px,5vw,56px) clamp(16px,4vw,40px) 96px">
   <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(20px,4vw,48px);align-items:start">
     <div>
       <img class="ws-logo" src="assets/logo-ws.png" width="582" height="231" alt="World Soul – Music Manager" style="height:40px;width:auto;margin-bottom:12px">
@@ -498,8 +503,8 @@ a:hover{color:var(--accent-text)}
       </sc-for>
     </nav>
     <div style="display:flex;flex-direction:column;gap:8px">
-      <a href="mailto:worldsoul.ws@gmail.com" style="color:var(--text);font-size:15px;font-weight:800;padding:4px 0;text-decoration:none;word-break:break-word">worldsoul.ws@gmail.com</a>
-      <a href="tel:+4915256981202" style="color:var(--text);font-size:15px;font-weight:800;padding:4px 0;text-decoration:none">+49 (0) 1525 698 1202</a>
+      <a class="ws-nav-link" href="mailto:worldsoul.ws@gmail.com" style="color:var(--text);font-size:15px;font-weight:800;padding:4px 0;text-decoration:none;word-break:break-word">worldsoul.ws@gmail.com</a>
+      <a class="ws-nav-link" href="tel:+4915256981202" style="color:var(--text);font-size:15px;font-weight:800;padding:4px 0;text-decoration:none">+49 (0) 1525 698 1202</a>
       <span style="font-size:14px;color:var(--muted)">Leipzig, {{ t.contact.germany }}</span>
       <a class="ws-nav-link" href="#impressum" lang="de" style="color:var(--text);font-size:15px;font-weight:800;padding:4px 0;text-decoration:none;margin-top:6px">Impressum</a>
       <a class="ws-nav-link" href="#datenschutz" lang="de" style="color:var(--text);font-size:15px;font-weight:800;padding:4px 0;text-decoration:none">Datenschutz</a>
@@ -512,7 +517,7 @@ a:hover{color:var(--accent-text)}
 </footer>
 
 <sc-if value="{{ showTop }}" hint-placeholder-val="{{ false }}">
-  <button type="button" onClick="{{ scrollTop }}" aria-label="{{ t.a11y.toTop }}" style="position:fixed;right:clamp(14px,3vw,28px);bottom:clamp(14px,3vw,28px);z-index:70;width:52px;height:52px;display:flex;align-items:center;justify-content:center;background:var(--btn-bg);color:var(--btn-fg);border:2px solid var(--btn-bg);cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.24)">
+  <button type="button" onClick="{{ scrollTop }}" class="ws-btn" aria-label="{{ t.a11y.toTop }}" style="position:fixed;right:clamp(14px,3vw,28px);bottom:clamp(14px,3vw,28px);z-index:70;width:52px;height:52px;display:flex;align-items:center;justify-content:center;background:var(--btn-bg);color:var(--btn-fg);border:2px solid var(--btn-bg);cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.24)">
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true" focusable="false"><path d="M12 19V5"></path><path d="M5 12l7-7 7 7"></path></svg>
   </button>
 </sc-if>
@@ -1011,6 +1016,8 @@ class Component extends DCLogic {
 
   applyTheme(theme) {
     document.documentElement.setAttribute("data-theme", theme);
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute("content", theme === "dark" ? "#101820" : "#f3f2f2");
     try { localStorage.setItem("ws-theme", theme); } catch (e) {}
   }
 
@@ -1108,7 +1115,7 @@ class Component extends DCLogic {
       return {
         code, label: code.toUpperCase(), name: t.langNames[code], pressed: on ? "true" : "false",
         onClick: () => this.setLang(code),
-        style: "min-width:38px;height:36px;padding:0 8px;border:0;border-right:" + (code === "fr" ? "0" : "2px solid var(--line)") +
+        style: "min-width:38px;height:36px;padding:0 8px;border:0;border-right:" + (code === "fr" ? "0" : "2px solid var(--control-line)") +
           ";background:" + (on ? "var(--btn-bg)" : "transparent") + ";color:" + (on ? "var(--btn-fg)" : "var(--text)") +
           ";font-family:inherit;font-weight:800;font-size:12px;letter-spacing:.06em;cursor:pointer"
       };
@@ -1119,7 +1126,7 @@ class Component extends DCLogic {
     ];
     const socials = socialDefs.map(([key, label]) => {
       const url = cfg.social[key];
-      const base = "display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 14px;border:2px solid var(--line);text-decoration:none;font-weight:800;font-size:14px;";
+      const base = "display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 14px;border:2px solid var(--control-line);text-decoration:none;font-weight:800;font-size:14px;";
       if (url) {
         return {
           key, label, href: url, target: "_blank", rel: "noopener noreferrer",
@@ -1174,7 +1181,7 @@ class Component extends DCLogic {
       nameRef: this.nameRef, mailRef: this.mailRef, msgRef: this.msgRef,
       onSkipFocus: (e) => { e.target.style.left = "12px"; e.target.style.top = "12px"; },
       onSkipBlur: (e) => { e.target.style.left = "-9999px"; },
-      burgerStyle: "display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:2px solid var(--line);background:transparent;color:var(--text);cursor:pointer"
+      burgerStyle: "display:flex;align-items:center;justify-content:center;width:44px;height:44px;border:2px solid var(--control-line);background:transparent;color:var(--text);cursor:pointer"
     };
   }
 }
