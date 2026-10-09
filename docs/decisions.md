@@ -111,3 +111,17 @@ Der Teilnehmer wählte Entwurf A, um der Marke treu zu bleiben. Die Buchstaben w
 ### Begründung
 
 Der helle Grund hält die dunkelblauen Buchstaben auch in dunklen Browser-Tabs sichtbar; die Dateien liegen im Website-Stamm, sodass `/favicon.ico` direkt beantwortet wird.
+
+## 2026-10-09 – Link-Vorschau für Crawler ohne JavaScript
+
+### Kontext
+
+Das og:image verwies relativ auf ein transparentes 1080×1080-PNG. Zudem sahen Link-Vorschau-Crawler im ausgelieferten Bundle nur den Titel „Bundled Page“ und keine Meta-Angaben, da alle Tags im JSON-Template stecken und erst per JavaScript eingefügt werden.
+
+### Entscheidung
+
+Neues Vorschaubild `assets/og-image.png` (1200×630, deckender heller Grund, Logo in Originalgröße, Text „PLATAFORMA INTERCULTURAL DE MÚSICA / GUANAJUATO ⇄ LEIPZIG“ in Markenblau #1b3a5c – Farbe und Text vom Teilnehmer gewählt). Vollständige Open-Graph-/Twitter-Angaben mit absoluten URLs auf https://world-soul.onrender.com in Quelle und Template; zusätzlich Titel, Beschreibung und dieselben Angaben im statischen Kopf beider Bundles.
+
+### Begründung
+
+Nur der statische Kopf ist für Crawler sichtbar; der deckende Hintergrund verhindert schwarze Flächen in dunklen App-Designs. Die Ortsangabe kann bei Wachstum der Plattform später angepasst werden.

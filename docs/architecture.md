@@ -19,6 +19,7 @@ Die World-Soul-Website ist eine statische Single-Page-Website unter `world-soul/
 | `world-soul/doc-page.js` | Hilfsskript der Quelle |
 | `world-soul/_ds/modernist-…/` | Designsystem „Modernist“ (Tokens, Komponenten, Schrift Archivo) |
 | `world-soul/favicon.ico`, `world-soul/apple-touch-icon.png` | Favicon (16/32/48 px, PNG-basiert) und Icon für den Startbildschirm (180×180): „WS“-Buchstaben aus dem Logo auf hellem Grund (#f3f2f2), im `<head>` verlinkt |
+| `world-soul/assets/og-image.png` | Vorschaubild für Link-Vorschauen (1200×630, Logo auf #f3f2f2, Text in #1b3a5c) |
 | `world-soul/assets/` | Logos (`logo-ws.png`, `logo-ws-alpha.png` für og:image) und 13 Fotos als Graustufen-WebP; werden zur Laufzeit geladen |
 | `world-soul/index.html` | Ausgelieferte Seite: Single-File-Bundle |
 | `world-soul/world-soul-index.html` | Byte-identische Kopie von `index.html` |
@@ -30,6 +31,8 @@ Die World-Soul-Website ist eine statische Single-Page-Website unter `world-soul/
 - `manifest`: eingebettete Assets (Logo, Schriften, Skripte) als Base64, über UUIDs referenziert. Der Loader ersetzt im Template nur UUIDs, die im Manifest stehen; normale Pfade wie `assets/tour-covra.webp` bleiben unverändert und werden vom Browser geladen.
 - `template`: die komplette Quelle als JSON-String; Asset-Pfade sind durch UUIDs ersetzt, camelCase-Attribute kodiert (z. B. `onClick` → `sc-camel-on-click`)
 - `ext_resources`: externe Skripte (React/ReactDOM 18.3.1 von unpkg)
+
+Vor den `__bundler`-Blöcken steht ein statischer `<head>` (die „Shell“). Link-Vorschau-Crawler (WhatsApp, Facebook, LinkedIn, X) führen kein JavaScript aus und lesen nur diesen Teil. Er enthält deshalb `lang="es"`, den spanischen Titel, die Beschreibung, alle Open-Graph-/Twitter-Angaben mit absoluten URLs, Canonical, Favicon und `theme-color`. Nach dem Laden ersetzt der Loader das gesamte `documentElement` durch das Template, sodass zur Laufzeit nur dessen Angaben gelten (keine Duplikate). Änderungen an Titel, Beschreibung oder Open-Graph-Angaben müssen daher an drei Stellen erfolgen: Quelle, Template und Shell beider Bundles.
 
 Das Template lässt sich byte-genau mit `json.dumps(…, ensure_ascii=False)` und anschließendem Ersetzen von `</` durch `</` wieder kodieren.
 
