@@ -18,6 +18,7 @@ Die World-Soul-Website ist eine statische Single-Page-Website unter `world-soul/
 | `world-soul/support.js` | Laufzeit für das `x-dc`-Format der Quelle |
 | `world-soul/doc-page.js` | Hilfsskript der Quelle |
 | `world-soul/_ds/modernist-…/` | Designsystem „Modernist“ (Tokens, Komponenten, Schrift Archivo) |
+| `world-soul/favicon.ico`, `world-soul/apple-touch-icon.png` | Favicon (16/32/48 px, PNG-basiert) und Icon für den Startbildschirm (180×180): „WS“-Buchstaben aus dem Logo auf hellem Grund (#f3f2f2), im `<head>` verlinkt |
 | `world-soul/assets/` | Logos (`logo-ws.png`, `logo-ws-alpha.png` für og:image) und 13 Fotos als Graustufen-WebP; werden zur Laufzeit geladen |
 | `world-soul/index.html` | Ausgelieferte Seite: Single-File-Bundle |
 | `world-soul/world-soul-index.html` | Byte-identische Kopie von `index.html` |
