@@ -55,3 +55,17 @@ Bis 520 px Breite zeigt der Header nur Logo, Farbmodus-Schalter und Menü-Button
 ### Begründung
 
 Alle Bedienelemente bleiben sichtbar und mit dem Finger gut treffbar, ohne die Sprachwahl zu entfernen; ab 521 px bleibt der Header unverändert.
+
+## 2026-10-09 – camelCase-Attribute und zugängliches Kontaktformular
+
+### Kontext
+
+Das Formular trug `novalidate="{{ true }}"`. Die Template-Engine verwirft kleingeschriebene React-Attribute, daher blieb die Browser-Validierung aktiv: Der Submit-Handler lief nie, die eigenen Fehlermeldungen in der Seitensprache erschienen nicht, stattdessen zeigte der Browser seine Meldung in der Browsersprache.
+
+### Entscheidung
+
+React-Attribute werden in der Quelle immer in camelCase geschrieben (`noValidate`, `onClick`, …); im Bundle erscheinen sie kodiert als `sc-camel-…`. Das Formular validiert selbst: Das fehlerhafte Feld erhält `aria-invalid="true"` und den Fokus, alle Felder verweisen per `aria-describedby` auf die Statusmeldung `#ws-form-status` (`role="status"`).
+
+### Begründung
+
+Fehlermeldungen erscheinen in der gewählten Seitensprache und werden von Screenreadern dem betroffenen Feld zugeordnet.

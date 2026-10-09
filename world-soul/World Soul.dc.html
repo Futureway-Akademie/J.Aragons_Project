@@ -46,7 +46,8 @@ a:hover{color:var(--accent-text)}
 .ws-photo{filter:var(--photo)}
 .ws-input::placeholder{color:var(--muted);opacity:1}
 .ws-link-row:hover{background:color-mix(in srgb,var(--brand) 8%,transparent)}
-.ws-nav-link,.ws-btn,.ws-ctl,.ws-lang,.ws-card{transition:color .15s ease,background-color .15s ease,border-color .15s ease,outline-color .15s ease}
+.ws-nav-link,.ws-btn,.ws-ctl,.ws-lang{transition:color .15s ease,background-color .15s ease,border-color .15s ease}
+.ws-card{transition:outline-color .15s ease}
 .ws-nav-link:hover{color:var(--accent-text) !important}
 .ws-btn:hover{background:color-mix(in srgb,var(--btn-bg) 80%,var(--text)) !important;border-color:color-mix(in srgb,var(--btn-bg) 80%,var(--text)) !important}
 .ws-ctl:not([aria-disabled="true"]):hover{border-color:var(--brand) !important;background:color-mix(in srgb,var(--brand) 8%,transparent) !important}
@@ -433,25 +434,25 @@ a:hover{color:var(--accent-text)}
           <p style="margin:10px 0 0;font-size:13px;line-height:1.5;color:var(--muted);max-width:48ch">{{ socialNote }}</p>
         </div>
 
-        <form onSubmit="{{ onSubmit }}" novalidate="{{ true }}" style="border:2px solid var(--line);padding:clamp(18px,2.6vw,28px);display:flex;flex-direction:column;gap:16px">
+        <form onSubmit="{{ onSubmit }}" noValidate="{{ true }}" style="border:2px solid var(--line);padding:clamp(18px,2.6vw,28px);display:flex;flex-direction:column;gap:16px">
           <div>
             <h3 style="font-family:'Archivo',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.01em;margin:0 0 4px">{{ t.form.title }}</h3>
             <p style="margin:0;font-size:14px;line-height:1.5;color:var(--muted)">{{ formIntro }}</p>
           </div>
           <div style="display:flex;flex-direction:column;gap:5px">
             <label for="ws-nombre" style="font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase">{{ t.form.name }}</label>
-            <input class="ws-input" id="ws-nombre" name="nombre" type="text" ref="{{ nameRef }}" autocomplete="name" required="{{ true }}" style="font-family:inherit;font-size:16px;padding:12px;min-height:48px;background:var(--bg);color:var(--text);border:2px solid var(--control-line);border-radius:0">
+            <input class="ws-input" id="ws-nombre" name="nombre" type="text" ref="{{ nameRef }}" aria-describedby="ws-form-status" autocomplete="name" required="{{ true }}" style="font-family:inherit;font-size:16px;padding:12px;min-height:48px;background:var(--bg);color:var(--text);border:2px solid var(--control-line);border-radius:0">
           </div>
           <div style="display:flex;flex-direction:column;gap:5px">
             <label for="ws-correo" style="font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase">{{ t.form.email }}</label>
-            <input class="ws-input" id="ws-correo" name="correo" type="email" ref="{{ mailRef }}" autocomplete="email" required="{{ true }}" style="font-family:inherit;font-size:16px;padding:12px;min-height:48px;background:var(--bg);color:var(--text);border:2px solid var(--control-line);border-radius:0">
+            <input class="ws-input" id="ws-correo" name="correo" type="email" ref="{{ mailRef }}" aria-describedby="ws-form-status" autocomplete="email" required="{{ true }}" style="font-family:inherit;font-size:16px;padding:12px;min-height:48px;background:var(--bg);color:var(--text);border:2px solid var(--control-line);border-radius:0">
           </div>
           <div style="display:flex;flex-direction:column;gap:5px">
             <label for="ws-mensaje" style="font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase">{{ t.form.message }}</label>
-            <textarea class="ws-input" id="ws-mensaje" name="mensaje" rows="5" ref="{{ msgRef }}" required="{{ true }}" style="font-family:inherit;font-size:16px;padding:12px;background:var(--bg);color:var(--text);border:2px solid var(--control-line);border-radius:0;resize:vertical"></textarea>
+            <textarea class="ws-input" id="ws-mensaje" name="mensaje" rows="5" ref="{{ msgRef }}" aria-describedby="ws-form-status" required="{{ true }}" style="font-family:inherit;font-size:16px;padding:12px;background:var(--bg);color:var(--text);border:2px solid var(--control-line);border-radius:0;resize:vertical"></textarea>
           </div>
           <button type="submit" class="ws-btn" style="display:inline-flex;align-items:center;justify-content:flex-start;min-height:48px;padding:12px 22px;background:var(--btn-bg);color:var(--btn-fg);border:0;font-family:inherit;font-weight:800;font-size:15px;cursor:pointer">{{ submitLabel }}</button>
-          <p role="status" aria-live="polite" style="{{ statusStyle }}">{{ formStatus }}</p>
+          <p id="ws-form-status" role="status" aria-live="polite" style="{{ statusStyle }}">{{ formStatus }}</p>
         </form>
       </div>
     </div>
@@ -643,8 +644,8 @@ class Component extends DCLogic {
 
   static T = {
     es: {
-      htmlLang: "es", skip: "Saltar al contenido",
-      a11y: { mainNav: "Navegación principal", footerNav: "Navegación del pie", language: "Idioma", menu: "Abrir menú", menuClose: "Cerrar menú", toTop: "Volver al inicio", portrait: "Retrato de" },
+      htmlLang: "es", docTitle: "World Soul – Music Manager | Plataforma intercultural de música", skip: "Saltar al contenido",
+      a11y: { mainNav: "Navegación principal", footerNav: "Navegación del pie", language: "Idioma", menu: "Abrir menú", menuClose: "Cerrar menú", toTop: "Volver al inicio", portrait: "Retrato de", newTab: "se abre en una pestaña nueva" },
       nav: { home: "Inicio", work: "Qué hacemos", tours: "Giras", about: "Nosotros", contact: "Contacto" },
       theme: { label: "Modo oscuro", labelLight: "Modo claro" },
       langNames: { es: "Español", en: "Inglés", de: "Alemán", fr: "Francés" },
@@ -729,8 +730,8 @@ class Component extends DCLogic {
     },
 
     en: {
-      htmlLang: "en", skip: "Skip to content",
-      a11y: { mainNav: "Main navigation", footerNav: "Footer navigation", language: "Language", menu: "Open menu", menuClose: "Close menu", toTop: "Back to top", portrait: "Portrait of" },
+      htmlLang: "en", docTitle: "World Soul – Music Manager | Intercultural music platform", skip: "Skip to content",
+      a11y: { mainNav: "Main navigation", footerNav: "Footer navigation", language: "Language", menu: "Open menu", menuClose: "Close menu", toTop: "Back to top", portrait: "Portrait of", newTab: "opens in a new tab" },
       nav: { home: "Home", work: "What we do", tours: "Tours", about: "About us", contact: "Contact" },
       theme: { label: "Dark mode", labelLight: "Light mode" },
       langNames: { es: "Spanish", en: "English", de: "German", fr: "French" },
@@ -815,8 +816,8 @@ class Component extends DCLogic {
     },
 
     de: {
-      htmlLang: "de", skip: "Zum Inhalt springen",
-      a11y: { mainNav: "Hauptnavigation", footerNav: "Fußzeilen-Navigation", language: "Sprache", menu: "Menü öffnen", menuClose: "Menü schließen", toTop: "Zurück nach oben", portrait: "Porträt von" },
+      htmlLang: "de", docTitle: "World Soul – Music Manager | Interkulturelle Musikplattform", skip: "Zum Inhalt springen",
+      a11y: { mainNav: "Hauptnavigation", footerNav: "Fußzeilen-Navigation", language: "Sprache", menu: "Menü öffnen", menuClose: "Menü schließen", toTop: "Zurück nach oben", portrait: "Porträt von", newTab: "öffnet in einem neuen Tab" },
       nav: { home: "Start", work: "Leistungen", tours: "Touren", about: "Über uns", contact: "Kontakt" },
       theme: { label: "Dunkelmodus", labelLight: "Hellmodus" },
       langNames: { es: "Spanisch", en: "Englisch", de: "Deutsch", fr: "Französisch" },
@@ -901,8 +902,8 @@ class Component extends DCLogic {
     },
 
     fr: {
-      htmlLang: "fr", skip: "Aller au contenu",
-      a11y: { mainNav: "Navigation principale", footerNav: "Navigation du pied de page", language: "Langue", menu: "Ouvrir le menu", menuClose: "Fermer le menu", toTop: "Retour en haut", portrait: "Portrait de" },
+      htmlLang: "fr", docTitle: "World Soul – Music Manager | Plateforme musicale interculturelle", skip: "Aller au contenu",
+      a11y: { mainNav: "Navigation principale", footerNav: "Navigation du pied de page", language: "Langue", menu: "Ouvrir le menu", menuClose: "Fermer le menu", toTop: "Retour en haut", portrait: "Portrait de", newTab: "s'ouvre dans un nouvel onglet" },
       nav: { home: "Accueil", work: "Nos activités", tours: "Tournées", about: "À propos", contact: "Contact" },
       theme: { label: "Mode sombre", labelLight: "Mode clair" },
       langNames: { es: "Espagnol", en: "Anglais", de: "Allemand", fr: "Français" },
@@ -1040,6 +1041,7 @@ class Component extends DCLogic {
 
   applyLang(lang) {
     document.documentElement.setAttribute("lang", Component.T[lang].htmlLang);
+    document.title = Component.T[lang].docTitle;
     try { localStorage.setItem("ws-lang", lang); } catch (e) {}
   }
 
@@ -1050,7 +1052,11 @@ class Component extends DCLogic {
   }
 
   onKeyDown(e) {
-    if (e.key === "Escape" && this.state.menuOpen) this.setState({ menuOpen: false });
+    if (e.key === "Escape" && this.state.menuOpen) {
+      this.setState({ menuOpen: false });
+      const burger = document.querySelector("[data-burger]");
+      if (burger) burger.focus();
+    }
   }
 
   setLang(lang) {
@@ -1081,9 +1087,14 @@ class Component extends DCLogic {
     const name = (this.nameRef.current && this.nameRef.current.value || "").trim();
     const mail = (this.mailRef.current && this.mailRef.current.value || "").trim();
     const msg = (this.msgRef.current && this.msgRef.current.value || "").trim();
-    if (!name) { this.setState({ status: t.form.errName, statusKind: "error" }); if (this.nameRef.current) this.nameRef.current.focus(); return; }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail)) { this.setState({ status: t.form.errEmail, statusKind: "error" }); if (this.mailRef.current) this.mailRef.current.focus(); return; }
-    if (!msg) { this.setState({ status: t.form.errMessage, statusKind: "error" }); if (this.msgRef.current) this.msgRef.current.focus(); return; }
+    const flag = (bad) => [this.nameRef, this.mailRef, this.msgRef].forEach((r) => {
+      if (!r.current) return;
+      if (r === bad) r.current.setAttribute("aria-invalid", "true"); else r.current.removeAttribute("aria-invalid");
+    });
+    if (!name) { flag(this.nameRef); this.setState({ status: t.form.errName, statusKind: "error" }); if (this.nameRef.current) this.nameRef.current.focus(); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail)) { flag(this.mailRef); this.setState({ status: t.form.errEmail, statusKind: "error" }); if (this.mailRef.current) this.mailRef.current.focus(); return; }
+    if (!msg) { flag(this.msgRef); this.setState({ status: t.form.errMessage, statusKind: "error" }); if (this.msgRef.current) this.msgRef.current.focus(); return; }
+    flag(null);
 
     if (cfg.formspreeEndpoint) {
       this.setState({ sending: true, status: t.form.sending, statusKind: "info" });
@@ -1147,7 +1158,7 @@ class Component extends DCLogic {
       if (url) {
         return {
           key, label, href: url, target: "_blank", rel: "noopener noreferrer",
-          aria: label + " – World Soul", disabled: undefined, tabindex: undefined, onClick: undefined,
+          aria: label + " – World Soul (" + t.a11y.newTab + ")", disabled: undefined, tabindex: undefined, onClick: undefined,
           icon: { __html: Component.ICONS[key] }, style: base + "color:var(--text)"
         };
       }
