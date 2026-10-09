@@ -146,7 +146,7 @@
           "description": "Tastaturbedienung, sichtbare Fokuszustände und Beschriftungen für Screenreader prüfen und verbessern.",
           "order": 3,
           "weight": 2,
-          "status": "ready",
+          "status": "completed",
           "dependsOn": [
             "task-1-2"
           ],
@@ -156,13 +156,22 @@
             "Bedienelemente und Bilder besitzen passende zugängliche Namen bzw. Alternativtexte.",
             "Quelle und Bundles sind synchron."
           ],
-          "startedAt": null,
-          "completedAt": null,
+          "startedAt": "2026-10-09T12:54:42Z",
+          "completedAt": "2026-10-09T13:10:32Z",
           "verification": {
-            "status": "not_run",
-            "summary": null,
-            "commands": [],
-            "checkedAt": null
+            "status": "passed",
+            "summary": "axe-core 4.10.2 vorher: 'document-title' (serious) in allen 4 Sprachen × 2 Farbmodi; nachher 0 Verstöße in allen 8 Kombinationen, auch mit sichtbarer Formular-Fehlermeldung. Behoben: lokalisierter Dokumenttitel; Esc schließt das mobile Menü und setzt den Fokus zurück auf den Menü-Button; Fokusrahmen erscheint sofort (keine outline-color-Transition); Formular: novalidate wurde von der Template-Engine verworfen, wodurch die Browser-Validierung die eigenen Fehlermeldungen verhinderte – jetzt noValidate, eigene Meldungen in der Seitensprache, aria-invalid am fehlerhaften Feld, aria-describedby auf die Statusmeldung, Fokus auf das Feld; Social-Links kündigen das Öffnen in neuem Tab an. Tastatur-Durchgang (Desktop und 375 px): logische Tab-Reihenfolge, sichtbarer Fokus, Menü per Enter/Esc. Die drei Fehlerfälle des Formulars geprüft; ein gültiger Versand wurde nicht ausgelöst (würde eine echte E-Mail über Formspree senden). Test mit der Windows-Sprachausgabe (Narrator) durch den Nutzer bestanden: Titel, Farbmodus-Zustand, Hinweis auf neuen Tab und Fehlermeldung werden vorgelesen. Quelle und beide Bundles synchron (cmp).",
+            "commands": [
+              "python a11y_fixes.py world-soul",
+              "python a11y_fixes_2.py world-soul",
+              "cmp world-soul/index.html world-soul/world-soul-index.html",
+              "python -m http.server 8765 --bind 127.0.0.1 --directory world-soul",
+              "Browser: axe-core 4.10.2 in ES/EN/DE/FR × hell/dunkel",
+              "Browser: Tastatur-Durchgang mit Tab, Enter und Esc (Desktop und 375 px)",
+              "Browser: Formular-Fehlerfälle (leerer Name, ungültige E-Mail, leere Nachricht)",
+              "Windows-Sprachausgabe (Narrator): Prüfung durch den Nutzer"
+            ],
+            "checkedAt": "2026-10-09T13:10:32Z"
           }
         },
         {

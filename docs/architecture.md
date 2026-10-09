@@ -39,3 +39,13 @@ Hover-Zustände sind als Klassen (`ws-nav-link`, `ws-btn`, `ws-ctl`, `ws-lang`, 
 - Ab 960 px: Desktop-Navigation im Header, kein Menü-Button.
 - 521–959 px: Menü-Button, Sprachwahl und Farbmodus-Schalter mit Beschriftung im Header.
 - Bis 520 px: Header nur mit Logo, Farbmodus-Icon (`[data-theme-toggle]`) und Menü-Button; die Sprachwahl (`[data-header-langs]`) ist ausgeblendet und erscheint als `.ws-menu-langs` im mobilen Menü. Die Routen-Grafik (`.ws-route`) vergrößert ihre Beschriftungen und verschiebt die Städtenamen (`.ws-route-city`) unter die Linie.
+
+## Barrierefreiheit
+
+- `document.title` wird in `applyLang` aus `T[lang].docTitle` gesetzt; `lang` am `<html>` folgt der Sprache, der Rechtsbereich ist `lang="de"`.
+- Skip-Link „Zum Inhalt“ als erstes fokussierbares Element; Fokusrahmen über `:focus-visible` in `--accent` (ohne Transition).
+- Mobiles Menü: `aria-expanded`/`aria-controls` am Menü-Button; Esc schließt das Menü und setzt den Fokus zurück auf den Button.
+- Kontaktformular mit `noValidate`, eigener Validierung, `aria-invalid` am fehlerhaften Feld und `aria-describedby="ws-form-status"`.
+- Social-Links mit `target="_blank"` kündigen das Öffnen in neuem Tab im zugänglichen Namen an (`T[lang].a11y.newTab`).
+- Prüfung: axe-core 4.10.2 in allen Sprachen und Farbmodi ohne Verstöße (Stand 2026-10-09).
+
