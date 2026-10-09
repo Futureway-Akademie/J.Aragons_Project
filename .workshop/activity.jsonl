@@ -36,3 +36,6 @@
 {"timestamp":"2026-10-09T14:33:15Z","type":"verification_passed","taskId":"task-3-1","summary":"Favicon live geprüft: /favicon.ico und /apple-touch-icon.png mit 200, Inhalte identisch zum Repository, axe-core ohne Verstöße."}
 {"timestamp":"2026-10-09T14:33:15Z","type":"task_completed","taskId":"task-3-1","summary":"Favicon (Entwurf A: Logo-Buchstaben auf hellem Grund) und apple-touch-icon ergänzt."}
 {"timestamp":"2026-10-09T14:40:21Z","type":"task_started","taskId":"task-3-2","summary":"Link-Vorschau begonnen: eigenes Vorschaubild 1200×630, vollständige Open-Graph-/Twitter-Angaben mit absoluten URLs, zusätzlich im statischen Kopf des Bundles für Crawler ohne JavaScript."}
+{"timestamp":"2026-10-09T14:56:11Z","type":"verification_passed","taskId":"task-3-2","summary":"Live-Prüfung mit Crawler-User-Agents und opengraph.xyz: Titel, Beschreibung und Vorschaubild 1200×630 werden erkannt, 0 Fehler."}
+{"timestamp":"2026-10-09T14:56:11Z","type":"task_completed","taskId":"task-3-2","summary":"Link-Vorschau mit eigenem Vorschaubild und absoluten Open-Graph-Angaben, auch im statischen Kopf für Crawler ohne JavaScript."}
+{"timestamp":"2026-10-09T14:58:48Z","type":"verification_passed","taskId":"task-3-2","summary":"Link-Vorschau in WhatsApp und Telegram vom Teilnehmer bestätigt."}

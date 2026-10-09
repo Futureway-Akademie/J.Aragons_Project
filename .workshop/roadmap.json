@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "roadmapVersion": 2,
-  "status": "active",
+  "status": "completed",
   "phases": [
     {
       "id": "phase-1",
@@ -223,7 +223,7 @@
       "description": "Kleine Ergänzungen an der veröffentlichten Website nach Abschluss von Qualität und Veröffentlichung.",
       "order": 3,
       "weight": 2,
-      "status": "in_progress",
+      "status": "completed",
       "tasks": [
         {
           "id": "task-3-1",
@@ -267,7 +267,7 @@
           "description": "Das og:image-Meta-Tag verwendet einen relativen Pfad (assets/logo-ws-alpha.png). Soziale Netzwerke und Messenger (z. B. Facebook, WhatsApp, LinkedIn) erwarten eine absolute URL, damit beim Teilen ein Vorschaubild erscheint. Die Angabe auf die veröffentlichte Adresse https://world-soul.onrender.com umstellen und die Link-Vorschau prüfen.",
           "order": 2,
           "weight": 1,
-          "status": "in_progress",
+          "status": "completed",
           "dependsOn": [
             "task-2-1"
           ],
@@ -279,12 +279,21 @@
             "Eine Link-Vorschau zeigt Titel, Beschreibung und Bild (Prüfung mit einem Vorschau-Werkzeug oder durch den Nutzer)."
           ],
           "startedAt": "2026-10-09T14:40:21Z",
-          "completedAt": null,
+          "completedAt": "2026-10-09T14:56:11Z",
           "verification": {
-            "status": "not_run",
-            "summary": null,
-            "commands": [],
-            "checkedAt": null
+            "status": "passed",
+            "summary": "Befund: Link-Vorschau-Crawler führen kein JavaScript aus und sahen im ausgelieferten Bundle nur den Titel „Bundled Page“ ohne Meta-Angaben; das bisherige og:image war ein relativ verlinktes, transparentes 1080×1080-PNG. Umgesetzt: assets/og-image.png (1200×630, heller deckender Grund, Logo, Text in #1b3a5c – vom Teilnehmer abgenommen), vollständige Open-Graph-/Twitter-Angaben mit absoluten URLs in Quelle und Template sowie im statischen Kopf beider Bundles (lang, Titel, Beschreibung, og:*, twitter:card, canonical, Favicon, theme-color). Lokal: statischer Kopf per HTML-Parser ohne JavaScript geprüft (alle Angaben vorhanden, keine Duplikate); nach dem Laden je ein Tag, Titel folgt der Sprache; axe-core 0 Verstöße in ES/EN/DE/FR × hell/dunkel. Live nach Merge von PR #8: Abruf mit den User-Agents von Facebook, WhatsApp, X und LinkedIn liefert Titel und absolutes og:image; og-image.png 200 (image/png); HTML mit charset=utf-8. opengraph.xyz: 0 Fehler, 8 bestanden, 5 Hinweise (Längenempfehlungen für Titel/Beschreibungen, fehlender Call-to-Action im Bild); Bild lädt, Maße 1200×630 als ideal bewertet, Vorschaukarte zeigt Bild, Domain und Titel. Zusätzlich vom Teilnehmer bestätigt: Link-Vorschau in WhatsApp und Telegram wird korrekt angezeigt.",
+            "commands": [
+              "python og_tags.py world-soul ogimg/og-image.png",
+              "cmp world-soul/index.html world-soul/world-soul-index.html",
+              "python html.parser: statischer Kopf von index.html ohne JavaScript ausgewertet",
+              "Browser: lokale Prüfung der Tags nach dem Laden und axe-core 4.10.2 in ES/EN/DE/FR × hell/dunkel",
+              "curl -A facebookexternalhit/WhatsApp/Twitterbot/LinkedInBot https://world-soul.onrender.com/",
+              "curl https://world-soul.onrender.com/assets/og-image.png",
+              "Browser: opengraph.xyz – Vorschau und Meta-Tag-Inspektor für https://world-soul.onrender.com/",
+              "WhatsApp und Telegram: Link-Vorschau durch den Teilnehmer geprüft"
+            ],
+            "checkedAt": "2026-10-09T14:56:11Z"
           }
         }
       ]
