@@ -26,3 +26,10 @@
 {"timestamp":"2026-10-09T13:58:39Z","type":"roadmap_updated","taskId":"task-2-1","summary":"task-2-1 nach Rücksprache mit den Futureway-Admins von GitHub Pages auf Render Static Site umgestellt; Definition of Done um aktualisierte Datenschutzerklärung ergänzt."}
 {"timestamp":"2026-10-09T13:58:39Z","type":"task_unblocked","taskId":"task-2-1","summary":"Blockade (GitHub Pages nicht aktivierbar) durch Wechsel auf Render aufgehoben."}
 {"timestamp":"2026-10-09T13:58:39Z","type":"task_started","taskId":"task-2-1","summary":"Veröffentlichung auf Render begonnen."}
+{"timestamp":"2026-10-09T14:20:11Z","type":"verification_passed","taskId":"task-2-1","summary":"https://world-soul.onrender.com geprüft: 4 Sprachen × 2 Farbmodi ohne axe-Verstöße, Bilder und Lazy Loading in Ordnung, Datenschutzerklärung nennt Render."}
+{"timestamp":"2026-10-09T14:20:11Z","type":"task_completed","taskId":"task-2-1","summary":"Website als Render Static Site veröffentlicht: https://world-soul.onrender.com."}
+{"timestamp":"2026-10-09T14:20:11Z","type":"roadmap_updated","summary":"Roadmap v2: neue Phase phase-3 (Feinschliff) mit task-3-1 (Favicon) auf Wunsch des Teilnehmers ergänzt."}
+{"timestamp":"2026-10-09T14:20:11Z","type":"task_ready","taskId":"task-3-1","summary":"Abhängigkeit task-2-1 abgeschlossen; Task startbar."}
+{"timestamp":"2026-10-09T14:22:56Z","type":"roadmap_updated","summary":"task-3-2 (og:image mit absoluter URL) auf Wunsch des Teilnehmers in phase-3 ergänzt."}
+{"timestamp":"2026-10-09T14:22:56Z","type":"task_ready","taskId":"task-3-2","summary":"Abhängigkeit task-2-1 abgeschlossen; Task startbar."}
+{"timestamp":"2026-10-09T14:25:45Z","type":"task_started","taskId":"task-3-1","summary":"Favicon begonnen: Entwürfe A (Logo-Buchstaben auf hellem Grund), B (weißes WS auf Markenblau), C (Routen-Motiv) zur Auswahl, danach favicon.ico und apple-touch-icon."}

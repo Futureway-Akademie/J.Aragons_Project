@@ -97,3 +97,17 @@ Die Website wird als Render Static Site aus Branch `main` mit Publish Directory 
 ### Begründung
 
 Keine Codeänderung nötig, da die Seite statisch ist; nur `world-soul/` wird ausgeliefert, und jeder Merge nach `main` wird automatisch veröffentlicht.
+
+## 2026-10-09 – Favicon aus den Logo-Buchstaben
+
+### Kontext
+
+Die Seite hatte kein Favicon; Browser erhielten für `/favicon.ico` einen 404. Zur Auswahl standen drei Entwürfe: A (Logo-Buchstaben „WS“ auf hellem Grund), B (weißes „WS“ auf Markenblau), C (Routen-Motiv mit „WS“).
+
+### Entscheidung
+
+Der Teilnehmer wählte Entwurf A, um der Marke treu zu bleiben. Die Buchstaben werden aus `assets/logo-ws-alpha.png` ausgeschnitten und auf einem hellen Quadrat (#f3f2f2) platziert; `favicon.ico` enthält 16/32/48 px mit abgerundeten Ecken, `apple-touch-icon.png` ist ein volles 180×180-Quadrat (Systeme runden selbst).
+
+### Begründung
+
+Der helle Grund hält die dunkelblauen Buchstaben auch in dunklen Browser-Tabs sichtbar; die Dateien liegen im Website-Stamm, sodass `/favicon.ico` direkt beantwortet wird.

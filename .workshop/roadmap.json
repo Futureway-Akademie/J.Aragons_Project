@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "roadmapVersion": 1,
+  "roadmapVersion": 2,
   "status": "active",
   "phases": [
     {
@@ -78,7 +78,7 @@
       "description": "Website aus dem Workshop-Repository veröffentlichen und in Responsivität, Barrierefreiheit und Performance absichern.",
       "order": 2,
       "weight": 9,
-      "status": "in_progress",
+      "status": "completed",
       "tasks": [
         {
           "id": "task-2-1",
@@ -86,7 +86,7 @@
           "description": "Veröffentlichung der Website aus Futureway-Akademie/J.Aragons_Project als Render Static Site (Branch main, Publish Directory world-soul, kein Build), ohne die Workshop-Struktur zu verändern. Ursprünglich über GitHub Pages geplant; nach Rücksprache mit den Futureway-Admins auf Render umgestellt, da GitHub Pages für das Teilnehmerkonto nicht aktivierbar ist.",
           "order": 1,
           "weight": 3,
-          "status": "in_progress",
+          "status": "completed",
           "dependsOn": [
             "task-1-2"
           ],
@@ -97,12 +97,19 @@
             "Die veröffentlichte URL ist im Repository dokumentiert."
           ],
           "startedAt": "2026-10-09T12:11:41Z",
-          "completedAt": null,
+          "completedAt": "2026-10-09T14:20:11Z",
           "verification": {
-            "status": "not_run",
-            "summary": null,
-            "commands": [],
-            "checkedAt": null
+            "status": "passed",
+            "summary": "Render Static Site vom Teilnehmer angelegt (Repository Futureway-Akademie/J.Aragons_Project, Branch main, Publish Directory world-soul, kein Build). Live unter https://world-soul.onrender.com: HTTPS, Status 200, lokalisierter Titel in ES/EN/DE/FR; axe-core 4.10.2 0 Verstöße und keine Überbreite bei 375 px in 4 Sprachen × hell/dunkel; 16 Bilder ohne Fehler, Lazy Loading über das echte Netz bestätigt, keine fehlgeschlagenen Anfragen; og:image erreichbar (200); Workshop-Dateien nicht öffentlich (/.workshop/ → 404). Nach Merge von PR #6 automatisch neu veröffentlicht: Datenschutzerklärung Punkt 2 nennt Render Services, Inc., 525 Brannan Street, Suite 300, San Francisco, CA 94107, USA (Adresse laut render.com/terms), Stand Oktober 2026. URL in docs/architecture.md und docs/decisions.md dokumentiert. Bekannt, aber außerhalb des Tasks: kein Favicon (404), og:image mit relativem Pfad.",
+            "commands": [
+              "Browser: https://world-soul.onrender.com – Navigations-/Ressourcen-Timing und Statuscodes",
+              "Browser: axe-core 4.10.2 und Overflow-Prüfung in ES/EN/DE/FR × hell/dunkel bei 375 px",
+              "Browser: Lazy-Loading-Prüfung beim Scrollen über das echte Netz",
+              "Browser: HEAD-Anfragen für og:image, /favicon.ico und /.workshop/progress.json",
+              "Browser: render.com/terms – Prüfung der Anbieteranschrift",
+              "Browser: Prüfung der veröffentlichten Datenschutzerklärung nach Merge von PR #6"
+            ],
+            "checkedAt": "2026-10-09T14:20:11Z"
           }
         },
         {
@@ -206,6 +213,68 @@
               "git rm -r world-soul/uploads; git rm world-soul/assets/*.jpg"
             ],
             "checkedAt": "2026-10-09T13:39:55Z"
+          }
+        }
+      ]
+    },
+    {
+      "id": "phase-3",
+      "title": "Feinschliff",
+      "description": "Kleine Ergänzungen an der veröffentlichten Website nach Abschluss von Qualität und Veröffentlichung.",
+      "order": 3,
+      "weight": 2,
+      "status": "in_progress",
+      "tasks": [
+        {
+          "id": "task-3-1",
+          "title": "Favicon für die World-Soul-Website ergänzen",
+          "description": "Ein Favicon auf Basis des World-Soul-Logos (WS) erstellen und einbinden, damit Browser-Tabs, Lesezeichen und der Startbildschirm von Mobilgeräten ein Symbol zeigen und /favicon.ico nicht mehr mit 404 antwortet.",
+          "order": 1,
+          "weight": 1,
+          "status": "in_progress",
+          "dependsOn": [
+            "task-2-1"
+          ],
+          "definitionOfDone": [
+            "Favicon-Dateien liegen unter world-soul/ (mindestens favicon.ico bzw. ein PNG/SVG-Icon und ein apple-touch-icon 180×180).",
+            "Die Seite verlinkt die Icons im head; Quelle und beide Bundles sind synchron.",
+            "Das Symbol ist im Browser-Tab in hellem und dunklem Browser-Design gut erkennbar.",
+            "Auf https://world-soul.onrender.com antworten die Favicon-URLs mit 200, keine 404 mehr für /favicon.ico.",
+            "axe-core weiterhin ohne Verstöße in allen Sprachen und Farbmodi."
+          ],
+          "startedAt": "2026-10-09T14:25:45Z",
+          "completedAt": null,
+          "verification": {
+            "status": "not_run",
+            "summary": null,
+            "commands": [],
+            "checkedAt": null
+          }
+        },
+        {
+          "id": "task-3-2",
+          "title": "Vorschaubild für soziale Netzwerke (og:image) mit absoluter URL",
+          "description": "Das og:image-Meta-Tag verwendet einen relativen Pfad (assets/logo-ws-alpha.png). Soziale Netzwerke und Messenger (z. B. Facebook, WhatsApp, LinkedIn) erwarten eine absolute URL, damit beim Teilen ein Vorschaubild erscheint. Die Angabe auf die veröffentlichte Adresse https://world-soul.onrender.com umstellen und die Link-Vorschau prüfen.",
+          "order": 2,
+          "weight": 1,
+          "status": "ready",
+          "dependsOn": [
+            "task-2-1"
+          ],
+          "definitionOfDone": [
+            "og:image enthält eine absolute HTTPS-URL auf ein vorhandenes Bild unter https://world-soul.onrender.com.",
+            "Die Bild-URL antwortet auf der veröffentlichten Seite mit 200.",
+            "Weitere relevante Open-Graph-Angaben (og:url, og:title, og:description) sind vorhanden und korrekt.",
+            "Quelle und beide Bundles sind synchron.",
+            "Eine Link-Vorschau zeigt Titel, Beschreibung und Bild (Prüfung mit einem Vorschau-Werkzeug oder durch den Nutzer)."
+          ],
+          "startedAt": null,
+          "completedAt": null,
+          "verification": {
+            "status": "not_run",
+            "summary": null,
+            "commands": [],
+            "checkedAt": null
           }
         }
       ]
