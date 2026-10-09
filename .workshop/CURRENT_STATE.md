@@ -2,18 +2,19 @@
 
 ## Projekt
 
-World Soul – Music Manager (Website): statische, viersprachige Website (ES/EN/DE/FR) mit Hell- und Dunkelmodus unter `world-soul/`. Status: aktiv, Roadmap v2. Veröffentlicht unter https://world-soul.onrender.com. Fortschritt: 93,75 % (15 von 16 Gewichtspunkten, 7 von 8 Tasks).
+World Soul – Music Manager (Website): statische, viersprachige Website (ES/EN/DE/FR) mit Hell- und Dunkelmodus unter `world-soul/`. Status: aktiv, Roadmap v2. Veröffentlicht unter https://world-soul.onrender.com. Fortschritt: 100,0 % (16 von 16 Gewichtspunkten, 8 von 8 Tasks). Alle Phasen der Roadmap v2 sind abgeschlossen.
 
 ## Aktive Phase
 
-phase-3 – Feinschliff (phase-1 und phase-2 abgeschlossen).
+Keine – alle Phasen (phase-1 bis phase-3) abgeschlossen.
 
 ## Aktive Aufgabe
 
-task-3-2 – Vorschaubild für soziale Netzwerke (og:image) mit absoluter URL (seit 2026-10-09T14:40:21Z). Befund: Link-Vorschau-Crawler führen kein JavaScript aus und sehen im ausgelieferten Bundle nur den Titel „Bundled Page“ ohne Meta-Angaben; das bisherige og:image ist ein transparentes 1080×1080-PNG. Vorgehen: assets/og-image.png (1200×630, deckender heller Grund), vollständige Open-Graph-/Twitter-Angaben mit absoluten URLs in Quelle und statischem Bundle-Kopf, Prüfung ohne JavaScript und mit Vorschau-Werkzeug.
+Keine.
 
 ## Zuletzt abgeschlossen
 
+- task-3-2 – Link-Vorschau: eigenes Vorschaubild 1200×630 und absolute Open-Graph-Angaben, auch im statischen Kopf für Crawler; mit opengraph.xyz bestätigt (2026-10-09).
 - task-3-1 – Favicon (Logo-Buchstaben „WS“ auf hellem Grund) und apple-touch-icon; live ohne 404 bestätigt (2026-10-09).
 - task-2-1 – Website als Render Static Site veröffentlicht: https://world-soul.onrender.com; Datenschutzerklärung nennt Render (2026-10-09).
 - task-2-4 – Performance: index.html 2.284.630 → 394.320 Bytes (−83 %); Fotos als Graustufen-WebP aus assets/ mit Lazy Loading, Logo verkleinert, ungenutzte Originale entfernt (2026-10-09).
@@ -44,9 +45,9 @@ Nichts.
 
 - Die frühere Seite https://jegucab.github.io/WorldSoul/ (Repository jegucab/WorldSoul) bleibt unverändert.
 - Kein Build-Werkzeug für das Bundle im Repository vorhanden.
+- Optionale Hinweise von opengraph.xyz: Titel (63 Zeichen) und Beschreibungen länger als empfohlen; kein Call-to-Action im Vorschaubild. Funktion nicht beeinträchtigt.
 - Render liefert Bilder über Cloudflare Polish aus (verlustfrei optimiert, z. B. apple-touch-icon 20.020 → 13.361 Bytes, pixelgleich).
-- `og:image` verwendet einen relativen Pfad (`assets/logo-ws-alpha.png`); soziale Netzwerke erwarten meist eine absolute URL (geplant: task-3-2).
 
 ## Empfohlener nächster Schritt
 
-Änderungen synchronisieren; danach task-3-2 (og:image mit absoluter URL), der letzte offene Task.
+Änderungen synchronisieren, damit das Dashboard den Abschluss zeigt. Danach optional: Reflexion im Lernlog (docs/learning-log.md) durch den Teilnehmer; neue Aufgaben nur nach Absprache in die Roadmap aufnehmen; Übernahme der Änderungen in das offizielle Repository jegucab/WorldSoul planen.
