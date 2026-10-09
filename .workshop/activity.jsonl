@@ -9,3 +9,9 @@
 {"timestamp":"2026-10-08T14:10:50Z","type":"task_ready","taskId":"task-2-2","summary":"Abhängigkeit task-1-2 abgeschlossen; Task startbar."}
 {"timestamp":"2026-10-08T14:10:50Z","type":"task_ready","taskId":"task-2-3","summary":"Abhängigkeit task-1-2 abgeschlossen; Task startbar."}
 {"timestamp":"2026-10-08T14:10:50Z","type":"task_ready","taskId":"task-2-4","summary":"Abhängigkeit task-1-2 abgeschlossen; Task startbar."}
+{"timestamp":"2026-10-09T12:11:41Z","type":"task_started","taskId":"task-2-1","summary":"Veröffentlichung von world-soul/ über GitHub Pages aus dem Futureway-Repository begonnen (Branch main, Root)."}
+{"timestamp":"2026-10-09T12:19:10Z","type":"task_blocked","taskId":"task-2-1","summary":"GitHub Pages lässt sich nicht aktivieren: github.com/Futureway-Akademie/J.Aragons_Project/settings/pages liefert 404 für das Teilnehmerkonto (fehlende Admin-Rechte am Repository oder Pages in der Organisation Futureway-Akademie deaktiviert). Benötigt Freigabe durch einen Organisations-Owner."}
+{"timestamp":"2026-10-09T12:25:20Z","type":"task_started","taskId":"task-2-2","summary":"Responsive-Prüfung begonnen: Emulation bei 375 px in Hell/Dunkel, danach Bestätigung auf einem echten Smartphone über lokalen Server im WLAN."}
+{"timestamp":"2026-10-09T12:44:33Z","type":"verification_passed","taskId":"task-2-2","summary":"375 px in 4 Sprachen × 2 Farbmodi ohne Überbreite und Kontrastverstöße; Bestätigung auf echtem Smartphone durch den Nutzer."}
+{"timestamp":"2026-10-09T12:44:33Z","type":"task_completed","taskId":"task-2-2","summary":"Kompakter Mobil-Header, Sprachwahl im mobilen Menü, lesbare Routen-Beschriftungen."}
+{"timestamp":"2026-10-09T12:44:33Z","type":"decision_recorded","summary":"Bis 520 px Breite liegt die Sprachwahl im mobilen Menü; der Farbmodus-Schalter wird zum Icon-Button (siehe docs/decisions.md)."}

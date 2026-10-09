@@ -60,6 +60,18 @@ a:hover{color:var(--accent-text)}
   [data-header-tools]{margin-left:0 !important}
 }
 [id]{scroll-margin-top:96px}
+[data-burger]{flex:0 0 auto}
+.ws-menu-langs{display:none}
+@media (max-width:520px){
+  [data-header-langs]{display:none !important}
+  .ws-menu-langs{display:flex}
+  .ws-menu-langs .ws-lang{height:44px !important;min-width:48px !important}
+  [data-theme-toggle]{position:relative;width:44px;height:44px !important;padding:0 !important;justify-content:center}
+  .ws-theme-label{position:absolute;left:0;top:0;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .ws-route{overflow:visible;margin-bottom:12px}
+  .ws-route text{font-size:42px}
+  .ws-route .ws-route-city{transform:translateY(34px)}
+}
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
@@ -82,14 +94,14 @@ a:hover{color:var(--accent-text)}
       </sc-for>
     </nav>
     <div style="margin-left:auto;display:flex;align-items:center;gap:8px" data-header-tools="true">
-      <div role="group" aria-label="{{ t.a11y.language }}" style="display:flex;border:2px solid var(--control-line)">
+      <div role="group" aria-label="{{ t.a11y.language }}" data-header-langs="true" style="display:flex;border:2px solid var(--control-line)">
         <sc-for list="{{ langs }}" as="l" hint-placeholder-count="4">
           <button type="button" class="ws-lang" lang="{{ l.code }}" aria-pressed="{{ l.pressed }}" onClick="{{ l.onClick }}" title="{{ l.name }}" style="{{ l.style }}">{{ l.label }}</button>
         </sc-for>
       </div>
-      <button type="button" onClick="{{ toggleTheme }}" aria-pressed="{{ isDark }}" class="ws-ctl" style="display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 12px;border:2px solid var(--control-line);background:transparent;color:var(--text);font-family:inherit;font-weight:800;font-size:12px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">
+      <button type="button" onClick="{{ toggleTheme }}" aria-pressed="{{ isDark }}" class="ws-ctl" data-theme-toggle="true" style="display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 12px;border:2px solid var(--control-line);background:transparent;color:var(--text);font-family:inherit;font-weight:800;font-size:12px;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">
         <span aria-hidden="true" style="display:block;width:14px;height:14px;border-radius:50%;border:2px solid currentColor;background:linear-gradient(90deg,currentColor 0 50%,transparent 50% 100%)"></span>
-        <span>{{ t.theme.label }}</span>
+        <span class="ws-theme-label">{{ t.theme.label }}</span>
       </button>
       <button type="button" class="ws-ctl" data-burger="true" onClick="{{ toggleMenu }}" aria-expanded="{{ menuExpanded }}" aria-controls="ws-menu-movil" aria-label="{{ t.a11y.menu }}" style="{{ burgerStyle }}">
         <span aria-hidden="true" style="display:block;width:20px;height:2px;background:currentColor;box-shadow:0 -6px 0 currentColor,0 6px 0 currentColor"></span>
@@ -101,6 +113,11 @@ a:hover{color:var(--accent-text)}
       <sc-for list="{{ navItems }}" as="item" hint-placeholder-count="5">
         <a class="ws-link-row" href="{{ item.href }}" aria-current="{{ item.current }}" onClick="{{ closeMenu }}" style="display:block;padding:14px 4px;border-bottom:1px solid var(--hair);text-decoration:none;color:var(--text);font-family:'Archivo',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.01em;min-height:48px">{{ item.label }}</a>
       </sc-for>
+      <div class="ws-menu-langs" role="group" aria-label="{{ t.a11y.language }}" style="margin-top:16px;align-self:flex-start;border:2px solid var(--control-line)">
+        <sc-for list="{{ langs }}" as="l" hint-placeholder-count="4">
+          <button type="button" class="ws-lang" lang="{{ l.code }}" aria-pressed="{{ l.pressed }}" onClick="{{ l.onClick }}" title="{{ l.name }}" style="{{ l.style }}">{{ l.label }}</button>
+        </sc-for>
+      </div>
     </nav>
   </sc-if>
 </header>
@@ -119,13 +136,13 @@ a:hover{color:var(--accent-text)}
         </div>
       </div>
       <figure role="img" aria-label="{{ t.route.alt }}" style="margin:clamp(32px,5vw,64px) 0 0;border-top:2px solid var(--line);padding-top:18px">
-        <svg viewBox="0 0 1200 150" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:auto;color:var(--brand)" aria-hidden="true" focusable="false">
+        <svg viewBox="0 0 1200 150" preserveAspectRatio="xMidYMid meet" class="ws-route" style="display:block;width:100%;height:auto;color:var(--brand)" aria-hidden="true" focusable="false">
           <path d="M70 118 C 330 8, 870 8, 1130 118" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="10 8" style="animation:ws-dash 2.4s linear infinite"></path>
           <circle cx="70" cy="118" r="7" fill="currentColor"></circle>
           <circle cx="1130" cy="118" r="7" fill="currentColor"></circle>
           <circle cx="600" cy="41" r="4" fill="none" stroke="currentColor" stroke-width="2"></circle>
-          <text x="70" y="146" font-family="Archivo, sans-serif" font-size="19" font-weight="800" fill="currentColor">GUANAJUATO, MX</text>
-          <text x="1130" y="146" text-anchor="end" font-family="Archivo, sans-serif" font-size="19" font-weight="800" fill="currentColor">LEIPZIG, DE</text>
+          <text class="ws-route-city" x="70" y="146" font-family="Archivo, sans-serif" font-size="19" font-weight="800" fill="currentColor">GUANAJUATO, MX</text>
+          <text class="ws-route-city" x="1130" y="146" text-anchor="end" font-family="Archivo, sans-serif" font-size="19" font-weight="800" fill="currentColor">LEIPZIG, DE</text>
           <text x="600" y="28" text-anchor="middle" font-family="Archivo, sans-serif" font-size="15" font-weight="800" fill="currentColor">9 712 KM</text>
         </svg>
       </figure>

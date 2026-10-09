@@ -86,7 +86,7 @@
           "description": "Veröffentlichung der Website aus Futureway-Akademie/J.Aragons_Project einrichten, ohne die Workshop-Struktur zu verändern.",
           "order": 1,
           "weight": 3,
-          "status": "ready",
+          "status": "blocked",
           "dependsOn": [
             "task-1-2"
           ],
@@ -95,13 +95,16 @@
             "Alle Assets, Sprachen und beide Farbmodi funktionieren auf der veröffentlichten Seite.",
             "Die veröffentlichte URL ist im Repository dokumentiert."
           ],
-          "startedAt": null,
+          "startedAt": "2026-10-09T12:11:41Z",
           "completedAt": null,
           "verification": {
-            "status": "not_run",
-            "summary": null,
-            "commands": [],
-            "checkedAt": null
+            "status": "failed",
+            "summary": "Blockiert: GitHub Pages lässt sich nicht aktivieren: github.com/Futureway-Akademie/J.Aragons_Project/settings/pages liefert 404 für das Teilnehmerkonto (fehlende Admin-Rechte am Repository oder Pages in der Organisation Futureway-Akademie deaktiviert). Benötigt Freigabe durch einen Organisations-Owner. Website-Bundle ist eigenständig (einzige relative Referenz assets/logo-ws-alpha.png), Veröffentlichung von main / (root) erfordert keine Dateiänderungen.",
+            "commands": [
+              "curl https://api.github.com/repos/Futureway-Akademie/J.Aragons_Project (public, has_pages: false)",
+              "Browser: github.com/Futureway-Akademie/J.Aragons_Project/settings/pages (404)"
+            ],
+            "checkedAt": "2026-10-09T12:19:10Z"
           }
         },
         {
@@ -110,7 +113,7 @@
           "description": "Darstellung und Bedienung bei 375 px Breite in Hell- und Dunkelmodus prüfen und gefundene Probleme beheben.",
           "order": 2,
           "weight": 2,
-          "status": "ready",
+          "status": "completed",
           "dependsOn": [
             "task-1-2"
           ],
@@ -120,13 +123,21 @@
             "Alle Abschnitte sind in beiden Farbmodi lesbar.",
             "Quelle und Bundles sind synchron."
           ],
-          "startedAt": null,
-          "completedAt": null,
+          "startedAt": "2026-10-09T12:25:20Z",
+          "completedAt": "2026-10-09T12:44:33Z",
           "verification": {
-            "status": "not_run",
-            "summary": null,
-            "commands": [],
-            "checkedAt": null
+            "status": "passed",
+            "summary": "Bei 375 px war der Header 63 px zu breit (Menü-Button außerhalb des Bildschirms, 'Modo oscuro' abgeschnitten) und die Routen-Beschriftungen waren 4–5 px groß. Behoben: bis 520 px Breite zeigt der Header nur Logo, Farbmodus-Icon (44×44, zugänglicher Name bleibt) und Menü-Button (44×44); die Sprachwahl liegt im mobilen Menü (48×44 je Button); Routen-Beschriftungen ca. 14 px. Emulation 375×812: in ES/EN/DE/FR × hell/dunkel scrollWidth = 375, 0 überbreite Elemente, 0 Kontrastverstöße; Menü, Sprachwechsel und Farbmodus per Klick geprüft. Tablet (768) und Desktop (1024) unverändert. Sichtprüfung durch den Nutzer auf einem echten Smartphone über lokalen Server im Heimnetz: kein seitliches Scrollen, Menü und Sprachwahl, Farbmodus-Schalter und Lesbarkeit in beiden Modi bestätigt. Quelle und beide Bundles synchron (cmp).",
+            "commands": [
+              "python mobile_fixes.py world-soul",
+              "python mobile_fixes_2.py world-soul",
+              "cmp world-soul/index.html world-soul/world-soul-index.html",
+              "python -m http.server 8765 --directory world-soul",
+              "Browser-Emulation 375×812: Overflow- und WCAG-Kontrast-Scan in ES/EN/DE/FR × hell/dunkel",
+              "Browser-Emulation 768×1024 und 1024×768: Header-Prüfung",
+              "Echtes Smartphone im Heimnetz: Sichtprüfung durch den Nutzer"
+            ],
+            "checkedAt": "2026-10-09T12:44:33Z"
           }
         },
         {

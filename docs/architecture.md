@@ -33,3 +33,9 @@ Farben sind als CSS-Custom-Properties auf `:root` definiert und unter `[data-the
 Wichtige Tokens: `--bg`, `--surface`, `--text`, `--muted`, `--brand`, `--accent`, `--accent-text`, `--line` (Abschnittslinien), `--hair` (feine Trennlinien), `--control-line` (Rahmen von Bedienelementen), `--btn-bg`/`--btn-fg`, `--tile-bg`/`--tile-fg`.
 
 Hover-Zustände sind als Klassen (`ws-nav-link`, `ws-btn`, `ws-ctl`, `ws-lang`, `ws-card`) mit `!important` umgesetzt, weil die Elemente Inline-Styles tragen.
+
+## Responsives Verhalten
+
+- Ab 960 px: Desktop-Navigation im Header, kein Menü-Button.
+- 521–959 px: Menü-Button, Sprachwahl und Farbmodus-Schalter mit Beschriftung im Header.
+- Bis 520 px: Header nur mit Logo, Farbmodus-Icon (`[data-theme-toggle]`) und Menü-Button; die Sprachwahl (`[data-header-langs]`) ist ausgeblendet und erscheint als `.ws-menu-langs` im mobilen Menü. Die Routen-Grafik (`.ws-route`) vergrößert ihre Beschriftungen und verschiebt die Städtenamen (`.ws-route-city`) unter die Linie.

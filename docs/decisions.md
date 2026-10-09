@@ -41,3 +41,17 @@ Neue Tokens `--control-line` (nur für Bedienelemente) sowie `--tile-bg`/`--tile
 ### Begründung
 
 Bedienelemente erreichen WCAG 3:1, ohne das Layout durch dunklere Abschnittslinien schwerer wirken zu lassen.
+
+## 2026-10-09 – Kompakter Header auf Smartphones
+
+### Kontext
+
+Bei 375 px Breite war der Header 63 px zu breit: Der Menü-Button lag außerhalb des Bildschirms, die Seite scrollte seitlich, und die Bedienelemente waren nur 36 px hoch.
+
+### Entscheidung
+
+Bis 520 px Breite zeigt der Header nur Logo, Farbmodus-Schalter und Menü-Button (je 44×44 px). Die Sprachwahl wird dort ausgeblendet und erscheint stattdessen im mobilen Menü (Buttons 48×44 px). Die Beschriftung des Farbmodus-Schalters wird nur visuell ausgeblendet und bleibt für Screenreader erhalten.
+
+### Begründung
+
+Alle Bedienelemente bleiben sichtbar und mit dem Finger gut treffbar, ohne die Sprachwahl zu entfernen; ab 521 px bleibt der Header unverändert.
