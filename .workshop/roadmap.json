@@ -78,33 +78,31 @@
       "description": "Website aus dem Workshop-Repository veröffentlichen und in Responsivität, Barrierefreiheit und Performance absichern.",
       "order": 2,
       "weight": 9,
-      "status": "blocked",
+      "status": "in_progress",
       "tasks": [
         {
           "id": "task-2-1",
-          "title": "world-soul/ über GitHub Pages aus dem Futureway-Repository veröffentlichen",
-          "description": "Veröffentlichung der Website aus Futureway-Akademie/J.Aragons_Project einrichten, ohne die Workshop-Struktur zu verändern.",
+          "title": "world-soul/ als statische Website auf Render veröffentlichen",
+          "description": "Veröffentlichung der Website aus Futureway-Akademie/J.Aragons_Project als Render Static Site (Branch main, Publish Directory world-soul, kein Build), ohne die Workshop-Struktur zu verändern. Ursprünglich über GitHub Pages geplant; nach Rücksprache mit den Futureway-Admins auf Render umgestellt, da GitHub Pages für das Teilnehmerkonto nicht aktivierbar ist.",
           "order": 1,
           "weight": 3,
-          "status": "blocked",
+          "status": "in_progress",
           "dependsOn": [
             "task-1-2"
           ],
           "definitionOfDone": [
-            "Die Website ist unter einer öffentlichen GitHub-Pages-URL erreichbar.",
+            "Die Website ist unter einer öffentlichen Render-URL erreichbar.",
             "Alle Assets, Sprachen und beide Farbmodi funktionieren auf der veröffentlichten Seite.",
+            "Die Datenschutzerklärung nennt den tatsächlichen Hosting-Anbieter.",
             "Die veröffentlichte URL ist im Repository dokumentiert."
           ],
           "startedAt": "2026-10-09T12:11:41Z",
           "completedAt": null,
           "verification": {
-            "status": "failed",
-            "summary": "Blockiert: GitHub Pages lässt sich nicht aktivieren: github.com/Futureway-Akademie/J.Aragons_Project/settings/pages liefert 404 für das Teilnehmerkonto (fehlende Admin-Rechte am Repository oder Pages in der Organisation Futureway-Akademie deaktiviert). Benötigt Freigabe durch einen Organisations-Owner. Website-Bundle ist eigenständig (einzige relative Referenz assets/logo-ws-alpha.png), Veröffentlichung von main / (root) erfordert keine Dateiänderungen.",
-            "commands": [
-              "curl https://api.github.com/repos/Futureway-Akademie/J.Aragons_Project (public, has_pages: false)",
-              "Browser: github.com/Futureway-Akademie/J.Aragons_Project/settings/pages (404)"
-            ],
-            "checkedAt": "2026-10-09T12:19:10Z"
+            "status": "not_run",
+            "summary": null,
+            "commands": [],
+            "checkedAt": null
           }
         },
         {

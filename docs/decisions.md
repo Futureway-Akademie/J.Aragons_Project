@@ -83,3 +83,17 @@ Die 13 Fotos werden als WebP in Graustufen (Qualität 0,8) unter `assets/` abgel
 ### Begründung
 
 Die Seite zeigt alle Fotos per CSS-Filter in Graustufen; Graustufen-WebP spart 39 % ohne sichtbaren Unterschied (PSNR 38,5–42 dB). Ausgelagerte Fotos werden erst beim Scrollen geladen, die initiale Datei schrumpft um 83 %. Farb-Originale bleiben über die Git-Historie wiederherstellbar.
+
+## 2026-10-09 – Hosting auf Render statt GitHub Pages
+
+### Kontext
+
+GitHub Pages ließ sich für das Teilnehmerkonto im Repository `Futureway-Akademie/J.Aragons_Project` nicht aktivieren (Einstellungsseite 404). Die Futureway-Admins schlugen Render vor.
+
+### Entscheidung
+
+Die Website wird als Render Static Site aus Branch `main` mit Publish Directory `world-soul` und ohne Build-Schritt veröffentlicht: https://world-soul.onrender.com. Die Datenschutzerklärung (Punkt 2) nennt Render Services, Inc., 525 Brannan Street, Suite 300, San Francisco, CA 94107, USA (Adresse laut render.com/terms), Stand Oktober 2026.
+
+### Begründung
+
+Keine Codeänderung nötig, da die Seite statisch ist; nur `world-soul/` wird ausgeliefert, und jeder Merge nach `main` wird automatisch veröffentlicht.

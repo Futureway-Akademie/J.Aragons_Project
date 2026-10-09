@@ -4,9 +4,9 @@
   "completedWeight": 11,
   "totalWeight": 14,
   "currentPhaseId": "phase-2",
-  "currentTaskId": null,
+  "currentTaskId": "task-2-1",
   "completedTasks": 5,
   "totalTasks": 6,
-  "blockedTasks": 1,
-  "updatedAt": "2026-10-09T13:39:55Z"
+  "blockedTasks": 0,
+  "updatedAt": "2026-10-09T13:58:39Z"
 }

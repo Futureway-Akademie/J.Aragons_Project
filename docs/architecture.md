@@ -4,6 +4,12 @@
 
 Die World-Soul-Website ist eine statische Single-Page-Website unter `world-soul/`. Es gibt kein Backend; das Kontaktformular sendet an Formspree.
 
+## Veröffentlichung
+
+- Live: https://world-soul.onrender.com (Render Static Site, Stand 2026-10-09).
+- Quelle: Repository `Futureway-Akademie/J.Aragons_Project`, Branch `main`, Publish Directory `world-soul`, kein Build-Befehl. Jeder Merge nach `main` löst automatisch ein neues Deployment aus.
+- Nur der Ordner `world-soul/` ist öffentlich; Workshop-Dateien (`.workshop/`, `docs/` usw.) werden nicht ausgeliefert.
+
 ## Dateien
 
 | Pfad | Zweck |
