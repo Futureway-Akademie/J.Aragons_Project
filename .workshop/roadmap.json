@@ -231,7 +231,7 @@
           "description": "Ein Favicon auf Basis des World-Soul-Logos (WS) erstellen und einbinden, damit Browser-Tabs, Lesezeichen und der Startbildschirm von Mobilgeräten ein Symbol zeigen und /favicon.ico nicht mehr mit 404 antwortet.",
           "order": 1,
           "weight": 1,
-          "status": "in_progress",
+          "status": "completed",
           "dependsOn": [
             "task-2-1"
           ],
@@ -243,12 +243,22 @@
             "axe-core weiterhin ohne Verstöße in allen Sprachen und Farbmodi."
           ],
           "startedAt": "2026-10-09T14:25:45Z",
-          "completedAt": null,
+          "completedAt": "2026-10-09T14:33:15Z",
           "verification": {
-            "status": "not_run",
-            "summary": null,
-            "commands": [],
-            "checkedAt": null
+            "status": "passed",
+            "summary": "Entwürfe A/B/C in simulierten hellen und dunklen Browser-Tabs (16/32/180 px) gezeigt; der Teilnehmer wählte A (Logo-Buchstaben „WS“ auf hellem Grund #f3f2f2). Erzeugt per Canvas mit schrittweiser Verkleinerung: favicon.ico (16/32/48 px, PNG-Einträge, 5.781 Bytes) und apple-touch-icon.png (180×180, 20.020 Bytes), im head von Quelle und beiden Bundles verlinkt (cmp identisch). Lokal: beide Dateien 200 mit korrektem Typ, ICO dekodierbar, Darstellung auf hellem und dunklem Hintergrund in allen Größen gut erkennbar, axe-core 0 Verstöße in ES/EN/DE/FR × hell/dunkel. Live nach Merge von PR #7 auf https://world-soul.onrender.com: /favicon.ico 200 (byte-identisch mit dem Repository), /apple-touch-icon.png 200; Cloudflare Polish liefert das PNG ohne ungenutzten Alphakanal aus (20.020 → 13.361 Bytes), pixelgenau identisch (0 von 32.400 Pixeln verschieden). axe-core live 0 Verstöße, keine defekten Bilder. Die Darstellung in der echten Browser-Tableiste wurde anhand der Dateien auf hellem/dunklem Grund geprüft, nicht per Screenshot der Browseroberfläche.",
+            "commands": [
+              "Browser: Entwürfe A/B/C als Canvas in simulierten Tab-Leisten (hell/dunkel)",
+              "Browser: Canvas-Erzeugung der PNGs 16/32/48 und 180 px, Speichern über lokalen PUT-Server",
+              "python: favicon.ico aus PNG-Einträgen erstellt und Verzeichnis validiert",
+              "python favicon_links.py world-soul",
+              "cmp world-soul/index.html world-soul/world-soul-index.html",
+              "Browser: lokale Prüfung der Links, Statuscodes und axe-core 4.10.2 in ES/EN/DE/FR × hell/dunkel",
+              "curl + sha256sum: Live-Dateien gegen Repository verglichen",
+              "python pngpix.py: pixelweiser Vergleich apple-touch-icon live vs. Repository",
+              "Browser: https://world-soul.onrender.com – Links, Statuscodes, axe-core hell/dunkel"
+            ],
+            "checkedAt": "2026-10-09T14:33:15Z"
           }
         },
         {
@@ -257,7 +267,7 @@
           "description": "Das og:image-Meta-Tag verwendet einen relativen Pfad (assets/logo-ws-alpha.png). Soziale Netzwerke und Messenger (z. B. Facebook, WhatsApp, LinkedIn) erwarten eine absolute URL, damit beim Teilen ein Vorschaubild erscheint. Die Angabe auf die veröffentlichte Adresse https://world-soul.onrender.com umstellen und die Link-Vorschau prüfen.",
           "order": 2,
           "weight": 1,
-          "status": "ready",
+          "status": "in_progress",
           "dependsOn": [
             "task-2-1"
           ],
@@ -268,7 +278,7 @@
             "Quelle und beide Bundles sind synchron.",
             "Eine Link-Vorschau zeigt Titel, Beschreibung und Bild (Prüfung mit einem Vorschau-Werkzeug oder durch den Nutzer)."
           ],
-          "startedAt": null,
+          "startedAt": "2026-10-09T14:40:21Z",
           "completedAt": null,
           "verification": {
             "status": "not_run",

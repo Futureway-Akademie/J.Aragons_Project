@@ -33,3 +33,6 @@
 {"timestamp":"2026-10-09T14:22:56Z","type":"roadmap_updated","summary":"task-3-2 (og:image mit absoluter URL) auf Wunsch des Teilnehmers in phase-3 ergänzt."}
 {"timestamp":"2026-10-09T14:22:56Z","type":"task_ready","taskId":"task-3-2","summary":"Abhängigkeit task-2-1 abgeschlossen; Task startbar."}
 {"timestamp":"2026-10-09T14:25:45Z","type":"task_started","taskId":"task-3-1","summary":"Favicon begonnen: Entwürfe A (Logo-Buchstaben auf hellem Grund), B (weißes WS auf Markenblau), C (Routen-Motiv) zur Auswahl, danach favicon.ico und apple-touch-icon."}
+{"timestamp":"2026-10-09T14:33:15Z","type":"verification_passed","taskId":"task-3-1","summary":"Favicon live geprüft: /favicon.ico und /apple-touch-icon.png mit 200, Inhalte identisch zum Repository, axe-core ohne Verstöße."}
+{"timestamp":"2026-10-09T14:33:15Z","type":"task_completed","taskId":"task-3-1","summary":"Favicon (Entwurf A: Logo-Buchstaben auf hellem Grund) und apple-touch-icon ergänzt."}
+{"timestamp":"2026-10-09T14:40:21Z","type":"task_started","taskId":"task-3-2","summary":"Link-Vorschau begonnen: eigenes Vorschaubild 1200×630, vollständige Open-Graph-/Twitter-Angaben mit absoluten URLs, zusätzlich im statischen Kopf des Bundles für Crawler ohne JavaScript."}
