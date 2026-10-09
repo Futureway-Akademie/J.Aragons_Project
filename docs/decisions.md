@@ -69,3 +69,17 @@ React-Attribute werden in der Quelle immer in camelCase geschrieben (`noValidate
 ### Begründung
 
 Fehlermeldungen erscheinen in der gewählten Seitensprache und werden von Screenreadern dem betroffenen Feld zugeordnet.
+
+## 2026-10-09 – Fotos als Graustufen-WebP außerhalb des Bundles
+
+### Kontext
+
+`index.html` war 2,28 MB groß, davon ca. 1,83 MB eingebettete Fotos (Base64), die beim Öffnen immer vollständig geladen wurden – `loading="lazy"` war dadurch wirkungslos. Die Fotos lagen bereits nahe der benötigten Auflösung; eine erneute JPEG-Kodierung mit Windows-Bordmitteln sparte höchstens 15 %.
+
+### Entscheidung
+
+Die 13 Fotos werden als WebP in Graustufen (Qualität 0,8) unter `assets/` abgelegt und nicht mehr eingebettet; das Logo bleibt eingebettet und wurde auf 300 px Breite verkleinert. Der ungenutzte Ordner `uploads/` (Originale, 55 MB) und die alten JPEGs wurden entfernt.
+
+### Begründung
+
+Die Seite zeigt alle Fotos per CSS-Filter in Graustufen; Graustufen-WebP spart 39 % ohne sichtbaren Unterschied (PSNR 38,5–42 dB). Ausgelagerte Fotos werden erst beim Scrollen geladen, die initiale Datei schrumpft um 83 %. Farb-Originale bleiben über die Git-Historie wiederherstellbar.
