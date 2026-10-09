@@ -6,11 +6,11 @@ World Soul – Music Manager (Website): statische, viersprachige Website (ES/EN/
 
 ## Aktive Phase
 
-phase-2 – Qualität und Veröffentlichung (alle Tasks bis auf das blockierte task-2-1 abgeschlossen).
+phase-2 – Qualität und Veröffentlichung.
 
 ## Aktive Aufgabe
 
-Keine.
+task-2-1 – world-soul/ als statische Website auf Render veröffentlichen (seit 2026-10-09T13:58:39Z; zuvor blockiert, da GitHub Pages nicht aktivierbar). Vorgehen: Render Static Site mit Branch `main`, Publish Directory `world-soul`, ohne Build; Datenschutzerklärung auf den neuen Hosting-Anbieter anpassen.
 
 ## Zuletzt abgeschlossen
 
@@ -26,7 +26,7 @@ Keine.
 
 ## Blockiert
 
-- task-2-1 – world-soul/ über GitHub Pages veröffentlichen: GitHub Pages lässt sich nicht aktivieren: github.com/Futureway-Akademie/J.Aragons_Project/settings/pages liefert 404 für das Teilnehmerkonto (fehlende Admin-Rechte am Repository oder Pages in der Organisation Futureway-Akademie deaktiviert). Benötigt Freigabe durch einen Organisations-Owner. Nach Freigabe: Settings → Pages → Deploy from a branch → main, / (root); erwartete URL https://futureway-akademie.github.io/J.Aragons_Project/world-soul/.
+Nichts.
 
 ## Wichtige Entscheidungen
 
@@ -39,10 +39,11 @@ Keine.
 
 ## Bekannte Probleme
 
-- Die Website ist aus diesem Repository noch nicht veröffentlicht; die bisherige Live-Seite liegt unter https://jegucab.github.io/WorldSoul/ und enthält die Verbesserungen aus task-1-2 noch nicht.
+- Veröffentlicht unter https://world-soul.onrender.com (Render). Die Datenschutzerklärung mit Render als Hosting-Anbieter ist lokal angepasst und erscheint dort erst nach dem Merge nach `main`. Die frühere Seite https://jegucab.github.io/WorldSoul/ (Repository jegucab/WorldSoul) bleibt unverändert.
 - Kein Build-Werkzeug für das Bundle im Repository vorhanden.
 - Die Seite hat kein Favicon (Browser fordern /favicon.ico an und erhalten 404).
+- `og:image` verwendet einen relativen Pfad (`assets/logo-ws-alpha.png`); soziale Netzwerke erwarten meist eine absolute URL.
 
 ## Empfohlener nächster Schritt
 
-Änderungen mit dem Repository synchronisieren. Einziger offener Task ist task-2-1 (blockiert): Freigabe für GitHub Pages bei Futureway-Akademie anfragen. Danach ggf. Roadmap um weitere Aufgaben ergänzen (z. B. Favicon).
+Änderungen (Datenschutzerklärung, Dokumentation) committen, pushen und nach `main` mergen; nach dem automatischen Render-Deployment die Datenschutzerklärung auf https://world-soul.onrender.com prüfen und task-2-1 abschließen.

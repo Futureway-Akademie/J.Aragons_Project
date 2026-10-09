@@ -23,3 +23,6 @@
 {"timestamp":"2026-10-09T13:39:55Z","type":"verification_passed","taskId":"task-2-4","summary":"index.html 2.284.630 → 394.320 Bytes; Fotos ohne sichtbaren Unterschied; axe-core 0 Verstöße in 4 Sprachen × 2 Farbmodi; Lazy Loading ohne Cache bestätigt; keine fehlenden Dateien."}
 {"timestamp":"2026-10-09T13:39:55Z","type":"task_completed","taskId":"task-2-4","summary":"Fotos als Graustufen-WebP aus dem Bundle nach assets/ ausgelagert (lazy), Logo verkleinert, ungenutzte Originale (uploads/) und alte JPEGs entfernt."}
 {"timestamp":"2026-10-09T13:39:55Z","type":"decision_recorded","summary":"Fotos werden nicht mehr eingebettet, sondern aus assets/ geladen; index.html benötigt den Ordner assets/ daneben (siehe docs/decisions.md)."}
+{"timestamp":"2026-10-09T13:58:39Z","type":"roadmap_updated","taskId":"task-2-1","summary":"task-2-1 nach Rücksprache mit den Futureway-Admins von GitHub Pages auf Render Static Site umgestellt; Definition of Done um aktualisierte Datenschutzerklärung ergänzt."}
+{"timestamp":"2026-10-09T13:58:39Z","type":"task_unblocked","taskId":"task-2-1","summary":"Blockade (GitHub Pages nicht aktivierbar) durch Wechsel auf Render aufgehoben."}
+{"timestamp":"2026-10-09T13:58:39Z","type":"task_started","taskId":"task-2-1","summary":"Veröffentlichung auf Render begonnen."}
