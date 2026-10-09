@@ -12,7 +12,7 @@ Die World-Soul-Website ist eine statische Single-Page-Website unter `world-soul/
 | `world-soul/support.js` | Laufzeit für das `x-dc`-Format der Quelle |
 | `world-soul/doc-page.js` | Hilfsskript der Quelle |
 | `world-soul/_ds/modernist-…/` | Designsystem „Modernist“ (Tokens, Komponenten, Schrift Archivo) |
-| `world-soul/assets/` | Logos und Fotos |
+| `world-soul/assets/` | Logos (`logo-ws.png`, `logo-ws-alpha.png` für og:image) und 13 Fotos als Graustufen-WebP; werden zur Laufzeit geladen |
 | `world-soul/index.html` | Ausgelieferte Seite: Single-File-Bundle |
 | `world-soul/world-soul-index.html` | Byte-identische Kopie von `index.html` |
 
@@ -20,7 +20,7 @@ Die World-Soul-Website ist eine statische Single-Page-Website unter `world-soul/
 
 `index.html` enthält mehrere `<script type="__bundler/…">`-Blöcke:
 
-- `manifest`: eingebettete Assets (Bilder, Schriften, Skripte) als Base64, über UUIDs referenziert
+- `manifest`: eingebettete Assets (Logo, Schriften, Skripte) als Base64, über UUIDs referenziert. Der Loader ersetzt im Template nur UUIDs, die im Manifest stehen; normale Pfade wie `assets/tour-covra.webp` bleiben unverändert und werden vom Browser geladen.
 - `template`: die komplette Quelle als JSON-String; Asset-Pfade sind durch UUIDs ersetzt, camelCase-Attribute kodiert (z. B. `onClick` → `sc-camel-on-click`)
 - `ext_resources`: externe Skripte (React/ReactDOM 18.3.1 von unpkg)
 
@@ -48,4 +48,12 @@ Hover-Zustände sind als Klassen (`ws-nav-link`, `ws-btn`, `ws-ctl`, `ws-lang`, 
 - Kontaktformular mit `noValidate`, eigener Validierung, `aria-invalid` am fehlerhaften Feld und `aria-describedby="ws-form-status"`.
 - Social-Links mit `target="_blank"` kündigen das Öffnen in neuem Tab im zugänglichen Namen an (`T[lang].a11y.newTab`).
 - Prüfung: axe-core 4.10.2 in allen Sprachen und Farbmodi ohne Verstöße (Stand 2026-10-09).
+
+## Bilder und Performance
+
+- Fotos sind nicht im Bundle eingebettet, sondern liegen als WebP (Graustufen, Qualität 0,8) in `assets/`; `index.html` funktioniert daher nur zusammen mit dem Ordner `assets/`.
+- Alle Fotos tragen `loading="lazy"` als erstes Attribut vor `src` (die Template-Engine setzt Attribute in Quellreihenfolge).
+- Die Seite zeigt Fotos über `--photo` (CSS `grayscale()`), deshalb gehen durch Graustufen-Dateien keine sichtbaren Informationen verloren.
+- Größen (Stand 2026-10-09): `index.html` 394.320 Bytes; Fotos zusammen 845.296 Bytes, davon beim Öffnen nur die ersten Tour-Fotos.
+- Farb-Originale wurden aus dem Arbeitsbaum entfernt und sind nur noch in der Git-Historie vorhanden (z. B. Commit `57d4e72`, Ordner `world-soul/uploads/` und `world-soul/assets/*.jpg`).
 

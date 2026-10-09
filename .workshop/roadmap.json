@@ -78,7 +78,7 @@
       "description": "Website aus dem Workshop-Repository veröffentlichen und in Responsivität, Barrierefreiheit und Performance absichern.",
       "order": 2,
       "weight": 9,
-      "status": "ready",
+      "status": "blocked",
       "tasks": [
         {
           "id": "task-2-1",
@@ -180,7 +180,7 @@
           "description": "Die Größe des ca. 2,2 MB großen Bundles und der eingebetteten Bilder reduzieren, ohne sichtbare Qualitätsverluste.",
           "order": 4,
           "weight": 2,
-          "status": "ready",
+          "status": "completed",
           "dependsOn": [
             "task-1-2"
           ],
@@ -189,13 +189,25 @@
             "Bilder zeigen keine sichtbaren Qualitätsverluste.",
             "Die Seite rendert danach vollständig in allen Sprachen und beiden Farbmodi."
           ],
-          "startedAt": null,
-          "completedAt": null,
+          "startedAt": "2026-10-09T13:23:27Z",
+          "completedAt": "2026-10-09T13:39:55Z",
           "verification": {
-            "status": "not_run",
-            "summary": null,
-            "commands": [],
-            "checkedAt": null
+            "status": "passed",
+            "summary": "Baseline: index.html 2.284.630 Bytes, davon ca. 1,83 MB eingebettete Fotos (Base64), die trotz loading=lazy immer vollständig geladen wurden. Fotos lagen bereits nahe der benötigten Auflösung (Anzeigegröße ×2), daher keine Verkleinerung, sondern Neukodierung: 13 Fotos als WebP in Graustufen (Qualität 0,8; die Seite zeigt alle Fotos per CSS-Filter in Graustufen) 1.374.719 → 845.296 Bytes (−39 %), PSNR 38,5–42 dB gegenüber dem Original; Logo 582×231 → 300×119 px (75.820 → 33.791 Bytes). Danach Fotos aus dem Bundle nach assets/ ausgelagert (Logo bleibt eingebettet) und loading=\"lazy\" vor src gesetzt. Ergebnis: index.html 394.320 Bytes (−83 %); beim Öffnen werden 4 Fotos geladen, die übrigen beim Scrollen (4 → 7 → 8 → 13, ohne Cache gemessen). Prüfung: Seitenvergleich alt/neu bei Anzeigegröße ohne sichtbare Unterschiede; Logo hell/dunkel scharf; axe-core 0 Verstöße und keine Überbreite bei 375 px in ES/EN/DE/FR × hell/dunkel; 0 defekte Bilder. Danach ungenutzte Dateien entfernt (world-soul/uploads/ mit 17 Originalen, 55 MB, und 14 alte JPEGs in assets/; per Suche keine Referenzen); erneuter Test ohne fehlende Dateien (einzige 404: favicon.ico, Seite hat keins). Quelle und beide Bundles synchron (cmp).",
+            "commands": [
+              "Browser: Performance-API (Navigations- und Ressourcen-Timing), Messung der Anzeigegrößen bei 375/768/1024/1440 px",
+              "recompress.ps1 (System.Drawing, JPEG q70–85) – verworfen, max. 15 % Ersparnis",
+              "Browser: Canvas-WebP-Kodierung mit PSNR-Vergleich (q0,75/0,8, Farbe/Graustufen)",
+              "python image_swap.py world-soul optimized",
+              "python photo_refs.py world-soul",
+              "python externalize.py world-soul",
+              "python lazy_order.py world-soul",
+              "cmp world-soul/index.html world-soul/world-soul-index.html",
+              "Browser: Lazy-Loading-Test ohne Cache mit Ressourcen-Protokoll",
+              "Browser: axe-core 4.10.2 und Overflow-Prüfung in ES/EN/DE/FR × hell/dunkel bei 375 px",
+              "git rm -r world-soul/uploads; git rm world-soul/assets/*.jpg"
+            ],
+            "checkedAt": "2026-10-09T13:39:55Z"
           }
         }
       ]
